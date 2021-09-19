@@ -180,6 +180,24 @@ class _roundsPageState extends State<roundsPage> {
                           subtitleColor = Colors.white;
                           listItemTextColor = Color(0xFF121212);
                           colorThemeOption = 3;
+                        } else if (colorThemeOption == 3) {
+                          backgroundColor = Color(0xFF003670);
+                          itemDividerColor = Color(0xFF003670);
+                          listItemColor = Color(0xFF0079fa);
+                          titleColor = Colors.white;
+                          iconColor = Colors.white;
+                          subtitleColor = Colors.white;
+                          listItemTextColor = Color(0xFF121212);
+                          colorThemeOption = 4;
+                        } else if (colorThemeOption == 4) {
+                          backgroundColor = Color(0xFF700c01);
+                          itemDividerColor = Color(0xFF700c01);
+                          listItemColor = Color(0xFFfc1900);
+                          titleColor = Colors.white;
+                          iconColor = Colors.white;
+                          subtitleColor = Colors.white;
+                          listItemTextColor = Color(0xFF121212);
+                          colorThemeOption = 5;
                         } else {
                           backgroundColor = Color(0xFF121212);
                           itemDividerColor = Color(0xFF000000);
@@ -192,11 +210,17 @@ class _roundsPageState extends State<roundsPage> {
                         }
 
                         showToast(
-                          colorThemeOption == 2
-                              ? "Freight Frenzy Theme"
-                              : colorThemeOption == 3
-                                  ? "FIRST Forward Theme"
-                                  : colorThemeOption == 1 ? "Team Innov8rz Theme" : "Monochrome Theme",
+                          colorThemeOption == 1
+                              ? "Team Innov8rz Theme"
+                              : colorThemeOption == 2
+                                  ? "Freight Frenzy Theme"
+                                  : colorThemeOption == 3
+                                      ? "FIRST Forward Theme"
+                                      : colorThemeOption == 4
+                                          ? "Blue Alliance Theme"
+                                          : colorThemeOption == 5
+                                              ? "Red Alliance Theme"
+                                              : "Monochrome Theme",
                           context: context,
                           animation: StyledToastAnimation.slideFromBottom,
                           reverseAnimation: StyledToastAnimation.fade,
