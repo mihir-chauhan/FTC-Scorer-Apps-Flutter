@@ -442,10 +442,13 @@ class _roundsPageState extends State<roundsPage> {
                                                             .lightImpact();
                                                       }
                                                       navigatingValueAuto = val;
-                                                      if(navigatingValueAuto == 1) {
+                                                      if (navigatingValueAuto ==
+                                                          1) {
                                                         navigatingScoreAuto = 0;
-                                                        navigatingWarehouseValueAuto = 2;
-                                                        navigatingStorageUnitValueAuto = 2;
+                                                        navigatingWarehouseValueAuto =
+                                                            2;
+                                                        navigatingStorageUnitValueAuto =
+                                                            2;
                                                       }
                                                     });
                                                   },
@@ -499,7 +502,11 @@ class _roundsPageState extends State<roundsPage> {
                                                               val;
                                                           if (navigatingStorageUnitValueAuto !=
                                                               2) {
-                                                            navigatingScoreAuto = (navigatingStorageUnitValueAuto == 0 ? 6 : 3);
+                                                            navigatingScoreAuto =
+                                                                (navigatingStorageUnitValueAuto ==
+                                                                        0
+                                                                    ? 6
+                                                                    : 3);
                                                             navigatingWarehouseValueAuto =
                                                                 2;
                                                           }
@@ -556,7 +563,11 @@ class _roundsPageState extends State<roundsPage> {
                                                               val;
                                                           if (navigatingWarehouseValueAuto !=
                                                               2) {
-                                                            navigatingScoreAuto = (navigatingWarehouseValueAuto == 0 ? 10 : 5);
+                                                            navigatingScoreAuto =
+                                                                (navigatingWarehouseValueAuto ==
+                                                                        0
+                                                                    ? 10
+                                                                    : 5);
                                                             navigatingStorageUnitValueAuto =
                                                                 2;
                                                           }
@@ -603,7 +614,24 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: SizedBox(
-                                                child: Text(( ((carouselDuckDeliveryAuto == 0) ? 10 : 0) + (freightInStorageUnitAuto * 2) + (freightInShippingHubAuto * 6) + (freightLevelAutoBonus == 0 ? 10 : freightLevelAutoBonus == 1 ? 20 : 0) + navigatingScoreAuto).toString(),
+                                                child: Text(
+                                                    (((carouselDuckDeliveryAuto ==
+                                                                    0)
+                                                                ? 10
+                                                                : 0) +
+                                                            (freightInStorageUnitAuto *
+                                                                2) +
+                                                            (freightInShippingHubAuto *
+                                                                6) +
+                                                            (freightLevelAutoBonus ==
+                                                                    0
+                                                                ? 10
+                                                                : freightLevelAutoBonus ==
+                                                                        1
+                                                                    ? 20
+                                                                    : 0) +
+                                                            navigatingScoreAuto)
+                                                        .toString(),
                                                     style: TextStyle(
                                                         color: const Color(
                                                             0xFF121212),
