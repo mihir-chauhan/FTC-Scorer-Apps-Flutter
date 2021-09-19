@@ -74,9 +74,12 @@ class _roundsPageState extends State<roundsPage> {
   int freightInStorageUnitAuto = 0;
   int freightInShippingHubAuto = 0;
   int freightLevelAutoBonus = 2;
-  int navigatingValueAuto = 1;
-  int navigatingStorageUnitValueAuto = 2;
-  int navigatingWarehouseValueAuto = 2;
+  int navigatingValueAutoR1 = 1;
+  int navigatingStorageUnitValueAutoR1 = 2;
+  int navigatingWarehouseValueAutoR1 = 2;
+  int navigatingValueAutoR2 = 1;
+  int navigatingStorageUnitValueAutoR2 = 2;
+  int navigatingWarehouseValueAutoR2 = 2;
   int navigatingScoreAuto = 0;
 
   int freightInStorageUnitTeleOp = 0;
@@ -85,7 +88,7 @@ class _roundsPageState extends State<roundsPage> {
   int freightInSharedShippingHub = 0;
   int freightInShippingHubLevel3 = 0;
 
-  int duckandTeamElementDelivery = 0;
+  int duckOrTeamElementDelivery = 0;
   int shippingHubStatus = 1;
   int sharedHubStatus = 1;
   int robot1Park = 2;
@@ -225,9 +228,12 @@ class _roundsPageState extends State<roundsPage> {
                         freightInStorageUnitAuto = 0;
                         freightInShippingHubAuto = 0;
                         freightLevelAutoBonus = 2;
-                        navigatingValueAuto = 1;
-                        navigatingStorageUnitValueAuto = 2;
-                        navigatingWarehouseValueAuto = 2;
+                        navigatingValueAutoR1 = 1;
+                        navigatingStorageUnitValueAutoR1 = 2;
+                        navigatingWarehouseValueAutoR1 = 2;
+                        navigatingValueAutoR2 = 1;
+                        navigatingStorageUnitValueAutoR2 = 2;
+                        navigatingWarehouseValueAutoR2 = 2;
                         navigatingScoreAuto = 0;
 
                         freightInStorageUnitTeleOp = 0;
@@ -236,7 +242,7 @@ class _roundsPageState extends State<roundsPage> {
                         freightInSharedShippingHub = 0;
                         freightInShippingHubLevel3 = 0;
 
-                        duckandTeamElementDelivery = 0;
+                        duckOrTeamElementDelivery = 0;
                         shippingHubStatus = 1;
                         sharedHubStatus = 1;
                         robot1Park = 2;
@@ -533,30 +539,30 @@ class _roundsPageState extends State<roundsPage> {
                                                   onValueChanged: (int val) {
                                                     setState(() {
                                                       if (val !=
-                                                          navigatingValueAuto) {
+                                                          navigatingValueAutoR1) {
                                                         HapticFeedback
                                                             .lightImpact();
                                                       }
-                                                      navigatingValueAuto = val;
-                                                      if (navigatingValueAuto ==
+                                                      navigatingValueAutoR1 = val;
+                                                      if (navigatingValueAutoR1 ==
                                                           1) {
                                                         navigatingScoreAuto = 0;
-                                                        navigatingWarehouseValueAuto =
+                                                        navigatingWarehouseValueAutoR1 =
                                                             2;
-                                                        navigatingStorageUnitValueAuto =
+                                                        navigatingStorageUnitValueAutoR1 =
                                                             2;
                                                       }
                                                     });
                                                   },
                                                   groupValue:
-                                                      navigatingValueAuto,
+                                                      navigatingValueAutoR1,
                                                 )))))
                               ],
                             ),
                           ],
                         ),
                       )),
-                  navigatingValueAuto == 0
+                  navigatingValueAutoR1 == 0
                       ? Container(
                           height: 60,
                           color: listItemColor,
@@ -589,26 +595,26 @@ class _roundsPageState extends State<roundsPage> {
                                                           (int val) {
                                                         setState(() {
                                                           if (val !=
-                                                              navigatingStorageUnitValueAuto) {
+                                                              navigatingStorageUnitValueAutoR1) {
                                                             HapticFeedback
                                                                 .lightImpact();
                                                           }
-                                                          navigatingStorageUnitValueAuto =
+                                                          navigatingStorageUnitValueAutoR1 =
                                                               val;
-                                                          if (navigatingStorageUnitValueAuto !=
+                                                          if (navigatingStorageUnitValueAutoR1 !=
                                                               2) {
                                                             navigatingScoreAuto =
-                                                                (navigatingStorageUnitValueAuto ==
+                                                                (navigatingStorageUnitValueAutoR1 ==
                                                                         0
                                                                     ? 6
                                                                     : 3);
-                                                            navigatingWarehouseValueAuto =
+                                                            navigatingWarehouseValueAutoR1 =
                                                                 2;
                                                           }
                                                         });
                                                       },
                                                       groupValue:
-                                                          navigatingStorageUnitValueAuto,
+                                                          navigatingStorageUnitValueAutoR1,
                                                     )))))
                                   ],
                                 ),
@@ -616,7 +622,7 @@ class _roundsPageState extends State<roundsPage> {
                             ),
                           ))
                       : SizedBox(height: 0),
-                  navigatingValueAuto == 0
+                  navigatingValueAutoR1 == 0
                       ? Container(
                           height: 60,
                           color: listItemColor,
@@ -649,26 +655,26 @@ class _roundsPageState extends State<roundsPage> {
                                                           (int val) {
                                                         setState(() {
                                                           if (val !=
-                                                              navigatingWarehouseValueAuto) {
+                                                              navigatingWarehouseValueAutoR1) {
                                                             HapticFeedback
                                                                 .lightImpact();
                                                           }
-                                                          navigatingWarehouseValueAuto =
+                                                          navigatingWarehouseValueAutoR1 =
                                                               val;
-                                                          if (navigatingWarehouseValueAuto !=
+                                                          if (navigatingWarehouseValueAutoR1 !=
                                                               2) {
                                                             navigatingScoreAuto =
-                                                                (navigatingWarehouseValueAuto ==
+                                                                (navigatingWarehouseValueAutoR1 ==
                                                                         0
                                                                     ? 10
                                                                     : 5);
-                                                            navigatingStorageUnitValueAuto =
+                                                            navigatingStorageUnitValueAutoR1 =
                                                                 2;
                                                           }
                                                         });
                                                       },
                                                       groupValue:
-                                                          navigatingWarehouseValueAuto,
+                                                          navigatingWarehouseValueAutoR1,
                                                     )))))
                                   ],
                                 ),
@@ -1112,7 +1118,7 @@ class _roundsPageState extends State<roundsPage> {
                                     child: Align(
                                         alignment: Alignment.centerRight,
                                         child: Text(
-                                            "$duckandTeamElementDelivery",
+                                            "$duckOrTeamElementDelivery",
                                             style: TextStyle(
                                                 color: listItemTextColor,
                                                 fontSize: 25))))),
@@ -1131,17 +1137,17 @@ class _roundsPageState extends State<roundsPage> {
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
-                                                  if (duckandTeamElementDelivery >
+                                                  if (duckOrTeamElementDelivery >
                                                       0) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
-                                                  (duckandTeamElementDelivery >
+                                                  (duckOrTeamElementDelivery >
                                                           0)
-                                                      ? duckandTeamElementDelivery -=
+                                                      ? duckOrTeamElementDelivery -=
                                                           1
-                                                      : duckandTeamElementDelivery =
-                                                          duckandTeamElementDelivery;
+                                                      : duckOrTeamElementDelivery =
+                                                          duckOrTeamElementDelivery;
                                                 });
                                               },
                                             ))))),
@@ -1159,15 +1165,15 @@ class _roundsPageState extends State<roundsPage> {
                                                   fontSize: 30)),
                                           onPressed: () {
                                             setState(() {
-                                              if (duckandTeamElementDelivery <
+                                              if (duckOrTeamElementDelivery <
                                                   12) {
                                                 HapticFeedback.lightImpact();
                                               }
-                                              (duckandTeamElementDelivery < 12)
-                                                  ? duckandTeamElementDelivery +=
+                                              (duckOrTeamElementDelivery < 12)
+                                                  ? duckOrTeamElementDelivery +=
                                                       1
-                                                  : duckandTeamElementDelivery =
-                                                      duckandTeamElementDelivery;
+                                                  : duckOrTeamElementDelivery =
+                                                      duckOrTeamElementDelivery;
                                             });
                                           },
                                         )))),
@@ -1298,6 +1304,53 @@ class _roundsPageState extends State<roundsPage> {
                       )),
                   Divider(height: 1, color: itemDividerColor),
 
+                  value
+                      ? Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Parking 2"
+                                        : "🅿 Parking 2",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
+                                                    CupertinoSlidingSegmentedControl<
+                                                        int>(
+                                                  children: parking,
+                                                  thumbColor:
+                                                      const Color(0xFF121212),
+                                                  backgroundColor:
+                                                      Colors.black45,
+                                                  onValueChanged: (int val) {
+                                                    setState(() {
+                                                      if (val != robot2Park) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      robot2Park = val;
+                                                    });
+                                                  },
+                                                  groupValue: robot2Park,
+                                                )))))
+                              ],
+                            ),
+                          ))
+                      : SizedBox(height: 0),
+                  value
+                      ? Divider(height: 1, color: itemDividerColor)
+                      : SizedBox(height: 0),
                   // TODO: Add Dual Scorer's Park Option Here
 
                   Container(
@@ -1438,7 +1491,7 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: SizedBox(
-                                                child: Text(((duckandTeamElementDelivery * 6) + (shippingHubStatus == 0 ? 10 : 0) + (sharedHubStatus == 0 ? 20 : 0) + (robot1Park == 0 ? 6 : robot1Park == 1 ? 3 : 0) + (capping == 0 ? 30 : capping == 1 ? 15 : 0)).toString(),
+                                                child: Text(((duckOrTeamElementDelivery * 6) + (shippingHubStatus == 0 ? 10 : 0) + (sharedHubStatus == 0 ? 20 : 0) + (robot1Park == 0 ? 6 : robot1Park == 1 ? 3 : 0) + (dualScoring.value ? (robot2Park == 0 ? 6 : robot2Park == 1 ? 3 : 0) : 0) + (capping == 0 ? 30 : capping == 1 ? 15 : 0)).toString(),
                                                     style: TextStyle(
                                                         color: const Color(
                                                             0xFF121212),
