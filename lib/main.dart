@@ -117,10 +117,11 @@ class _roundsPageState extends State<roundsPage> {
       if(colorThemeOption == -1) {
         colorThemeOption = 5;
       }
+      setThemeBasedOnThemeOption();
     } else {
+      colorThemeOption = 0;
       this.preferences?.setInt("colorTheme", colorThemeOption);
     }
-    setThemeBasedOnThemeOption();
   }
 
   void setThemeBasedOnThemeOption() {
@@ -716,10 +717,7 @@ class _roundsPageState extends State<roundsPage> {
                             ),
                           ))
                       : SizedBox(height: 0),
-
-                  // TODO: Add Dual Scorer's Park Option Here
-
-                  Divider(height: 1, color: itemDividerColor),
+                  value ? Divider(height: 1, color: itemDividerColor) : SizedBox(height: 0),
                   value
                       ? Container(
                           height: 60,
@@ -1312,7 +1310,6 @@ class _roundsPageState extends State<roundsPage> {
                           ],
                         ),
                       )),
-                  Divider(height: 1, color: itemDividerColor),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text("End Game Points",
