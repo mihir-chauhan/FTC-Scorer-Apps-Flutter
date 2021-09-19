@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,6 +30,8 @@ class roundsPage extends StatefulWidget {
 }
 
 class _roundsPageState extends State<roundsPage> {
+  SharedPreferences preferences;
+
   static var backgroundColor = Color(0xFF121212);
   static var itemDividerColor = Color(0xFF121212);
   static var listItemColor = Color(0xFFe4841e);
@@ -98,36 +100,86 @@ class _roundsPageState extends State<roundsPage> {
 
   var dualScoring = ValueNotifier<bool>(false);
 
-  // int i = 0;
-  // void readThemeVariables() async {
-  //   if(i == 0) {
-  //     i++;
-  //   } else {
-  //     return;
-  //   }
-  //   try {
-  //     prefs = await SharedPreferences.getInstance();
-  //     setState(() {
-  //       colorThemeOption = (prefs.getInt('colorThemeOption') ?? 0) + 1;
-  //       print('ColorThemeOption $colorThemeOption');
-  //     });
-  //   } catch (e) {
-  //     print('errorroror: $e');
-  //     SharedPreferences.setMockInitialValues({"colorThemeOption": 0});
-  //     prefs = await SharedPreferences.getInstance();
-  //     setState(() {
-  //       colorThemeOption = ((prefs.getInt('colorThemeOption') ?? 0) + 2) % 2;
-  //       print('ColorThemeOption $colorThemeOption');
-  //     });
-  //   }
-  // }
-  //
-  // void setThemeVariables() async {
-  //   await prefs.setInt('colorThemeOption', colorThemeOption);
-  //
-  //   int testcolorThemeOption = (prefs.getInt('colorThemeOption') ?? 0);
-  //   print('ColorThemeOption $testcolorThemeOption');
-  // }
+  @override
+  void initState() {
+    super.initState();
+    initializePreference().whenComplete((){
+      setState(() {});
+    });
+  }
+
+  Future<void> initializePreference() async{
+    this.preferences = await SharedPreferences.getInstance();
+    this.preferences.reload();
+    if (this.preferences.containsKey("colorTheme")) {
+      colorThemeOption = this.preferences?.getInt("colorTheme");
+      colorThemeOption -= 1;
+      if(colorThemeOption == -1) {
+        colorThemeOption = 5;
+      }
+    } else {
+      this.preferences?.setInt("colorTheme", colorThemeOption);
+    }
+    setThemeBasedOnThemeOption();
+  }
+
+  void setThemeBasedOnThemeOption() {
+    if (colorThemeOption == 0) {
+      backgroundColor = Color(0xFF121212);
+      itemDividerColor = Color(0xFF121212);
+      listItemColor = Color(0xFFe4841e);
+      titleColor = Colors.white;
+      iconColor = Colors.white;
+      subtitleColor = Colors.white;
+      listItemTextColor = Color(0xFF121212);
+      colorThemeOption = 1;
+    } else if (colorThemeOption == 1) {
+      backgroundColor = Color(0xFFA5CA18);
+      itemDividerColor = Color(0xFF121212);
+      listItemColor = Color(0xFF68C3E2);
+      titleColor = Colors.white;
+      iconColor = Colors.white;
+      subtitleColor = Colors.white;
+      listItemTextColor = Color(0xFF121212);
+      colorThemeOption = 2;
+    } else if (colorThemeOption == 2) {
+      backgroundColor = Color(0xFF314c77);
+      itemDividerColor = Color(0xFF5dbca1);
+      listItemColor = Color(0xFFdab045);
+      titleColor = Colors.white;
+      iconColor = Colors.white;
+      subtitleColor = Colors.white;
+      listItemTextColor = Color(0xFF121212);
+      colorThemeOption = 3;
+    } else if (colorThemeOption == 3) {
+      backgroundColor = Color(0xFF003670);
+      itemDividerColor = Color(0xFF003670);
+      listItemColor = Color(0xFF0079fa);
+      titleColor = Colors.white;
+      iconColor = Colors.white;
+      subtitleColor = Colors.white;
+      listItemTextColor = Color(0xFF121212);
+      colorThemeOption = 4;
+    } else if (colorThemeOption == 4) {
+      backgroundColor = Color(0xFF700c01);
+      itemDividerColor = Color(0xFF700c01);
+      listItemColor = Color(0xFFfc1900);
+      titleColor = Colors.white;
+      iconColor = Colors.white;
+      subtitleColor = Colors.white;
+      listItemTextColor = Color(0xFF121212);
+      colorThemeOption = 5;
+    } else {
+      backgroundColor = Color(0xFF121212);
+      itemDividerColor = Color(0xFF000000);
+      listItemColor = Color(0xFF8c8c8c);
+      titleColor = Colors.white;
+      iconColor = Colors.white;
+      subtitleColor = Colors.white;
+      listItemTextColor = Color(0xFF121212);
+      colorThemeOption = 0;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +187,6 @@ class _roundsPageState extends State<roundsPage> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    // readThemeVariables();
     return new ValueListenableBuilder(
         valueListenable: dualScoring,
         builder: (context, value, widget) {
@@ -153,61 +204,8 @@ class _roundsPageState extends State<roundsPage> {
                     },
                     onTap: () {
                       setState(() {
-                        if (colorThemeOption == 0) {
-                          backgroundColor = Color(0xFF121212);
-                          itemDividerColor = Color(0xFF121212);
-                          listItemColor = Color(0xFFe4841e);
-                          titleColor = Colors.white;
-                          iconColor = Colors.white;
-                          subtitleColor = Colors.white;
-                          listItemTextColor = Color(0xFF121212);
-                          colorThemeOption = 1;
-                        } else if (colorThemeOption == 1) {
-                          backgroundColor = Color(0xFFA5CA18);
-                          itemDividerColor = Color(0xFF121212);
-                          listItemColor = Color(0xFF68C3E2);
-                          titleColor = Colors.white;
-                          iconColor = Colors.white;
-                          subtitleColor = Colors.white;
-                          listItemTextColor = Color(0xFF121212);
-                          colorThemeOption = 2;
-                        } else if (colorThemeOption == 2) {
-                          backgroundColor = Color(0xFF314c77);
-                          itemDividerColor = Color(0xFF5dbca1);
-                          listItemColor = Color(0xFFdab045);
-                          titleColor = Colors.white;
-                          iconColor = Colors.white;
-                          subtitleColor = Colors.white;
-                          listItemTextColor = Color(0xFF121212);
-                          colorThemeOption = 3;
-                        } else if (colorThemeOption == 3) {
-                          backgroundColor = Color(0xFF003670);
-                          itemDividerColor = Color(0xFF003670);
-                          listItemColor = Color(0xFF0079fa);
-                          titleColor = Colors.white;
-                          iconColor = Colors.white;
-                          subtitleColor = Colors.white;
-                          listItemTextColor = Color(0xFF121212);
-                          colorThemeOption = 4;
-                        } else if (colorThemeOption == 4) {
-                          backgroundColor = Color(0xFF700c01);
-                          itemDividerColor = Color(0xFF700c01);
-                          listItemColor = Color(0xFFfc1900);
-                          titleColor = Colors.white;
-                          iconColor = Colors.white;
-                          subtitleColor = Colors.white;
-                          listItemTextColor = Color(0xFF121212);
-                          colorThemeOption = 5;
-                        } else {
-                          backgroundColor = Color(0xFF121212);
-                          itemDividerColor = Color(0xFF000000);
-                          listItemColor = Color(0xFF8c8c8c);
-                          titleColor = Colors.white;
-                          iconColor = Colors.white;
-                          subtitleColor = Colors.white;
-                          listItemTextColor = Color(0xFF121212);
-                          colorThemeOption = 0;
-                        }
+                        setThemeBasedOnThemeOption();
+                        this.preferences?.setInt("colorTheme", colorThemeOption);
 
                         showToast(
                           colorThemeOption == 1
@@ -215,7 +213,7 @@ class _roundsPageState extends State<roundsPage> {
                               : colorThemeOption == 2
                                   ? "Freight Frenzy Theme"
                                   : colorThemeOption == 3
-                                      ? "FIRST Forward Theme"
+                                      ? "FIRST FORWARD Theme"
                                       : colorThemeOption == 4
                                           ? "Blue Alliance Theme"
                                           : colorThemeOption == 5
