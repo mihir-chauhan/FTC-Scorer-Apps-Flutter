@@ -28,62 +28,48 @@ class roundsPage extends StatefulWidget {
 }
 
 class _roundsPageState extends State<roundsPage> {
-  final Map<int, Widget> wobbleGoalDelivery = const <int, Widget>{
+  static var backgroundColor = Color(0xFF121212);
+  static var itemDividerColor = Color(0xFF121212);
+  static var listItemColor = Color(0xFFe4841e);
+  static var titleColor = Colors.white;
+  static var iconColor = Colors.white;
+  static var subtitleColor = Colors.white;
+  static var listItemTextColor = Color(0xFF121212);
+  static bool innov8rzColorScheme = true;
+
+  final Map<int, Widget> duckDelivery = const <int, Widget>{
     0: Text("Yes", style: TextStyle(color: Colors.white)),
     1: Text("No", style: TextStyle(color: Colors.white))
   };
-  final Map<int, Widget> wobbleGoalDelivery2 = const <int, Widget>{
-    0: Text("Yes", style: TextStyle(color: Colors.white)),
-    1: Text("No", style: TextStyle(color: Colors.white))
-  };
-  final Map<int, Widget> powerShotAuto = const <int, Widget>{
-    0: Text("0", style: TextStyle(color: Colors.white)),
-    1: Text("1", style: TextStyle(color: Colors.white)),
-    2: Text("2", style: TextStyle(color: Colors.white)),
-    3: Text("3", style: TextStyle(color: Colors.white))
+  final Map<int, Widget> freightLevelBonusAuto = const <int, Widget>{
+    0: Text("Duck", style: TextStyle(color: Colors.white)),
+    1: Text("Team", style: TextStyle(color: Colors.white)),
+    2: Text("None", style: TextStyle(color: Colors.white))
   };
   final Map<int, Widget> navigating = const <int, Widget>{
     0: Text("Yes", style: TextStyle(color: Colors.white)),
     1: Text("No", style: TextStyle(color: Colors.white))
   };
-  final Map<int, Widget> navigating2 = const <int, Widget>{
-    0: Text("Yes", style: TextStyle(color: Colors.white)),
-    1: Text("No", style: TextStyle(color: Colors.white))
+  final Map<int, Widget> autoStorageUnitParking = const <int, Widget>{
+    0: Text("Full", style: TextStyle(color: Colors.white)),
+    1: Text("Partly", style: TextStyle(color: Colors.white)),
+    2: Text("None", style: TextStyle(color: Colors.white))
   };
-  final Map<int, Widget> wobbleGoalDeliveryEndGame = const <int, Widget>{
-    0: Text("None", style: TextStyle(color: Colors.white)),
-    1: Text("Start", style: TextStyle(color: Colors.white)),
-    2: Text("Drop", style: TextStyle(color: Colors.white))
-  };
-  final Map<int, Widget> wobbleGoalDeliveryEndGame2 = const <int, Widget>{
-    0: Text("None", style: TextStyle(color: Colors.white)),
-    1: Text("Start", style: TextStyle(color: Colors.white)),
-    2: Text("Drop", style: TextStyle(color: Colors.white))
-  };
-  final Map<int, Widget> powerShotEndGame = const <int, Widget>{
-    0: Text("0", style: TextStyle(color: Colors.white)),
-    1: Text("1", style: TextStyle(color: Colors.white)),
-    2: Text("2", style: TextStyle(color: Colors.white)),
-    3: Text("3", style: TextStyle(color: Colors.white))
+  final Map<int, Widget> autoWarehouseParking = const <int, Widget>{
+    0: Text("Full", style: TextStyle(color: Colors.white)),
+    1: Text("Partly", style: TextStyle(color: Colors.white)),
+    2: Text("None", style: TextStyle(color: Colors.white))
   };
 
-  int wobbleGoalDeliveryValueAuto = 1;
-  int wobbleGoalDeliveryValueAuto2 = 1;
-  int lowTowerGoalAuto = 0;
-  int highTowerGoalAuto = 0;
-  int midTowerGoalAuto = 0;
-  int powerShotValueAuto = 0;
-  int navigatingValue = 1;
-  int navigatingValue2 = 1;
+  int carouselDuckDeliveryAuto = 1;
+  int freightInStorageUnitAuto = 0;
+  int freightInShippingHubAuto = 0;
+  int freightLevelAutoBonus = 2;
+  int navigatingValueAuto = 1;
+  int navigatingStorageUnitValueAuto = 2;
+  int navigatingWarehouseValueAuto = 2;
+  int navigatingScoreAuto = 0;
 
-  int lowTowerGoalTeleOp = 0;
-  int midTowerGoalTeleOp = 0;
-  int highTowerGoalTeleOp = 0;
-
-  int wobbleGoalDeliveryValueEndGame = 0;
-  int wobbleGoalDeliveryValueEndGame2 = 0;
-  int wobbleRings = 0;
-  int powerShotValueEndGame = 0;
   var dualScoring = ValueNotifier<bool>(false);
 
   @override
@@ -96,13 +82,38 @@ class _roundsPageState extends State<roundsPage> {
         valueListenable: dualScoring,
         builder: (context, value, widget) {
           return new CupertinoPageScaffold(
-            backgroundColor: const Color(0xFF121212),
+            backgroundColor: backgroundColor,
             child: CustomScrollView(
               slivers: <Widget>[
                 CupertinoSliverNavigationBar(
-                  backgroundColor: const Color(0xFF121212),
-                  largeTitle: Text("Score Match",
-                      style: TextStyle(color: Colors.white)),
+                  backgroundColor: backgroundColor,
+                  largeTitle: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        if (innov8rzColorScheme) {
+                          backgroundColor = Color(0xFFCFE385);
+                          itemDividerColor = Color(0xFF1E5AA8);
+                          listItemColor = Color(0xFF68C3E2);
+                          titleColor = Colors.white;
+                          iconColor = Colors.white;
+                          subtitleColor = Colors.white;
+                          listItemTextColor = Color(0xFF121212);
+                          innov8rzColorScheme = false;
+                        } else {
+                          backgroundColor = Color(0xFF121212);
+                          itemDividerColor = Color(0xFF121212);
+                          listItemColor = Color(0xFFe4841e);
+                          titleColor = Colors.white;
+                          iconColor = Colors.white;
+                          subtitleColor = Colors.white;
+                          listItemTextColor = Color(0xFF121212);
+                          innov8rzColorScheme = true;
+                        }
+                      });
+                    },
+                    child: Text("Score Match",
+                        style: TextStyle(color: titleColor)),
+                  ),
                   leading: GestureDetector(
                     onTap: () {
                       HapticFeedback.lightImpact();
@@ -117,7 +128,7 @@ class _roundsPageState extends State<roundsPage> {
                     },
                     child: Icon(
                       value ? Icons.looks_one : Icons.looks_two,
-                      color: CupertinoColors.white,
+                      color: iconColor,
                       // size: 35,
                     ),
                   ),
@@ -125,28 +136,19 @@ class _roundsPageState extends State<roundsPage> {
                     onTap: () {
                       setState(() {
                         HapticFeedback.lightImpact();
-                        wobbleGoalDeliveryValueAuto = 1;
-                        wobbleGoalDeliveryValueAuto2 = 1;
-                        lowTowerGoalAuto = 0;
-                        highTowerGoalAuto = 0;
-                        midTowerGoalAuto = 0;
-                        powerShotValueAuto = 0;
-                        navigatingValue = 1;
-                        navigatingValue2 = 1;
-
-                        lowTowerGoalTeleOp = 0;
-                        midTowerGoalTeleOp = 0;
-                        highTowerGoalTeleOp = 0;
-
-                        wobbleGoalDeliveryValueEndGame = 0;
-                        wobbleGoalDeliveryValueEndGame2 = 0;
-                        wobbleRings = 0;
-                        powerShotValueEndGame = 0;
+                        carouselDuckDeliveryAuto = 1;
+                        freightInStorageUnitAuto = 0;
+                        freightInShippingHubAuto = 0;
+                        freightLevelAutoBonus = 2;
+                        navigatingValueAuto = 1;
+                        navigatingStorageUnitValueAuto = 2;
+                        navigatingWarehouseValueAuto = 2;
+                        navigatingScoreAuto = 0;
                       });
                     },
                     child: Icon(
                       CupertinoIcons.refresh,
-                      color: CupertinoColors.white,
+                      color: iconColor,
                       // size: 35,
                     ),
                   ),
@@ -156,19 +158,21 @@ class _roundsPageState extends State<roundsPage> {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text("Autonomous Points",
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(color: subtitleColor)),
                   ),
                   Container(
                       height: 60,
-                      color: const Color(0xFFe4841e),
+                      color: listItemColor,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           children: <Widget>[
-                            Text("Wobble 1 Delivery",
+                            Text(
+                                innov8rzColorScheme
+                                    ? "Duck Delivery"
+                                    : "🐤 Delivery",
                                 style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
+                                    color: listItemTextColor, fontSize: 25)),
                             Expanded(
                                 child: Container(
                                     child: Align(
@@ -178,84 +182,48 @@ class _roundsPageState extends State<roundsPage> {
                                             child:
                                                 CupertinoSlidingSegmentedControl<
                                                     int>(
-                                              children: wobbleGoalDelivery,
+                                              children: duckDelivery,
                                               thumbColor:
                                                   const Color(0xFF121212),
                                               backgroundColor: Colors.black45,
                                               onValueChanged: (int val) {
                                                 setState(() {
-                                                  if(val != wobbleGoalDeliveryValueAuto) {
-                                                    HapticFeedback.lightImpact();
+                                                  if (val !=
+                                                      carouselDuckDeliveryAuto) {
+                                                    HapticFeedback
+                                                        .lightImpact();
                                                   }
-                                                  wobbleGoalDeliveryValueAuto =
+                                                  carouselDuckDeliveryAuto =
                                                       val;
                                                 });
                                               },
                                               groupValue:
-                                                  wobbleGoalDeliveryValueAuto,
+                                                  carouselDuckDeliveryAuto,
                                             )))))
                           ],
                         ),
                       )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
+                  Divider(height: 1, color: itemDividerColor),
                   Container(
                       height: 60,
-                      color: const Color(0xFFe4841e),
+                      color: listItemColor,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           children: <Widget>[
-                            Text("Wobble 2 Delivery",
+                            Text(
+                                innov8rzColorScheme
+                                    ? "Freight in Storage"
+                                    : "📦 in Storage Unit  ",
                                 style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
+                                    color: listItemTextColor, fontSize: 25)),
                             Expanded(
                                 child: Container(
                                     child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
-                                                CupertinoSlidingSegmentedControl<
-                                                    int>(
-                                              children: wobbleGoalDelivery2,
-                                              thumbColor:
-                                                  const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if(val != wobbleGoalDeliveryValueAuto2) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  wobbleGoalDeliveryValueAuto2 =
-                                                      val;
-                                                });
-                                              },
-                                              groupValue:
-                                                  wobbleGoalDeliveryValueAuto2,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
-                  Container(
-                      height: 60,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Low Tower Goal",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text("$lowTowerGoalAuto",
+                                        child: Text("$freightInStorageUnitAuto",
                                             style: TextStyle(
-                                                color: const Color(0xFF121212),
+                                                color: listItemTextColor,
                                                 fontSize: 25))))),
                             Expanded(
                                 child: Padding(
@@ -264,21 +232,24 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: CupertinoButton(
-                                              color: const Color(0xFF121212),
+                                              color: listItemTextColor,
                                               padding: EdgeInsets.zero,
-                                              child: Text("-",
+                                              child: Text("–",
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
-                                                  if(lowTowerGoalAuto > 0) {
-                                                    HapticFeedback.lightImpact();
+                                                  if (freightInStorageUnitAuto >
+                                                      0) {
+                                                    HapticFeedback
+                                                        .lightImpact();
                                                   }
-                                                  (lowTowerGoalAuto > 0)
-                                                      ? lowTowerGoalAuto -= 1
-                                                      : lowTowerGoalAuto =
-                                                          lowTowerGoalAuto;
+                                                  (freightInStorageUnitAuto > 0)
+                                                      ? freightInStorageUnitAuto -=
+                                                          1
+                                                      : freightInStorageUnitAuto =
+                                                          freightInStorageUnitAuto;
                                                 });
                                               },
                                             ))))),
@@ -288,7 +259,7 @@ class _roundsPageState extends State<roundsPage> {
                                     child: Align(
                                         alignment: Alignment.centerRight,
                                         child: CupertinoButton(
-                                          color: const Color(0xFF121212),
+                                          color: listItemTextColor,
                                           padding: EdgeInsets.zero,
                                           child: Text("+",
                                               style: TextStyle(
@@ -296,38 +267,42 @@ class _roundsPageState extends State<roundsPage> {
                                                   fontSize: 30)),
                                           onPressed: () {
                                             setState(() {
-                                              if(lowTowerGoalAuto < 7) {
+                                              if (freightInStorageUnitAuto <
+                                                  50) {
                                                 HapticFeedback.lightImpact();
                                               }
-                                              (lowTowerGoalAuto < 7)
-                                                  ? lowTowerGoalAuto += 1
-                                                  : lowTowerGoalAuto =
-                                                      lowTowerGoalAuto;
+                                              (freightInStorageUnitAuto < 50)
+                                                  ? freightInStorageUnitAuto +=
+                                                      1
+                                                  : freightInStorageUnitAuto =
+                                                      freightInStorageUnitAuto;
                                             });
                                           },
                                         )))),
                           ],
                         ),
                       )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
+                  Divider(height: 1, color: itemDividerColor),
                   Container(
                       height: 60,
-                      color: const Color(0xFFe4841e),
+                      color: listItemColor,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           children: <Widget>[
-                            Text("Mid Tower Goal ",
+                            Text(
+                                innov8rzColorScheme
+                                    ? "Freight in Hub      "
+                                    : "📦 in Shipping Hub",
                                 style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
+                                    color: listItemTextColor, fontSize: 25)),
                             Expanded(
                                 child: Container(
                                     child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: Text("$midTowerGoalAuto",
+                                        child: Text("$freightInShippingHubAuto",
                                             style: TextStyle(
-                                                color: const Color(0xFF121212),
+                                                color: listItemTextColor,
                                                 fontSize: 25))))),
                             Expanded(
                                 child: Padding(
@@ -336,21 +311,24 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: CupertinoButton(
-                                              color: const Color(0xFF121212),
+                                              color: listItemTextColor,
                                               padding: EdgeInsets.zero,
-                                              child: Text("-",
+                                              child: Text("–",
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
-                                                  if(midTowerGoalAuto > 0) {
-                                                    HapticFeedback.lightImpact();
+                                                  if (freightInShippingHubAuto >
+                                                      0) {
+                                                    HapticFeedback
+                                                        .lightImpact();
                                                   }
-                                                  (midTowerGoalAuto > 0)
-                                                      ? midTowerGoalAuto -= 1
-                                                      : midTowerGoalAuto =
-                                                          midTowerGoalAuto;
+                                                  (freightInShippingHubAuto > 0)
+                                                      ? freightInShippingHubAuto -=
+                                                          1
+                                                      : freightInShippingHubAuto =
+                                                          freightInShippingHubAuto;
                                                 });
                                               },
                                             ))))),
@@ -360,7 +338,7 @@ class _roundsPageState extends State<roundsPage> {
                                     child: Align(
                                         alignment: Alignment.centerRight,
                                         child: CupertinoButton(
-                                          color: const Color(0xFF121212),
+                                          color: listItemTextColor,
                                           padding: EdgeInsets.zero,
                                           child: Text("+",
                                               style: TextStyle(
@@ -368,637 +346,256 @@ class _roundsPageState extends State<roundsPage> {
                                                   fontSize: 30)),
                                           onPressed: () {
                                             setState(() {
-                                              if(midTowerGoalAuto < 7) {
+                                              if (freightInShippingHubAuto <
+                                                  50) {
                                                 HapticFeedback.lightImpact();
                                               }
-                                              (midTowerGoalAuto < 7)
-                                                  ? midTowerGoalAuto += 1
-                                                  : midTowerGoalAuto =
-                                                      midTowerGoalAuto;
+                                              (freightInShippingHubAuto < 50)
+                                                  ? freightInShippingHubAuto +=
+                                                      1
+                                                  : freightInShippingHubAuto =
+                                                      freightInShippingHubAuto;
                                             });
                                           },
                                         )))),
                           ],
                         ),
                       )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
+                  Divider(height: 1, color: itemDividerColor),
                   Container(
                       height: 60,
-                      color: const Color(0xFFe4841e),
+                      color: listItemColor,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           children: <Widget>[
-                            Text("High Tower Goal",
+                            Text(
+                                innov8rzColorScheme
+                                    ? "Freight Bonus"
+                                    : "📦 Bonus",
                                 style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
+                                    color: listItemTextColor, fontSize: 25)),
                             Expanded(
                                 child: Container(
                                     child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: Text("$highTowerGoalAuto",
-                                            style: TextStyle(
-                                                color: const Color(0xFF121212),
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
+                                        child: SizedBox(
+                                            width: 150,
+                                            child:
+                                                CupertinoSlidingSegmentedControl<
+                                                    int>(
+                                              children: freightLevelBonusAuto,
+                                              thumbColor:
+                                                  const Color(0xFF121212),
+                                              backgroundColor: Colors.black45,
+                                              onValueChanged: (int val) {
+                                                setState(() {
+                                                  if (val !=
+                                                      freightLevelAutoBonus) {
+                                                    HapticFeedback
+                                                        .lightImpact();
+                                                  }
+                                                  freightLevelAutoBonus = val;
+                                                });
+                                              },
+                                              groupValue: freightLevelAutoBonus,
+                                            )))))
+                          ],
+                        ),
+                      )),
+                  Divider(height: 1, color: itemDividerColor),
+                  Container(
+                      height: 60,
+                      color: listItemColor,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: <Widget>[
+                                Text(
+                                    innov8rzColorScheme
+                                        ? "Parking 1"
+                                        : "🅿 Parking 1",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
                                     child: Container(
                                         child: Align(
                                             alignment: Alignment.centerRight,
-                                            child: CupertinoButton(
-                                              color: const Color(0xFF121212),
-                                              padding: EdgeInsets.zero,
-                                              child: Text("-",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 30)),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if(highTowerGoalAuto > 0) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  (highTowerGoalAuto > 0)
-                                                      ? highTowerGoalAuto -= 1
-                                                      : highTowerGoalAuto =
-                                                          highTowerGoalAuto;
-                                                });
-                                              },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: const Color(0xFF121212),
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if(highTowerGoalAuto < 7) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (highTowerGoalAuto < 7)
-                                                  ? highTowerGoalAuto += 1
-                                                  : highTowerGoalAuto =
-                                                      highTowerGoalAuto;
-                                            });
-                                          },
-                                        )))),
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
+                                                    CupertinoSlidingSegmentedControl<
+                                                        int>(
+                                                  children: navigating,
+                                                  thumbColor:
+                                                      const Color(0xFF121212),
+                                                  backgroundColor:
+                                                      Colors.black45,
+                                                  onValueChanged: (int val) {
+                                                    setState(() {
+                                                      if (val !=
+                                                          navigatingValueAuto) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      navigatingValueAuto = val;
+                                                      if(navigatingValueAuto == 1) {
+                                                        navigatingScoreAuto = 0;
+                                                        navigatingWarehouseValueAuto = 2;
+                                                        navigatingStorageUnitValueAuto = 2;
+                                                      }
+                                                    });
+                                                  },
+                                                  groupValue:
+                                                      navigatingValueAuto,
+                                                )))))
+                              ],
+                            ),
                           ],
                         ),
                       )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
-                  Container(
-                      height: 60,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Power Shot",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
-                                                CupertinoSlidingSegmentedControl<
-                                                    int>(
-                                              children: powerShotAuto,
-                                              thumbColor:
-                                                  const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if(val != powerShotValueAuto) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  powerShotValueAuto = val;
-                                                });
-                                              },
-                                              groupValue: powerShotValueAuto,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
-                  Container(
-                      height: 60,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Navigating 1",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
-                                                CupertinoSlidingSegmentedControl<
-                                                    int>(
-                                              children: navigating,
-                                              thumbColor:
-                                                  const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if(val != navigatingValue) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  navigatingValue = val;
-                                                });
-                                              },
-                                              groupValue: navigatingValue,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Divider(
-                      height: value ? 1 : 0, color: const Color(0xFF121212)),
-                  Container(
-                      height: value ? 60 : 0,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Navigating 2",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
-                                                CupertinoSlidingSegmentedControl<
-                                                    int>(
-                                              children: navigating2,
-                                              thumbColor:
-                                                  const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if(val != navigatingValue2) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  navigatingValue2 = val;
-                                                });
-                                              },
-                                              groupValue: navigatingValue2,
-                                            )))))
-                          ],
-                        ),
-                      )),
+                  navigatingValueAuto == 0
+                      ? Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: <Widget>[
+                                    Text("    Storage Unit",
+                                        style: TextStyle(
+                                            color: listItemTextColor,
+                                            fontSize: 25)),
+                                    Expanded(
+                                        child: Container(
+                                            child: Align(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: SizedBox(
+                                                    width: 150,
+                                                    child:
+                                                        CupertinoSlidingSegmentedControl<
+                                                            int>(
+                                                      children:
+                                                          autoStorageUnitParking,
+                                                      thumbColor: const Color(
+                                                          0xFF121212),
+                                                      backgroundColor:
+                                                          Colors.black45,
+                                                      onValueChanged:
+                                                          (int val) {
+                                                        setState(() {
+                                                          if (val !=
+                                                              navigatingStorageUnitValueAuto) {
+                                                            HapticFeedback
+                                                                .lightImpact();
+                                                          }
+                                                          navigatingStorageUnitValueAuto =
+                                                              val;
+                                                          if (navigatingStorageUnitValueAuto !=
+                                                              2) {
+                                                            navigatingScoreAuto = (navigatingStorageUnitValueAuto == 0 ? 6 : 3);
+                                                            navigatingWarehouseValueAuto =
+                                                                2;
+                                                          }
+                                                        });
+                                                      },
+                                                      groupValue:
+                                                          navigatingStorageUnitValueAuto,
+                                                    )))))
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ))
+                      : SizedBox(height: 0),
+                  navigatingValueAuto == 0
+                      ? Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: <Widget>[
+                                    Text("    Warehouse",
+                                        style: TextStyle(
+                                            color: listItemTextColor,
+                                            fontSize: 25)),
+                                    Expanded(
+                                        child: Container(
+                                            child: Align(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: SizedBox(
+                                                    width: 150,
+                                                    child:
+                                                        CupertinoSlidingSegmentedControl<
+                                                            int>(
+                                                      children:
+                                                          autoWarehouseParking,
+                                                      thumbColor: const Color(
+                                                          0xFF121212),
+                                                      backgroundColor:
+                                                          Colors.black45,
+                                                      onValueChanged:
+                                                          (int val) {
+                                                        setState(() {
+                                                          if (val !=
+                                                              navigatingWarehouseValueAuto) {
+                                                            HapticFeedback
+                                                                .lightImpact();
+                                                          }
+                                                          navigatingWarehouseValueAuto =
+                                                              val;
+                                                          if (navigatingWarehouseValueAuto !=
+                                                              2) {
+                                                            navigatingScoreAuto = (navigatingWarehouseValueAuto == 0 ? 10 : 5);
+                                                            navigatingStorageUnitValueAuto =
+                                                                2;
+                                                          }
+                                                        });
+                                                      },
+                                                      groupValue:
+                                                          navigatingWarehouseValueAuto,
+                                                    )))))
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ))
+                      : SizedBox(height: 0),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text("Driver Controlled Points",
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(color: subtitleColor)),
                   ),
-                  Container(
-                      height: 60,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Low Tower Goal",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text("$lowTowerGoalTeleOp",
-                                            style: TextStyle(
-                                                color: const Color(0xFF121212),
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child: Container(
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: CupertinoButton(
-                                              color: const Color(0xFF121212),
-                                              padding: EdgeInsets.zero,
-                                              child: Text("-",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 30)),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if(lowTowerGoalTeleOp > 0) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  (lowTowerGoalTeleOp > 0)
-                                                      ? lowTowerGoalTeleOp -= 1
-                                                      : lowTowerGoalTeleOp =
-                                                          lowTowerGoalTeleOp;
-                                                });
-                                              },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: const Color(0xFF121212),
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if(lowTowerGoalTeleOp < 50) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (lowTowerGoalTeleOp < 50)
-                                                  ? lowTowerGoalTeleOp += 1
-                                                  : lowTowerGoalTeleOp =
-                                                      lowTowerGoalTeleOp;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
-                  Container(
-                      height: 60,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Mid Tower Goal ",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text("$midTowerGoalTeleOp",
-                                            style: TextStyle(
-                                                color: const Color(0xFF121212),
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child: Container(
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: CupertinoButton(
-                                              color: const Color(0xFF121212),
-                                              padding: EdgeInsets.zero,
-                                              child: Text("-",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 30)),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if(midTowerGoalTeleOp > 0) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  (midTowerGoalTeleOp > 0)
-                                                      ? midTowerGoalTeleOp -= 1
-                                                      : midTowerGoalTeleOp =
-                                                          midTowerGoalTeleOp;
-                                                });
-                                              },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: const Color(0xFF121212),
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if(midTowerGoalTeleOp < 50) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (midTowerGoalTeleOp < 50)
-                                                  ? midTowerGoalTeleOp += 1
-                                                  : midTowerGoalTeleOp =
-                                                      midTowerGoalTeleOp;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
-                  Container(
-                      height: 60,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("High Tower Goal",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text("$highTowerGoalTeleOp",
-                                            style: TextStyle(
-                                                color: const Color(0xFF121212),
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child: Container(
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: CupertinoButton(
-                                              color: const Color(0xFF121212),
-                                              padding: EdgeInsets.zero,
-                                              child: Text("-",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 30)),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if(highTowerGoalTeleOp > 0) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  (highTowerGoalTeleOp > 0)
-                                                      ? highTowerGoalTeleOp -= 1
-                                                      : highTowerGoalTeleOp =
-                                                          highTowerGoalTeleOp;
-                                                });
-                                              },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: const Color(0xFF121212),
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if(highTowerGoalTeleOp < 50) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (highTowerGoalTeleOp < 50)
-                                                  ? highTowerGoalTeleOp += 1
-                                                  : highTowerGoalTeleOp =
-                                                      highTowerGoalTeleOp;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text("End Game Points",
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(color: subtitleColor)),
                   ),
-                  Container(
-                      height: 60,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Wobble 1 Delivery",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
-                                                CupertinoSlidingSegmentedControl<
-                                                    int>(
-                                              children:
-                                                  wobbleGoalDeliveryEndGame,
-                                              thumbColor:
-                                                  const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if(val != wobbleGoalDeliveryValueEndGame) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  wobbleGoalDeliveryValueEndGame =
-                                                      val;
-                                                });
-                                              },
-                                              groupValue:
-                                                  wobbleGoalDeliveryValueEndGame,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
-                  Container(
-                      height: 60,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Wobble 2 Delivery",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
-                                                CupertinoSlidingSegmentedControl<
-                                                    int>(
-                                              children:
-                                                  wobbleGoalDeliveryEndGame2,
-                                              thumbColor:
-                                                  const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if(val != wobbleGoalDeliveryValueEndGame2) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  wobbleGoalDeliveryValueEndGame2 =
-                                                      val;
-                                                });
-                                              },
-                                              groupValue:
-                                                  wobbleGoalDeliveryValueEndGame2,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
-                  Container(
-                      height: 60,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Wobble Rings     ",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text("$wobbleRings",
-                                            style: TextStyle(
-                                                color: const Color(0xFF121212),
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child: Container(
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: CupertinoButton(
-                                              color: const Color(0xFF121212),
-                                              padding: EdgeInsets.zero,
-                                              child: Text("-",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 30)),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if(wobbleRings > 0) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  (wobbleRings > 0)
-                                                      ? wobbleRings -= 1
-                                                      : wobbleRings =
-                                                          wobbleRings;
-                                                });
-                                              },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: const Color(0xFF121212),
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if(wobbleRings < 15) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (wobbleRings < 15)
-                                                  ? wobbleRings += 1
-                                                  : wobbleRings = wobbleRings;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
-                  Container(
-                      height: 60,
-                      color: const Color(0xFFe4841e),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Power Shot",
-                                style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
-                                                CupertinoSlidingSegmentedControl<
-                                                    int>(
-                                              children: powerShotEndGame,
-                                              thumbColor:
-                                                  const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if(val != powerShotValueEndGame) {
-                                                    HapticFeedback.lightImpact();
-                                                  }
-                                                  powerShotValueEndGame = val;
-                                                });
-                                              },
-                                              groupValue: powerShotValueEndGame,
-                                            )))))
-                          ],
-                        ),
-                      )),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text("Score Breakdown",
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(color: subtitleColor)),
                   ),
                   Container(
                       height: 60,
-                      color: const Color(0xFFe4841e),
+                      color: listItemColor,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           children: <Widget>[
                             Text("Autonomous",
                                 style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
+                                    color: listItemTextColor, fontSize: 25)),
                             Expanded(
                                 child: Container(
                                     child: Padding(
@@ -1006,37 +603,7 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: SizedBox(
-                                                child: Text(
-                                                    (((wobbleGoalDeliveryValueAuto == 0) ? 15 : 0) +
-                                                            ((wobbleGoalDeliveryValueAuto2 == 0)
-                                                                ? 15
-                                                                : 0) +
-                                                            (lowTowerGoalAuto *
-                                                                3) +
-                                                            ((powerShotValueAuto == 1)
-                                                                ? 15
-                                                                : (powerShotValueAuto ==
-                                                                        2)
-                                                                    ? 30
-                                                                    : (powerShotValueAuto ==
-                                                                            3)
-                                                                        ? 45
-                                                                        : 0) +
-                                                            (midTowerGoalAuto *
-                                                                6) +
-                                                            (highTowerGoalAuto *
-                                                                12) +
-                                                            ((navigatingValue ==
-                                                                    0)
-                                                                ? 5
-                                                                : 0) +
-                                                            (value
-                                                                ? ((navigatingValue2 ==
-                                                                        0)
-                                                                    ? 5
-                                                                    : 0)
-                                                                : 0))
-                                                        .toString(),
+                                                child: Text(( ((carouselDuckDeliveryAuto == 0) ? 10 : 0) + (freightInStorageUnitAuto * 2) + (freightInShippingHubAuto * 6) + (freightLevelAutoBonus == 0 ? 10 : freightLevelAutoBonus == 1 ? 20 : 0) + navigatingScoreAuto).toString(),
                                                     style: TextStyle(
                                                         color: const Color(
                                                             0xFF121212),
@@ -1044,18 +611,17 @@ class _roundsPageState extends State<roundsPage> {
                           ],
                         ),
                       )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
+                  Divider(height: 1, color: itemDividerColor),
                   Container(
                       height: 60,
-                      color: const Color(0xFFe4841e),
+                      color: listItemColor,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           children: <Widget>[
                             Text("Driver Controlled",
                                 style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
+                                    color: listItemTextColor, fontSize: 25)),
                             Expanded(
                                 child: Container(
                                     child: Padding(
@@ -1063,13 +629,7 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: SizedBox(
-                                                child: Text(
-                                                    ((lowTowerGoalTeleOp) * 2 +
-                                                            (midTowerGoalTeleOp *
-                                                                4) +
-                                                            (highTowerGoalTeleOp *
-                                                                6))
-                                                        .toString(),
+                                                child: Text((1).toString(),
                                                     style: TextStyle(
                                                         color: const Color(
                                                             0xFF121212),
@@ -1077,18 +637,17 @@ class _roundsPageState extends State<roundsPage> {
                           ],
                         ),
                       )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
+                  Divider(height: 1, color: itemDividerColor),
                   Container(
                       height: 60,
-                      color: const Color(0xFFe4841e),
+                      color: listItemColor,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           children: <Widget>[
                             Text("End Game",
                                 style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
+                                    color: listItemTextColor, fontSize: 25)),
                             Expanded(
                                 child: Container(
                                     child: Padding(
@@ -1096,50 +655,25 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: SizedBox(
-                                                child: Text(
-                                                    (((wobbleGoalDeliveryValueEndGame == 0) ? 0 : (wobbleGoalDeliveryValueEndGame == 1) ? 5 : (wobbleGoalDeliveryValueEndGame == 2) ? 20 : 0) +
-                                                            ((wobbleGoalDeliveryValueEndGame2 == 0)
-                                                                ? 0
-                                                                : (wobbleGoalDeliveryValueEndGame2 ==
-                                                                        1)
-                                                                    ? 5
-                                                                    : (wobbleGoalDeliveryValueEndGame2 ==
-                                                                            2)
-                                                                        ? 20
-                                                                        : 0) +
-                                                            wobbleRings * 5 +
-                                                            ((powerShotValueEndGame ==
-                                                                    0)
-                                                                ? 0
-                                                                : (powerShotValueEndGame ==
-                                                                        1)
-                                                                    ? 15
-                                                                    : (powerShotValueEndGame ==
-                                                                            2)
-                                                                        ? 30
-                                                                        : (powerShotValueEndGame == 3)
-                                                                            ? 45
-                                                                            : 0))
-                                                        .toString(),
+                                                child: Text((1).toString(),
                                                     style: TextStyle(
-                                                        color:
-                                                            const Color(0xFF121212),
+                                                        color: const Color(
+                                                            0xFF121212),
                                                         fontSize: 25)))))))
                           ],
                         ),
                       )),
-                  Divider(height: 1, color: const Color(0xFF121212)),
+                  Divider(height: 1, color: itemDividerColor),
                   Container(
                       height: 60,
-                      color: const Color(0xFFe4841e),
+                      color: listItemColor,
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: Row(
                           children: <Widget>[
                             Text("Total",
                                 style: TextStyle(
-                                    color: const Color(0xFF121212),
-                                    fontSize: 25)),
+                                    color: listItemTextColor, fontSize: 25)),
                             Expanded(
                                 child: Container(
                                     child: Padding(
@@ -1147,57 +681,11 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: SizedBox(
-                                                child: Text(
-                                                    (((wobbleGoalDeliveryValueAuto == 0) ? 15 : 0) +
-                                                            ((wobbleGoalDeliveryValueAuto2 == 0)
-                                                                ? 15
-                                                                : 0) +
-                                                            (lowTowerGoalAuto *
-                                                                3) +
-                                                            ((powerShotValueAuto == 1)
-                                                                ? 15
-                                                                : (powerShotValueAuto == 2)
-                                                                    ? 30
-                                                                    : (powerShotValueAuto == 3)
-                                                                        ? 45
-                                                                        : 0) +
-                                                            (midTowerGoalAuto *
-                                                                6) +
-                                                            (highTowerGoalAuto *
-                                                                12) +
-                                                            ((navigatingValue == 0)
-                                                                ? 5
-                                                                : 0) +
-                                                            (value
-                                                                ? ((navigatingValue2 == 0)
-                                                                    ? 5
-                                                                    : 0)
-                                                                : 0) +
-                                                            ((lowTowerGoalTeleOp) * 2 +
-                                                                (midTowerGoalTeleOp *
-                                                                    4) +
-                                                                (highTowerGoalTeleOp *
-                                                                    6)) +
-                                                            ((wobbleGoalDeliveryValueEndGame == 0)
-                                                                ? 0
-                                                                : (wobbleGoalDeliveryValueEndGame == 1)
-                                                                    ? 5
-                                                                    : (wobbleGoalDeliveryValueEndGame == 2)
-                                                                        ? 20
-                                                                        : 0) +
-                                                            ((wobbleGoalDeliveryValueEndGame2 == 0)
-                                                                ? 0
-                                                                : (wobbleGoalDeliveryValueEndGame2 == 1)
-                                                                    ? 5
-                                                                    : (wobbleGoalDeliveryValueEndGame2 == 2)
-                                                                        ? 20
-                                                                        : 0) +
-                                                            wobbleRings * 5 +
-                                                            ((powerShotValueEndGame == 0)
-                                                                ? 0
-                                                                : (powerShotValueEndGame == 1) ? 15 : (powerShotValueEndGame == 2) ? 30 : (powerShotValueEndGame == 3) ? 45 : 0))
-                                                        .toString(),
-                                                    style: TextStyle(color: const Color(0xFF121212), fontSize: 25)))))))
+                                                child: Text((1).toString(),
+                                                    style: TextStyle(
+                                                        color:
+                                                            listItemTextColor,
+                                                        fontSize: 25)))))))
                           ],
                         ),
                       )),
