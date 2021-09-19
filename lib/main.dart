@@ -163,7 +163,7 @@ class _roundsPageState extends State<roundsPage> {
                           listItemTextColor = Color(0xFF121212);
                           colorThemeOption = 1;
                         } else if (colorThemeOption == 1) {
-                          backgroundColor = Color(0xFFCFE385);
+                          backgroundColor = Color(0xFFA5CA18);
                           itemDividerColor = Color(0xFF121212);
                           listItemColor = Color(0xFF68C3E2);
                           titleColor = Colors.white;
@@ -171,10 +171,19 @@ class _roundsPageState extends State<roundsPage> {
                           subtitleColor = Colors.white;
                           listItemTextColor = Color(0xFF121212);
                           colorThemeOption = 2;
-                        } else {
+                        } else if (colorThemeOption == 2) {
                           backgroundColor = Color(0xFF314c77);
                           itemDividerColor = Color(0xFF5dbca1);
                           listItemColor = Color(0xFFdab045);
+                          titleColor = Colors.white;
+                          iconColor = Colors.white;
+                          subtitleColor = Colors.white;
+                          listItemTextColor = Color(0xFF121212);
+                          colorThemeOption = 3;
+                        } else {
+                          backgroundColor = Color(0xFF121212);
+                          itemDividerColor = Color(0xFF000000);
+                          listItemColor = Color(0xFF8c8c8c);
                           titleColor = Colors.white;
                           iconColor = Colors.white;
                           subtitleColor = Colors.white;
@@ -185,9 +194,9 @@ class _roundsPageState extends State<roundsPage> {
                         showToast(
                           colorThemeOption == 2
                               ? "Freight Frenzy Theme"
-                              : colorThemeOption == 0
+                              : colorThemeOption == 3
                                   ? "FIRST Forward Theme"
-                                  : "Team Innov8rz Theme",
+                                  : colorThemeOption == 1 ? "Team Innov8rz Theme" : "Monochrome Theme",
                           context: context,
                           animation: StyledToastAnimation.slideFromBottom,
                           reverseAnimation: StyledToastAnimation.fade,
