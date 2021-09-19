@@ -81,6 +81,7 @@ class _roundsPageState extends State<roundsPage> {
   int navigatingStorageUnitValueAutoR2 = 2;
   int navigatingWarehouseValueAutoR2 = 2;
   int navigatingScoreAuto = 0;
+  int navigatingScoreAutoR2 = 0;
 
   int freightInStorageUnitTeleOp = 0;
   int freightInShippingHubLevel1 = 0;
@@ -235,6 +236,7 @@ class _roundsPageState extends State<roundsPage> {
                         navigatingStorageUnitValueAutoR2 = 2;
                         navigatingWarehouseValueAutoR2 = 2;
                         navigatingScoreAuto = 0;
+                        navigatingScoreAutoR2 = 0;
 
                         freightInStorageUnitTeleOp = 0;
                         freightInShippingHubLevel1 = 0;
@@ -543,7 +545,8 @@ class _roundsPageState extends State<roundsPage> {
                                                         HapticFeedback
                                                             .lightImpact();
                                                       }
-                                                      navigatingValueAutoR1 = val;
+                                                      navigatingValueAutoR1 =
+                                                          val;
                                                       if (navigatingValueAutoR1 ==
                                                           1) {
                                                         navigatingScoreAuto = 0;
@@ -684,6 +687,190 @@ class _roundsPageState extends State<roundsPage> {
                       : SizedBox(height: 0),
 
                   // TODO: Add Dual Scorer's Park Option Here
+
+                  Divider(height: 1, color: itemDividerColor),
+                  value
+                      ? Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: <Widget>[
+                                    Text(
+                                        notEasterEggMode
+                                            ? "Parking 2"
+                                            : "🅿 Parking 2",
+                                        style: TextStyle(
+                                            color: listItemTextColor,
+                                            fontSize: 25)),
+                                    Expanded(
+                                        child: Container(
+                                            child: Align(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: SizedBox(
+                                                    width: 150,
+                                                    child:
+                                                        CupertinoSlidingSegmentedControl<
+                                                            int>(
+                                                      children: navigating,
+                                                      thumbColor: const Color(
+                                                          0xFF121212),
+                                                      backgroundColor:
+                                                          Colors.black45,
+                                                      onValueChanged:
+                                                          (int val) {
+                                                        setState(() {
+                                                          if (val !=
+                                                              navigatingValueAutoR2) {
+                                                            HapticFeedback
+                                                                .lightImpact();
+                                                          }
+                                                          navigatingValueAutoR2 =
+                                                              val;
+                                                          if (navigatingValueAutoR2 ==
+                                                              1) {
+                                                            navigatingScoreAutoR2 =
+                                                                0;
+                                                            navigatingWarehouseValueAutoR2 =
+                                                                2;
+                                                            navigatingStorageUnitValueAutoR2 =
+                                                                2;
+                                                          }
+                                                        });
+                                                      },
+                                                      groupValue:
+                                                          navigatingValueAutoR2,
+                                                    )))))
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ))
+                      : SizedBox(height: 0),
+                  navigatingValueAutoR2 == 0 && value
+                      ? Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: <Widget>[
+                                    Text("    Storage Unit",
+                                        style: TextStyle(
+                                            color: listItemTextColor,
+                                            fontSize: 25)),
+                                    Expanded(
+                                        child: Container(
+                                            child: Align(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: SizedBox(
+                                                    width: 150,
+                                                    child:
+                                                        CupertinoSlidingSegmentedControl<
+                                                            int>(
+                                                      children: parking,
+                                                      thumbColor: const Color(
+                                                          0xFF121212),
+                                                      backgroundColor:
+                                                          Colors.black45,
+                                                      onValueChanged:
+                                                          (int val) {
+                                                        setState(() {
+                                                          if (val !=
+                                                              navigatingStorageUnitValueAutoR2) {
+                                                            HapticFeedback
+                                                                .lightImpact();
+                                                          }
+                                                          navigatingStorageUnitValueAutoR2 =
+                                                              val;
+                                                          if (navigatingStorageUnitValueAutoR2 !=
+                                                              2) {
+                                                            navigatingScoreAutoR2 =
+                                                                (navigatingStorageUnitValueAutoR2 ==
+                                                                        0
+                                                                    ? 6
+                                                                    : 3);
+                                                            navigatingWarehouseValueAutoR2 =
+                                                                2;
+                                                          }
+                                                        });
+                                                      },
+                                                      groupValue:
+                                                          navigatingStorageUnitValueAutoR2,
+                                                    )))))
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ))
+                      : SizedBox(height: 0),
+                  navigatingValueAutoR2 == 0 && value
+                      ? Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: <Widget>[
+                                    Text("    Warehouse",
+                                        style: TextStyle(
+                                            color: listItemTextColor,
+                                            fontSize: 25)),
+                                    Expanded(
+                                        child: Container(
+                                            child: Align(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: SizedBox(
+                                                    width: 150,
+                                                    child:
+                                                        CupertinoSlidingSegmentedControl<
+                                                            int>(
+                                                      children: parking,
+                                                      thumbColor: const Color(
+                                                          0xFF121212),
+                                                      backgroundColor:
+                                                          Colors.black45,
+                                                      onValueChanged:
+                                                          (int val) {
+                                                        setState(() {
+                                                          if (val !=
+                                                              navigatingWarehouseValueAutoR2) {
+                                                            HapticFeedback
+                                                                .lightImpact();
+                                                          }
+                                                          navigatingWarehouseValueAutoR2 =
+                                                              val;
+                                                          if (navigatingWarehouseValueAutoR2 !=
+                                                              2) {
+                                                            navigatingScoreAutoR2 =
+                                                                (navigatingWarehouseValueAutoR2 ==
+                                                                        0
+                                                                    ? 10
+                                                                    : 5);
+                                                            navigatingStorageUnitValueAutoR2 =
+                                                                2;
+                                                          }
+                                                        });
+                                                      },
+                                                      groupValue:
+                                                          navigatingWarehouseValueAutoR2,
+                                                    )))))
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ))
+                      : SizedBox(height: 0),
 
                   Padding(
                     padding: const EdgeInsets.all(15.0),
@@ -1303,7 +1490,6 @@ class _roundsPageState extends State<roundsPage> {
                         ),
                       )),
                   Divider(height: 1, color: itemDividerColor),
-
                   value
                       ? Container(
                           height: 60,
@@ -1351,8 +1537,6 @@ class _roundsPageState extends State<roundsPage> {
                   value
                       ? Divider(height: 1, color: itemDividerColor)
                       : SizedBox(height: 0),
-                  // TODO: Add Dual Scorer's Park Option Here
-
                   Container(
                       height: 60,
                       color: listItemColor,
@@ -1428,7 +1612,10 @@ class _roundsPageState extends State<roundsPage> {
                                                                         1
                                                                     ? 20
                                                                     : 0) +
-                                                            navigatingScoreAuto)
+                                                            navigatingScoreAuto +
+                                                            (value
+                                                                ? navigatingScoreAutoR2
+                                                                : 0))
                                                         .toString(),
                                                     style: TextStyle(
                                                         color: const Color(
@@ -1491,7 +1678,38 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: SizedBox(
-                                                child: Text(((duckOrTeamElementDelivery * 6) + (shippingHubStatus == 0 ? 10 : 0) + (sharedHubStatus == 0 ? 20 : 0) + (robot1Park == 0 ? 6 : robot1Park == 1 ? 3 : 0) + (dualScoring.value ? (robot2Park == 0 ? 6 : robot2Park == 1 ? 3 : 0) : 0) + (capping == 0 ? 30 : capping == 1 ? 15 : 0)).toString(),
+                                                child: Text(
+                                                    ((duckOrTeamElementDelivery *
+                                                                6) +
+                                                            (shippingHubStatus ==
+                                                                    0
+                                                                ? 10
+                                                                : 0) +
+                                                            (sharedHubStatus ==
+                                                                    0
+                                                                ? 20
+                                                                : 0) +
+                                                            (robot1Park == 0
+                                                                ? 6
+                                                                : robot1Park ==
+                                                                        1
+                                                                    ? 3
+                                                                    : 0) +
+                                                            (dualScoring.value
+                                                                ? (robot2Park ==
+                                                                        0
+                                                                    ? 6
+                                                                    : robot2Park ==
+                                                                            1
+                                                                        ? 3
+                                                                        : 0)
+                                                                : 0) +
+                                                            (capping == 0
+                                                                ? 30
+                                                                : capping == 1
+                                                                    ? 15
+                                                                    : 0))
+                                                        .toString(),
                                                     style: TextStyle(
                                                         color: const Color(
                                                             0xFF121212),
@@ -1517,7 +1735,68 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: SizedBox(
-                                                child: Text((1).toString(),
+                                                child: Text(
+                                                    ((((carouselDuckDeliveryAuto ==
+                                                                        0)
+                                                                    ? 10
+                                                                    : 0) +
+                                                                (freightInStorageUnitAuto *
+                                                                    2) +
+                                                                (freightInShippingHubAuto *
+                                                                    6) +
+                                                                (freightLevelAutoBonus ==
+                                                                        0
+                                                                    ? 10
+                                                                    : freightLevelAutoBonus ==
+                                                                            1
+                                                                        ? 20
+                                                                        : 0) +
+                                                                navigatingScoreAuto +
+                                                                (value
+                                                                    ? navigatingScoreAutoR2
+                                                                    : 0)) +
+                                                            ((freightInStorageUnitTeleOp * 1) +
+                                                                (freightInShippingHubLevel1 *
+                                                                    2) +
+                                                                (freightInShippingHubLevel2 *
+                                                                    4) +
+                                                                (freightInShippingHubLevel3 *
+                                                                    6) +
+                                                                (freightInSharedShippingHub *
+                                                                    4)) +
+                                                            ((duckOrTeamElementDelivery *
+                                                                    6) +
+                                                                (shippingHubStatus ==
+                                                                        0
+                                                                    ? 10
+                                                                    : 0) +
+                                                                (sharedHubStatus ==
+                                                                        0
+                                                                    ? 20
+                                                                    : 0) +
+                                                                (robot1Park == 0
+                                                                    ? 6
+                                                                    : robot1Park ==
+                                                                            1
+                                                                        ? 3
+                                                                        : 0) +
+                                                                (dualScoring
+                                                                        .value
+                                                                    ? (robot2Park ==
+                                                                            0
+                                                                        ? 6
+                                                                        : robot2Park ==
+                                                                                1
+                                                                            ? 3
+                                                                            : 0)
+                                                                    : 0) +
+                                                                (capping == 0
+                                                                    ? 30
+                                                                    : capping ==
+                                                                            1
+                                                                        ? 15
+                                                                        : 0)))
+                                                        .toString(),
                                                     style: TextStyle(
                                                         color:
                                                             listItemTextColor,
