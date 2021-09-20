@@ -203,11 +203,13 @@ class _roundsPageState extends State<roundsPage> {
                   backgroundColor: backgroundColor,
                   largeTitle: GestureDetector(
                     onLongPress: () {
+                      HapticFeedback.lightImpact();
                       setState(() {
                         notEasterEggMode = !notEasterEggMode;
                       });
                     },
                     onTap: () {
+                      HapticFeedback.lightImpact();
                       setState(() {
                         setThemeBasedOnThemeOption();
                         this.preferences?.setInt("colorTheme", colorThemeOption);
