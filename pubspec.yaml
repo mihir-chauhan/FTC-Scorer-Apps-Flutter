@@ -29,7 +29,8 @@ dependencies:
   shared_preferences: ^2.0.7
 
 flutter_icons:
-  image_path: "assets/newIcon.png"
+  image_path: "assets/FreightFrenzyScorerIconIOS.png"
+  image_path_android: "assets/FreightFrenzyScorerIconAndroid.png"
   ios: true
   android: true
 
