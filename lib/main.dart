@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
         theme: CupertinoThemeData(
           textTheme: CupertinoTextThemeData(
               navLargeTitleTextStyle: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 40.0,
-            color: const Color(0x242424),
-          )),
+                fontWeight: FontWeight.bold,
+                fontSize: 40.0,
+                color: const Color(0x242424),
+              )),
         ),
         home: roundsPage());
   }
@@ -229,14 +229,14 @@ class _roundsPageState extends State<roundsPage> {
                           colorThemeOption == 1
                               ? "Innov8rz Theme"
                               : colorThemeOption == 2
-                                  ? "Freight Frenzy Theme"
-                                  : colorThemeOption == 3
-                                      ? "FIRST FORWARD Theme"
-                                      : colorThemeOption == 4
-                                          ? "Blue Alliance Theme"
-                                          : colorThemeOption == 5
-                                              ? "Red Alliance Theme"
-                                              : "Dark Theme",
+                              ? "Freight Frenzy Theme"
+                              : colorThemeOption == 3
+                              ? "FIRST FORWARD Theme"
+                              : colorThemeOption == 4
+                              ? "Blue Alliance Theme"
+                              : colorThemeOption == 5
+                              ? "Red Alliance Theme"
+                              : "Dark Theme",
                           context: context,
                           animation: StyledToastAnimation.slideFromBottom,
                           reverseAnimation: StyledToastAnimation.fade,
@@ -313,102 +313,143 @@ class _roundsPageState extends State<roundsPage> {
                 ),
                 SliverList(
                     delegate: SliverChildListDelegate([
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                        "Autonomous Points - " +
-                            ((((carouselDuckDeliveryAuto == 0) ? 10 : 0) +
-                                        (freightInStorageUnitAuto * 2) +
-                                        ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
-                                        (freightLevelAutoBonusR1 == 0
-                                            ? 20
-                                            : freightLevelAutoBonusR1 == 1
-                                                ? 10
-                                                : 0) +
-                                        (value
-                                            ? (freightLevelAutoBonusR2 == 0
-                                                ? 20
-                                                : freightLevelAutoBonusR2 == 1
-                                                    ? 10
-                                                    : 0)
-                                            : 0) +
-                                        navigatingScoreAuto +
-                                        (value ? navigatingScoreAutoR2 : 0))
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                            "Autonomous Points - " +
+                                ((((carouselDuckDeliveryAuto == 0) ? 10 : 0) +
+                                    (freightInStorageUnitAuto * 2) +
+                                    ((freightInShippingHubL1Auto +
+                                        freightInShippingHubL2Auto +
+                                        freightInShippingHubL3Auto) * 6) +
+                                    (freightLevelAutoBonusR1 == 0
+                                        ? 20
+                                        : freightLevelAutoBonusR1 == 1
+                                        ? 10
+                                        : 0) +
+                                    (value
+                                        ? (freightLevelAutoBonusR2 == 0
+                                        ? 20
+                                        : freightLevelAutoBonusR2 == 1
+                                        ? 10
+                                        : 0)
+                                        : 0) +
+                                    navigatingScoreAuto +
+                                    (value ? navigatingScoreAutoR2 : 0))
                                     .toString())
-                                .toString(),
-                        style: TextStyle(color: subtitleColor)),
-                  ),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Duck Delivery"
-                                    : "🐤 Delivery",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
+                                    .toString(),
+                            style: TextStyle(color: subtitleColor)),
+                      ),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Duck Delivery"
+                                        : "🐤 Delivery",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
                                                 CupertinoSlidingSegmentedControl<
                                                     int>(
-                                              children: duckDelivery,
+                                                  children: duckDelivery,
                                                   thumbColor:
                                                   colorThemeOption == 0
                                                       ? const Color(
                                                       0xFF353535)
                                                       : const Color(
                                                       0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if (val !=
-                                                      carouselDuckDeliveryAuto) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  carouselDuckDeliveryAuto =
-                                                      val;
-                                                });
-                                              },
-                                              groupValue:
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  onValueChanged: (int val) {
+                                                    setState(() {
+                                                      if (val !=
+                                                          carouselDuckDeliveryAuto) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      carouselDuckDeliveryAuto =
+                                                          val;
+                                                    });
+                                                  },
+                                                  groupValue:
                                                   carouselDuckDeliveryAuto,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Freight in Storage"
-                                    : "📦 in Storage Unit",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text("$freightInStorageUnitAuto",
-                                            style: TextStyle(
-                                                color: listItemTextColor,
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
+                                                )))))
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight in Storage"
+                                        : "📦 in Storage Unit",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$freightInStorageUnitAuto",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Text("-",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 30)),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (freightInStorageUnitAuto >
+                                                          0) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                        if (freightInStorageUnitTeleOp >
+                                                            0) {
+                                                          freightInStorageUnitTeleOp -=
+                                                          1;
+                                                        }
+                                                      }
+                                                      (freightInStorageUnitAuto >
+                                                          0)
+                                                          ?
+                                                      freightInStorageUnitAuto -=
+                                                      1
+                                                          : freightInStorageUnitAuto =
+                                                          freightInStorageUnitAuto;
+                                                    });
+                                                  },
+                                                ))))),
+                                Padding(
                                     padding: const EdgeInsets.all(2),
                                     child: Container(
                                         child: Align(
@@ -416,82 +457,93 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Text("-",
+                                              child: Text("+",
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
-                                                  if (freightInStorageUnitAuto >
-                                                      0) {
+                                                  if (freightInStorageUnitAuto <
+                                                      50) {
                                                     HapticFeedback
                                                         .lightImpact();
-                                                    if(freightInStorageUnitTeleOp > 0) {
-                                                      freightInStorageUnitTeleOp -= 1;
-                                                    }
+                                                    freightInStorageUnitTeleOp +=
+                                                    1;
                                                   }
-                                                  (freightInStorageUnitAuto > 0)
-                                                      ? freightInStorageUnitAuto -=
-                                                          1
+                                                  (freightInStorageUnitAuto <
+                                                      50)
+                                                      ?
+                                                  freightInStorageUnitAuto +=
+                                                  1
                                                       : freightInStorageUnitAuto =
-                                                          freightInStorageUnitAuto;
+                                                      freightInStorageUnitAuto;
                                                 });
                                               },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if (freightInStorageUnitAuto <
-                                                  50) {
-                                                HapticFeedback.lightImpact();
-                                                freightInStorageUnitTeleOp += 1;
-                                              }
-                                              (freightInStorageUnitAuto < 50)
-                                                  ? freightInStorageUnitAuto +=
+                                            )))),
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight in Hub L1 "
+                                        : "📦 in Hub Level 1 ",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$freightInShippingHubL1Auto",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Text("-",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 30)),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (freightInShippingHubL1Auto >
+                                                          0) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                        if (freightInShippingHubLevel1 >
+                                                            0) {
+                                                          freightInShippingHubLevel1 -=
+                                                          1;
+                                                        }
+                                                      }
+                                                      (freightInShippingHubL1Auto >
+                                                          0)
+                                                          ?
+                                                      freightInShippingHubL1Auto -=
                                                       1
-                                                  : freightInStorageUnitAuto =
-                                                      freightInStorageUnitAuto;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Freight in Hub L1 "
-                                    : "📦 in Hub Level 1 ",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text("$freightInShippingHubL1Auto",
-                                            style: TextStyle(
-                                                color: listItemTextColor,
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
+                                                          : freightInShippingHubL1Auto =
+                                                          freightInShippingHubL1Auto;
+                                                    });
+                                                  },
+                                                ))))),
+                                Padding(
                                     padding: const EdgeInsets.all(2),
                                     child: Container(
                                         child: Align(
@@ -499,60 +551,34 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Text("-",
+                                              child: Text("+",
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
-                                                  if (freightInShippingHubL1Auto >
-                                                      0) {
+                                                  if (freightInShippingHubL1Auto <
+                                                      50) {
                                                     HapticFeedback
                                                         .lightImpact();
-                                                    if(freightInShippingHubLevel1 > 0) {
-                                                      freightInShippingHubLevel1 -= 1;
-                                                    }
+                                                    freightInShippingHubLevel1 +=
+                                                    1;
                                                   }
-                                                  (freightInShippingHubL1Auto > 0)
-                                                      ? freightInShippingHubL1Auto -=
-                                                          1
+                                                  (freightInShippingHubL1Auto <
+                                                      50)
+                                                      ?
+                                                  freightInShippingHubL1Auto +=
+                                                  1
                                                       : freightInShippingHubL1Auto =
                                                       freightInShippingHubL1Auto;
                                                 });
                                               },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if (freightInShippingHubL1Auto <
-                                                  50) {
-                                                HapticFeedback.lightImpact();
-                                                freightInShippingHubLevel1 += 1;
-                                              }
-                                              (freightInShippingHubL1Auto < 50)
-                                                  ? freightInShippingHubL1Auto +=
-                                                      1
-                                                  : freightInShippingHubL1Auto =
-                                                  freightInShippingHubL1Auto;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
+                                            )))),
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
                           height: 60,
                           color: listItemColor,
                           child: Padding(
@@ -564,12 +590,14 @@ class _roundsPageState extends State<roundsPage> {
                                         ? "Freight in Hub L2 "
                                         : "📦 in Hub Level 2 ",
                                     style: TextStyle(
-                                        color: listItemTextColor, fontSize: 25)),
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
                                 Expanded(
                                     child: Container(
                                         child: Align(
                                             alignment: Alignment.centerRight,
-                                            child: Text("$freightInShippingHubL2Auto",
+                                            child: Text(
+                                                "$freightInShippingHubL2Auto",
                                                 style: TextStyle(
                                                     color: listItemTextColor,
                                                     fontSize: 25))))),
@@ -578,7 +606,8 @@ class _roundsPageState extends State<roundsPage> {
                                         padding: const EdgeInsets.all(2),
                                         child: Container(
                                             child: Align(
-                                                alignment: Alignment.centerRight,
+                                                alignment: Alignment
+                                                    .centerRight,
                                                 child: CupertinoButton(
                                                   color: Colors.black,
                                                   padding: EdgeInsets.zero,
@@ -592,12 +621,16 @@ class _roundsPageState extends State<roundsPage> {
                                                           0) {
                                                         HapticFeedback
                                                             .lightImpact();
-                                                        if(freightInShippingHubLevel2 > 0) {
-                                                          freightInShippingHubLevel2 -= 1;
+                                                        if (freightInShippingHubLevel2 >
+                                                            0) {
+                                                          freightInShippingHubLevel2 -=
+                                                          1;
                                                         }
                                                       }
-                                                      (freightInShippingHubL2Auto > 0)
-                                                          ? freightInShippingHubL2Auto -=
+                                                      (freightInShippingHubL2Auto >
+                                                          0)
+                                                          ?
+                                                      freightInShippingHubL2Auto -=
                                                       1
                                                           : freightInShippingHubL2Auto =
                                                           freightInShippingHubL2Auto;
@@ -620,11 +653,15 @@ class _roundsPageState extends State<roundsPage> {
                                                 setState(() {
                                                   if (freightInShippingHubL2Auto <
                                                       50) {
-                                                    HapticFeedback.lightImpact();
-                                                    freightInShippingHubLevel2 += 1;
+                                                    HapticFeedback
+                                                        .lightImpact();
+                                                    freightInShippingHubLevel2 +=
+                                                    1;
                                                   }
-                                                  (freightInShippingHubL2Auto < 50)
-                                                      ? freightInShippingHubL2Auto +=
+                                                  (freightInShippingHubL2Auto <
+                                                      50)
+                                                      ?
+                                                  freightInShippingHubL2Auto +=
                                                   1
                                                       : freightInShippingHubL2Auto =
                                                       freightInShippingHubL2Auto;
@@ -634,8 +671,8 @@ class _roundsPageState extends State<roundsPage> {
                               ],
                             ),
                           )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
                           height: 60,
                           color: listItemColor,
                           child: Padding(
@@ -647,12 +684,14 @@ class _roundsPageState extends State<roundsPage> {
                                         ? "Freight in Hub L3 "
                                         : "📦 in Hub Level 3 ",
                                     style: TextStyle(
-                                        color: listItemTextColor, fontSize: 25)),
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
                                 Expanded(
                                     child: Container(
                                         child: Align(
                                             alignment: Alignment.centerRight,
-                                            child: Text("$freightInShippingHubL3Auto",
+                                            child: Text(
+                                                "$freightInShippingHubL3Auto",
                                                 style: TextStyle(
                                                     color: listItemTextColor,
                                                     fontSize: 25))))),
@@ -661,7 +700,8 @@ class _roundsPageState extends State<roundsPage> {
                                         padding: const EdgeInsets.all(2),
                                         child: Container(
                                             child: Align(
-                                                alignment: Alignment.centerRight,
+                                                alignment: Alignment
+                                                    .centerRight,
                                                 child: CupertinoButton(
                                                   color: Colors.black,
                                                   padding: EdgeInsets.zero,
@@ -675,12 +715,16 @@ class _roundsPageState extends State<roundsPage> {
                                                           0) {
                                                         HapticFeedback
                                                             .lightImpact();
-                                                        if(freightInShippingHubLevel3 > 0) {
-                                                          freightInShippingHubLevel3 -= 1;
+                                                        if (freightInShippingHubLevel3 >
+                                                            0) {
+                                                          freightInShippingHubLevel3 -=
+                                                          1;
                                                         }
                                                       }
-                                                      (freightInShippingHubL3Auto > 0)
-                                                          ? freightInShippingHubL3Auto -=
+                                                      (freightInShippingHubL3Auto >
+                                                          0)
+                                                          ?
+                                                      freightInShippingHubL3Auto -=
                                                       1
                                                           : freightInShippingHubL3Auto =
                                                           freightInShippingHubL3Auto;
@@ -703,11 +747,15 @@ class _roundsPageState extends State<roundsPage> {
                                                 setState(() {
                                                   if (freightInShippingHubL3Auto <
                                                       50) {
-                                                    HapticFeedback.lightImpact();
-                                                    freightInShippingHubLevel3 += 1;
+                                                    HapticFeedback
+                                                        .lightImpact();
+                                                    freightInShippingHubLevel3 +=
+                                                    1;
                                                   }
-                                                  (freightInShippingHubL3Auto < 50)
-                                                      ? freightInShippingHubL3Auto +=
+                                                  (freightInShippingHubL3Auto <
+                                                      50)
+                                                      ?
+                                                  freightInShippingHubL3Auto +=
                                                   1
                                                       : freightInShippingHubL3Auto =
                                                       freightInShippingHubL3Auto;
@@ -717,51 +765,57 @@ class _roundsPageState extends State<roundsPage> {
                               ],
                             ),
                           )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode ? "Freight Bonus" : "📦 Bonus",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight Bonus"
+                                        : "📦 Bonus",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
                                                 CupertinoSlidingSegmentedControl<
                                                     int>(
-                                              children: freightLevelBonusAuto,
-                                              thumbColor: colorThemeOption == 0
-                                                  ? const Color(0xFF353535)
-                                                  : const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if (val !=
-                                                      freightLevelAutoBonusR1) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  freightLevelAutoBonusR1 = val;
-                                                });
-                                              },
-                                              groupValue:
+                                                  children: freightLevelBonusAuto,
+                                                  thumbColor: colorThemeOption ==
+                                                      0
+                                                      ? const Color(0xFF353535)
+                                                      : const Color(0xFF121212),
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  onValueChanged: (int val) {
+                                                    setState(() {
+                                                      if (val !=
+                                                          freightLevelAutoBonusR1) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      freightLevelAutoBonusR1 =
+                                                          val;
+                                                    });
+                                                  },
+                                                  groupValue:
                                                   freightLevelAutoBonusR1,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  value
-                      ? Container(
+                                                )))))
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      value
+                          ? Container(
                           height: 60,
                           color: listItemColor,
                           child: Padding(
@@ -782,18 +836,18 @@ class _roundsPageState extends State<roundsPage> {
                                             child: SizedBox(
                                                 width: 150,
                                                 child:
-                                                    CupertinoSlidingSegmentedControl<
-                                                        int>(
+                                                CupertinoSlidingSegmentedControl<
+                                                    int>(
                                                   children:
-                                                      freightLevelBonusAuto,
+                                                  freightLevelBonusAuto,
                                                   thumbColor:
-                                                      colorThemeOption == 0
-                                                          ? const Color(
-                                                              0xFF353535)
-                                                          : const Color(
-                                                              0xFF121212),
+                                                  colorThemeOption == 0
+                                                      ? const Color(
+                                                      0xFF353535)
+                                                      : const Color(
+                                                      0xFF121212),
                                                   backgroundColor:
-                                                      Colors.black45,
+                                                  Colors.black45,
                                                   onValueChanged: (int val) {
                                                     setState(() {
                                                       if (val !=
@@ -806,78 +860,81 @@ class _roundsPageState extends State<roundsPage> {
                                                     });
                                                   },
                                                   groupValue:
-                                                      freightLevelAutoBonusR2,
+                                                  freightLevelAutoBonusR2,
                                                 )))))
                               ],
                             ),
                           ))
-                      : SizedBox(height: 0),
-                  value
-                      ? Divider(height: 1, color: itemDividerColor)
-                      : SizedBox(height: 0),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: <Widget>[
-                                Text(
-                                    notEasterEggMode
-                                        ? "Parking 1"
-                                        : "🅿 Parking 1",
-                                    style: TextStyle(
-                                        color: listItemTextColor,
-                                        fontSize: 25)),
-                                Expanded(
-                                    child: Container(
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: SizedBox(
-                                                width: 150,
-                                                child:
+                          : SizedBox(height: 0),
+                      value
+                          ? Divider(height: 1, color: itemDividerColor)
+                          : SizedBox(height: 0),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: <Widget>[
+                                    Text(
+                                        notEasterEggMode
+                                            ? "Parking 1"
+                                            : "🅿 Parking 1",
+                                        style: TextStyle(
+                                            color: listItemTextColor,
+                                            fontSize: 25)),
+                                    Expanded(
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: SizedBox(
+                                                    width: 150,
+                                                    child:
                                                     CupertinoSlidingSegmentedControl<
                                                         int>(
-                                                  children: navigating,
-                                                  thumbColor:
+                                                      children: navigating,
+                                                      thumbColor:
                                                       colorThemeOption == 0
                                                           ? const Color(
-                                                              0xFF353535)
+                                                          0xFF353535)
                                                           : const Color(
-                                                              0xFF121212),
-                                                  backgroundColor:
+                                                          0xFF121212),
+                                                      backgroundColor:
                                                       Colors.black45,
-                                                  onValueChanged: (int val) {
-                                                    setState(() {
-                                                      if (val !=
-                                                          navigatingValueAutoR1) {
-                                                        HapticFeedback
-                                                            .lightImpact();
-                                                      }
-                                                      navigatingValueAutoR1 =
-                                                          val;
-                                                      if (navigatingValueAutoR1 ==
-                                                          1) {
-                                                        navigatingScoreAuto = 0;
-                                                        navigatingWarehouseValueAutoR1 =
+                                                      onValueChanged: (
+                                                          int val) {
+                                                        setState(() {
+                                                          if (val !=
+                                                              navigatingValueAutoR1) {
+                                                            HapticFeedback
+                                                                .lightImpact();
+                                                          }
+                                                          navigatingValueAutoR1 =
+                                                              val;
+                                                          if (navigatingValueAutoR1 ==
+                                                              1) {
+                                                            navigatingScoreAuto =
+                                                            0;
+                                                            navigatingWarehouseValueAutoR1 =
                                                             2;
-                                                        navigatingStorageUnitValueAutoR1 =
+                                                            navigatingStorageUnitValueAutoR1 =
                                                             2;
-                                                      }
-                                                    });
-                                                  },
-                                                  groupValue:
+                                                          }
+                                                        });
+                                                      },
+                                                      groupValue:
                                                       navigatingValueAutoR1,
-                                                )))))
+                                                    )))))
+                                  ],
+                                ),
                               ],
                             ),
-                          ],
-                        ),
-                      )),
-                  navigatingValueAutoR1 == 0
-                      ? Container(
+                          )),
+                      navigatingValueAutoR1 == 0
+                          ? Container(
                           height: 60,
                           color: listItemColor,
                           child: Padding(
@@ -894,21 +951,21 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Container(
                                             child: Align(
                                                 alignment:
-                                                    Alignment.centerRight,
+                                                Alignment.centerRight,
                                                 child: SizedBox(
                                                     width: 150,
                                                     child:
-                                                        CupertinoSlidingSegmentedControl<
-                                                            int>(
+                                                    CupertinoSlidingSegmentedControl<
+                                                        int>(
                                                       children: parking,
-                                                          thumbColor:
-                                                          colorThemeOption == 0
-                                                              ? const Color(
-                                                              0xFF353535)
-                                                              : const Color(
-                                                              0xFF121212),
+                                                      thumbColor:
+                                                      colorThemeOption == 0
+                                                          ? const Color(
+                                                          0xFF353535)
+                                                          : const Color(
+                                                          0xFF121212),
                                                       backgroundColor:
-                                                          Colors.black45,
+                                                      Colors.black45,
                                                       onValueChanged:
                                                           (int val) {
                                                         setState(() {
@@ -922,37 +979,37 @@ class _roundsPageState extends State<roundsPage> {
                                                           if (navigatingStorageUnitValueAutoR1 !=
                                                               2) {
                                                             navigatingWarehouseValueAutoR1 =
-                                                                2;
+                                                            2;
                                                           }
 
                                                           navigatingScoreAuto =
                                                               (navigatingStorageUnitValueAutoR1 ==
-                                                                          0
-                                                                      ? 6
-                                                                      : navigatingStorageUnitValueAutoR1 ==
-                                                                              1
-                                                                          ? 3
-                                                                          : 0) +
+                                                                  0
+                                                                  ? 6
+                                                                  : navigatingStorageUnitValueAutoR1 ==
+                                                                  1
+                                                                  ? 3
+                                                                  : 0) +
                                                                   (navigatingWarehouseValueAutoR1 ==
-                                                                          0
+                                                                      0
                                                                       ? 10
                                                                       : navigatingWarehouseValueAutoR1 ==
-                                                                              1
-                                                                          ? 5
-                                                                          : 0);
+                                                                      1
+                                                                      ? 5
+                                                                      : 0);
                                                         });
                                                       },
                                                       groupValue:
-                                                          navigatingStorageUnitValueAutoR1,
+                                                      navigatingStorageUnitValueAutoR1,
                                                     )))))
                                   ],
                                 ),
                               ],
                             ),
                           ))
-                      : SizedBox(height: 0),
-                  navigatingValueAutoR1 == 0
-                      ? Container(
+                          : SizedBox(height: 0),
+                      navigatingValueAutoR1 == 0
+                          ? Container(
                           height: 60,
                           color: listItemColor,
                           child: Padding(
@@ -969,21 +1026,21 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Container(
                                             child: Align(
                                                 alignment:
-                                                    Alignment.centerRight,
+                                                Alignment.centerRight,
                                                 child: SizedBox(
                                                     width: 150,
                                                     child:
-                                                        CupertinoSlidingSegmentedControl<
-                                                            int>(
+                                                    CupertinoSlidingSegmentedControl<
+                                                        int>(
                                                       children: parking,
-                                                          thumbColor:
-                                                          colorThemeOption == 0
-                                                              ? const Color(
-                                                              0xFF353535)
-                                                              : const Color(
-                                                              0xFF121212),
+                                                      thumbColor:
+                                                      colorThemeOption == 0
+                                                          ? const Color(
+                                                          0xFF353535)
+                                                          : const Color(
+                                                          0xFF121212),
                                                       backgroundColor:
-                                                          Colors.black45,
+                                                      Colors.black45,
                                                       onValueChanged:
                                                           (int val) {
                                                         setState(() {
@@ -997,40 +1054,40 @@ class _roundsPageState extends State<roundsPage> {
                                                           if (navigatingWarehouseValueAutoR1 !=
                                                               2) {
                                                             navigatingStorageUnitValueAutoR1 =
-                                                                2;
+                                                            2;
                                                           }
 
                                                           navigatingScoreAuto =
                                                               (navigatingStorageUnitValueAutoR1 ==
-                                                                          0
-                                                                      ? 6
-                                                                      : navigatingStorageUnitValueAutoR1 ==
-                                                                              1
-                                                                          ? 3
-                                                                          : 0) +
+                                                                  0
+                                                                  ? 6
+                                                                  : navigatingStorageUnitValueAutoR1 ==
+                                                                  1
+                                                                  ? 3
+                                                                  : 0) +
                                                                   (navigatingWarehouseValueAutoR1 ==
-                                                                          0
+                                                                      0
                                                                       ? 10
                                                                       : navigatingWarehouseValueAutoR1 ==
-                                                                              1
-                                                                          ? 5
-                                                                          : 0);
+                                                                      1
+                                                                      ? 5
+                                                                      : 0);
                                                         });
                                                       },
                                                       groupValue:
-                                                          navigatingWarehouseValueAutoR1,
+                                                      navigatingWarehouseValueAutoR1,
                                                     )))))
                                   ],
                                 ),
                               ],
                             ),
                           ))
-                      : SizedBox(height: 0),
-                  value
-                      ? Divider(height: 1, color: itemDividerColor)
-                      : SizedBox(height: 0),
-                  value
-                      ? Container(
+                          : SizedBox(height: 0),
+                      value
+                          ? Divider(height: 1, color: itemDividerColor)
+                          : SizedBox(height: 0),
+                      value
+                          ? Container(
                           height: 60,
                           color: listItemColor,
                           child: Padding(
@@ -1050,21 +1107,21 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Container(
                                             child: Align(
                                                 alignment:
-                                                    Alignment.centerRight,
+                                                Alignment.centerRight,
                                                 child: SizedBox(
                                                     width: 150,
                                                     child:
-                                                        CupertinoSlidingSegmentedControl<
-                                                            int>(
+                                                    CupertinoSlidingSegmentedControl<
+                                                        int>(
                                                       children: navigating,
                                                       thumbColor:
-                                                          colorThemeOption == 0
-                                                              ? const Color(
-                                                                  0xFF353535)
-                                                              : const Color(
-                                                                  0xFF121212),
+                                                      colorThemeOption == 0
+                                                          ? const Color(
+                                                          0xFF353535)
+                                                          : const Color(
+                                                          0xFF121212),
                                                       backgroundColor:
-                                                          Colors.black45,
+                                                      Colors.black45,
                                                       onValueChanged:
                                                           (int val) {
                                                         setState(() {
@@ -1078,25 +1135,25 @@ class _roundsPageState extends State<roundsPage> {
                                                           if (navigatingValueAutoR2 ==
                                                               1) {
                                                             navigatingScoreAutoR2 =
-                                                                0;
+                                                            0;
                                                             navigatingWarehouseValueAutoR2 =
-                                                                2;
+                                                            2;
                                                             navigatingStorageUnitValueAutoR2 =
-                                                                2;
+                                                            2;
                                                           }
                                                         });
                                                       },
                                                       groupValue:
-                                                          navigatingValueAutoR2,
+                                                      navigatingValueAutoR2,
                                                     )))))
                                   ],
                                 ),
                               ],
                             ),
                           ))
-                      : SizedBox(height: 0),
-                  navigatingValueAutoR2 == 0 && value
-                      ? Container(
+                          : SizedBox(height: 0),
+                      navigatingValueAutoR2 == 0 && value
+                          ? Container(
                           height: 60,
                           color: listItemColor,
                           child: Padding(
@@ -1113,21 +1170,21 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Container(
                                             child: Align(
                                                 alignment:
-                                                    Alignment.centerRight,
+                                                Alignment.centerRight,
                                                 child: SizedBox(
                                                     width: 150,
                                                     child:
-                                                        CupertinoSlidingSegmentedControl<
-                                                            int>(
+                                                    CupertinoSlidingSegmentedControl<
+                                                        int>(
                                                       children: parking,
-                                                          thumbColor:
-                                                          colorThemeOption == 0
-                                                              ? const Color(
-                                                              0xFF353535)
-                                                              : const Color(
-                                                              0xFF121212),
+                                                      thumbColor:
+                                                      colorThemeOption == 0
+                                                          ? const Color(
+                                                          0xFF353535)
+                                                          : const Color(
+                                                          0xFF121212),
                                                       backgroundColor:
-                                                          Colors.black45,
+                                                      Colors.black45,
                                                       onValueChanged:
                                                           (int val) {
                                                         setState(() {
@@ -1141,37 +1198,37 @@ class _roundsPageState extends State<roundsPage> {
                                                           if (navigatingStorageUnitValueAutoR2 !=
                                                               2) {
                                                             navigatingWarehouseValueAutoR2 =
-                                                                2;
+                                                            2;
                                                           }
 
                                                           navigatingScoreAutoR2 =
                                                               (navigatingStorageUnitValueAutoR2 ==
-                                                                          0
-                                                                      ? 6
-                                                                      : navigatingStorageUnitValueAutoR2 ==
-                                                                              1
-                                                                          ? 3
-                                                                          : 0) +
+                                                                  0
+                                                                  ? 6
+                                                                  : navigatingStorageUnitValueAutoR2 ==
+                                                                  1
+                                                                  ? 3
+                                                                  : 0) +
                                                                   (navigatingWarehouseValueAutoR2 ==
-                                                                          0
+                                                                      0
                                                                       ? 10
                                                                       : navigatingWarehouseValueAutoR2 ==
-                                                                              1
-                                                                          ? 5
-                                                                          : 0);
+                                                                      1
+                                                                      ? 5
+                                                                      : 0);
                                                         });
                                                       },
                                                       groupValue:
-                                                          navigatingStorageUnitValueAutoR2,
+                                                      navigatingStorageUnitValueAutoR2,
                                                     )))))
                                   ],
                                 ),
                               ],
                             ),
                           ))
-                      : SizedBox(height: 0),
-                  navigatingValueAutoR2 == 0 && value
-                      ? Container(
+                          : SizedBox(height: 0),
+                      navigatingValueAutoR2 == 0 && value
+                          ? Container(
                           height: 60,
                           color: listItemColor,
                           child: Padding(
@@ -1188,21 +1245,21 @@ class _roundsPageState extends State<roundsPage> {
                                         child: Container(
                                             child: Align(
                                                 alignment:
-                                                    Alignment.centerRight,
+                                                Alignment.centerRight,
                                                 child: SizedBox(
                                                     width: 150,
                                                     child:
-                                                        CupertinoSlidingSegmentedControl<
-                                                            int>(
+                                                    CupertinoSlidingSegmentedControl<
+                                                        int>(
                                                       children: parking,
-                                                          thumbColor:
-                                                          colorThemeOption == 0
-                                                              ? const Color(
-                                                              0xFF353535)
-                                                              : const Color(
-                                                              0xFF121212),
+                                                      thumbColor:
+                                                      colorThemeOption == 0
+                                                          ? const Color(
+                                                          0xFF353535)
+                                                          : const Color(
+                                                          0xFF121212),
                                                       backgroundColor:
-                                                          Colors.black45,
+                                                      Colors.black45,
                                                       onValueChanged:
                                                           (int val) {
                                                         setState(() {
@@ -1216,502 +1273,563 @@ class _roundsPageState extends State<roundsPage> {
                                                           if (navigatingWarehouseValueAutoR2 !=
                                                               2) {
                                                             navigatingStorageUnitValueAutoR2 =
-                                                                2;
+                                                            2;
                                                           }
 
                                                           navigatingScoreAutoR2 =
                                                               (navigatingStorageUnitValueAutoR2 ==
-                                                                          0
-                                                                      ? 6
-                                                                      : navigatingStorageUnitValueAutoR2 ==
-                                                                              1
-                                                                          ? 3
-                                                                          : 0) +
+                                                                  0
+                                                                  ? 6
+                                                                  : navigatingStorageUnitValueAutoR2 ==
+                                                                  1
+                                                                  ? 3
+                                                                  : 0) +
                                                                   (navigatingWarehouseValueAutoR2 ==
-                                                                          0
+                                                                      0
                                                                       ? 10
                                                                       : navigatingWarehouseValueAutoR2 ==
-                                                                              1
-                                                                          ? 5
-                                                                          : 0);
+                                                                      1
+                                                                      ? 5
+                                                                      : 0);
                                                         });
                                                       },
                                                       groupValue:
-                                                          navigatingWarehouseValueAutoR2,
+                                                      navigatingWarehouseValueAutoR2,
                                                     )))))
                                   ],
                                 ),
                               ],
                             ),
                           ))
-                      : SizedBox(height: 0),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                        "Driver Controlled Points - " +
-                            ((freightInStorageUnitTeleOp * 1) +
+                          : SizedBox(height: 0),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                            "Driver Controlled Points - " +
+                                ((freightInStorageUnitTeleOp * 1) +
                                     (freightInShippingHubLevel1 * 2) +
                                     (freightInShippingHubLevel2 * 4) +
                                     (freightInShippingHubLevel3 * 6) +
                                     (freightInSharedShippingHub * 4))
-                                .toString(),
-                        style: TextStyle(color: subtitleColor)),
-                  ),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Freight in Storage"
-                                    : "📦 in Storage Unit",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                            "$freightInStorageUnitTeleOp",
-                                            style: TextStyle(
-                                                color: listItemTextColor,
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
+                                    .toString(),
+                            style: TextStyle(color: subtitleColor)),
+                      ),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight in Storage"
+                                        : "📦 in Storage Unit",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
                                     child: Container(
                                         child: Align(
                                             alignment: Alignment.centerRight,
-                                            child: CupertinoButton(
-                                              color: Colors.black,
-                                              padding: EdgeInsets.zero,
-                                              child: Text("-",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 30)),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if (freightInStorageUnitTeleOp >
-                                                      0) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  (freightInStorageUnitTeleOp >
-                                                      0)
-                                                      ? freightInStorageUnitTeleOp -=
-                                                          1
-                                                      : freightInStorageUnitTeleOp =
-                                                          freightInStorageUnitTeleOp;
-                                                });
-                                              },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if (freightInStorageUnitTeleOp <
-                                                  50) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (freightInStorageUnitTeleOp < 50)
-                                                  ? freightInStorageUnitTeleOp +=
-                                                      1
-                                                  : freightInStorageUnitTeleOp =
-                                                      freightInStorageUnitTeleOp;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Freight in Hub L1 "
-                                    : "📦 in Hub Level 1 ",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                            "$freightInShippingHubLevel1",
-                                            style: TextStyle(
-                                                color: listItemTextColor,
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child: Container(
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: CupertinoButton(
-                                              color: Colors.black,
-                                              padding: EdgeInsets.zero,
-                                              child: Text("-",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 30)),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if (freightInShippingHubLevel1 >
-                                                      0) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  (freightInShippingHubLevel1 >
-                                                      0)
-                                                      ? freightInShippingHubLevel1 -=
-                                                          1
-                                                      : freightInShippingHubLevel1 =
-                                                          freightInShippingHubLevel1;
-                                                });
-                                              },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if (freightInShippingHubLevel1 <
-                                                  50) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (freightInShippingHubLevel1 < 50)
-                                                  ? freightInShippingHubLevel1 +=
-                                                      1
-                                                  : freightInShippingHubLevel1 =
-                                                      freightInShippingHubLevel1;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Freight in Hub L2 "
-                                    : "📦 in Hub Level 2 ",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                            "$freightInShippingHubLevel2",
-                                            style: TextStyle(
-                                                color: listItemTextColor,
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child: Container(
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: CupertinoButton(
-                                              color: Colors.black,
-                                              padding: EdgeInsets.zero,
-                                              child: Text("-",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 30)),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if (freightInShippingHubLevel2 >
-                                                      0) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  (freightInShippingHubLevel2 >
-                                                      0)
-                                                      ? freightInShippingHubLevel2 -=
-                                                          1
-                                                      : freightInShippingHubLevel2 =
-                                                          freightInShippingHubLevel2;
-                                                });
-                                              },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if (freightInShippingHubLevel2 <
-                                                  50) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (freightInShippingHubLevel2 < 50)
-                                                  ? freightInShippingHubLevel2 +=
-                                                      1
-                                                  : freightInShippingHubLevel2 =
-                                                      freightInShippingHubLevel2;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Freight in Hub L3 "
-                                    : "📦 in Hub Level 3 ",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                            "$freightInShippingHubLevel3",
-                                            style: TextStyle(
-                                                color: listItemTextColor,
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child: Container(
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: CupertinoButton(
-                                              color: Colors.black,
-                                              padding: EdgeInsets.zero,
-                                              child: Text("-",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 30)),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if (freightInShippingHubLevel3 >
-                                                      0) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  (freightInShippingHubLevel3 >
-                                                      0)
-                                                      ? freightInShippingHubLevel3 -=
-                                                          1
-                                                      : freightInShippingHubLevel3 =
-                                                          freightInShippingHubLevel3;
-                                                });
-                                              },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if (freightInShippingHubLevel3 <
-                                                  50) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (freightInShippingHubLevel3 < 50)
-                                                  ? freightInShippingHubLevel3 +=
-                                                      1
-                                                  : freightInShippingHubLevel3 =
-                                                      freightInShippingHubLevel3;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Freight in Shared "
-                                    : "📦 in Shared Hub ",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                            "$freightInSharedShippingHub",
-                                            style: TextStyle(
-                                                color: listItemTextColor,
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.all(2),
-                                    child: Container(
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: CupertinoButton(
-                                              color: Colors.black,
-                                              padding: EdgeInsets.zero,
-                                              child: Text("-",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 30)),
-                                              onPressed: () {
-                                                setState(() {
-                                                  if (freightInSharedShippingHub >
-                                                      0) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  (freightInSharedShippingHub >
+                                            child: Text(
+                                                "$freightInStorageUnitTeleOp",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Text("-",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 30)),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (freightInStorageUnitTeleOp >
+                                                          0) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      (freightInStorageUnitTeleOp >
                                                           0)
-                                                      ? freightInSharedShippingHub -=
-                                                          1
-                                                      : freightInSharedShippingHub =
-                                                          freightInSharedShippingHub;
+                                                          ?
+                                                      freightInStorageUnitTeleOp -=
+                                                      1
+                                                          : freightInStorageUnitTeleOp =
+                                                          freightInStorageUnitTeleOp;
+                                                    });
+                                                  },
+                                                ))))),
+                                Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: CupertinoButton(
+                                              color: Colors.black,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("+",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 30)),
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (freightInStorageUnitTeleOp <
+                                                      50) {
+                                                    HapticFeedback
+                                                        .lightImpact();
+                                                  }
+                                                  (freightInStorageUnitTeleOp <
+                                                      50)
+                                                      ?
+                                                  freightInStorageUnitTeleOp +=
+                                                  1
+                                                      : freightInStorageUnitTeleOp =
+                                                      freightInStorageUnitTeleOp;
                                                 });
                                               },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if (freightInSharedShippingHub <
-                                                  50) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (freightInSharedShippingHub < 50)
-                                                  ? freightInSharedShippingHub +=
+                                            )))),
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight in Hub L1 "
+                                        : "📦 in Hub Level 1 ",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$freightInShippingHubLevel1",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Text("-",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 30)),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (freightInShippingHubLevel1 >
+                                                          0) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      (freightInShippingHubLevel1 >
+                                                          0)
+                                                          ?
+                                                      freightInShippingHubLevel1 -=
                                                       1
-                                                  : freightInSharedShippingHub =
+                                                          : freightInShippingHubLevel1 =
+                                                          freightInShippingHubLevel1;
+                                                    });
+                                                  },
+                                                ))))),
+                                Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: CupertinoButton(
+                                              color: Colors.black,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("+",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 30)),
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (freightInShippingHubLevel1 <
+                                                      50) {
+                                                    HapticFeedback
+                                                        .lightImpact();
+                                                  }
+                                                  (freightInShippingHubLevel1 <
+                                                      50)
+                                                      ?
+                                                  freightInShippingHubLevel1 +=
+                                                  1
+                                                      : freightInShippingHubLevel1 =
+                                                      freightInShippingHubLevel1;
+                                                });
+                                              },
+                                            )))),
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight in Hub L2 "
+                                        : "📦 in Hub Level 2 ",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$freightInShippingHubLevel2",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Text("-",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 30)),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (freightInShippingHubLevel2 >
+                                                          0) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      (freightInShippingHubLevel2 >
+                                                          0)
+                                                          ?
+                                                      freightInShippingHubLevel2 -=
+                                                      1
+                                                          : freightInShippingHubLevel2 =
+                                                          freightInShippingHubLevel2;
+                                                    });
+                                                  },
+                                                ))))),
+                                Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: CupertinoButton(
+                                              color: Colors.black,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("+",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 30)),
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (freightInShippingHubLevel2 <
+                                                      50) {
+                                                    HapticFeedback
+                                                        .lightImpact();
+                                                  }
+                                                  (freightInShippingHubLevel2 <
+                                                      50)
+                                                      ?
+                                                  freightInShippingHubLevel2 +=
+                                                  1
+                                                      : freightInShippingHubLevel2 =
+                                                      freightInShippingHubLevel2;
+                                                });
+                                              },
+                                            )))),
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight in Hub L3 "
+                                        : "📦 in Hub Level 3 ",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$freightInShippingHubLevel3",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Text("-",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 30)),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (freightInShippingHubLevel3 >
+                                                          0) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      (freightInShippingHubLevel3 >
+                                                          0)
+                                                          ?
+                                                      freightInShippingHubLevel3 -=
+                                                      1
+                                                          : freightInShippingHubLevel3 =
+                                                          freightInShippingHubLevel3;
+                                                    });
+                                                  },
+                                                ))))),
+                                Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: CupertinoButton(
+                                              color: Colors.black,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("+",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 30)),
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (freightInShippingHubLevel3 <
+                                                      50) {
+                                                    HapticFeedback
+                                                        .lightImpact();
+                                                  }
+                                                  (freightInShippingHubLevel3 <
+                                                      50)
+                                                      ?
+                                                  freightInShippingHubLevel3 +=
+                                                  1
+                                                      : freightInShippingHubLevel3 =
+                                                      freightInShippingHubLevel3;
+                                                });
+                                              },
+                                            )))),
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight in Shared "
+                                        : "📦 in Shared Hub ",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$freightInSharedShippingHub",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Text("-",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 30)),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (freightInSharedShippingHub >
+                                                          0) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      (freightInSharedShippingHub >
+                                                          0)
+                                                          ?
+                                                      freightInSharedShippingHub -=
+                                                      1
+                                                          : freightInSharedShippingHub =
+                                                          freightInSharedShippingHub;
+                                                    });
+                                                  },
+                                                ))))),
+                                Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: CupertinoButton(
+                                              color: Colors.black,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("+",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 30)),
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (freightInSharedShippingHub <
+                                                      50) {
+                                                    HapticFeedback
+                                                        .lightImpact();
+                                                  }
+                                                  (freightInSharedShippingHub <
+                                                      50)
+                                                      ?
+                                                  freightInSharedShippingHub +=
+                                                  1
+                                                      : freightInSharedShippingHub =
                                                       freightInSharedShippingHub;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                        "End Game Points - " +
-                            ((duckOrTeamElementDelivery * 6) +
+                                                });
+                                              },
+                                            )))),
+                              ],
+                            ),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text(
+                            "End Game Points - " +
+                                ((duckOrTeamElementDelivery * 6) +
                                     (shippingHubStatus == 0 ? 10 : 0) +
                                     (sharedHubStatus == 1 ? 0 : 20) +
                                     (robot1Park == 0
                                         ? 6
                                         : robot1Park == 1
-                                            ? 3
-                                            : 0) +
+                                        ? 3
+                                        : 0) +
                                     (dualScoring.value
                                         ? (robot2Park == 0
-                                            ? 6
-                                            : robot2Park == 1
-                                                ? 3
-                                                : 0)
+                                        ? 6
+                                        : robot2Park == 1
+                                        ? 3
+                                        : 0)
                                         : 0) +
                                     (capping == 0
                                         ? 30
                                         : capping == 1
-                                            ? 15
-                                            : 0))
-                                .toString(),
-                        style: TextStyle(color: subtitleColor)),
-                  ),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Carousel Delivery"
-                                    : "🐤/👥 Delivery     ",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Text(
-                                            "$duckOrTeamElementDelivery",
-                                            style: TextStyle(
-                                                color: listItemTextColor,
-                                                fontSize: 25))))),
-                            Expanded(
-                                child: Padding(
+                                        ? 15
+                                        : 0))
+                                    .toString(),
+                            style: TextStyle(color: subtitleColor)),
+                      ),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Carousel Delivery"
+                                        : "🐤/👥 Delivery     ",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$duckOrTeamElementDelivery",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Text("-",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 30)),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (duckOrTeamElementDelivery >
+                                                          0) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      (duckOrTeamElementDelivery >
+                                                          0)
+                                                          ?
+                                                      duckOrTeamElementDelivery -=
+                                                      1
+                                                          : duckOrTeamElementDelivery =
+                                                          duckOrTeamElementDelivery;
+                                                    });
+                                                  },
+                                                ))))),
+                                Padding(
                                     padding: const EdgeInsets.all(2),
                                     child: Container(
                                         child: Align(
@@ -1719,183 +1837,170 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Text("-",
+                                              child: Text("+",
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
-                                                  if (duckOrTeamElementDelivery >
-                                                      0) {
+                                                  if (duckOrTeamElementDelivery <
+                                                      12) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
-                                                  (duckOrTeamElementDelivery >
-                                                          0)
-                                                      ? duckOrTeamElementDelivery -=
-                                                          1
+                                                  (duckOrTeamElementDelivery <
+                                                      12)
+                                                      ?
+                                                  duckOrTeamElementDelivery +=
+                                                  1
                                                       : duckOrTeamElementDelivery =
-                                                          duckOrTeamElementDelivery;
-                                                });
-                                              },
-                                            ))))),
-                            Padding(
-                                padding: const EdgeInsets.all(2),
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CupertinoButton(
-                                          color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("+",
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 30)),
-                                          onPressed: () {
-                                            setState(() {
-                                              if (duckOrTeamElementDelivery <
-                                                  12) {
-                                                HapticFeedback.lightImpact();
-                                              }
-                                              (duckOrTeamElementDelivery < 12)
-                                                  ? duckOrTeamElementDelivery +=
-                                                      1
-                                                  : duckOrTeamElementDelivery =
                                                       duckOrTeamElementDelivery;
-                                            });
-                                          },
-                                        )))),
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Shipping Hub"
-                                    : "🚢 Shipping Hub",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
-                                                CupertinoSlidingSegmentedControl<
-                                                    int>(
-                                              children: hubStatus,
-                                              thumbColor: colorThemeOption == 0
-                                                  ? const Color(0xFF353535)
-                                                  : const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if (val !=
-                                                      shippingHubStatus) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  shippingHubStatus = val;
                                                 });
                                               },
-                                              groupValue: shippingHubStatus,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode
-                                    ? "Shared Hub"
-                                    : "🔗 Shared Hub",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
+                                            )))),
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Shipping Hub"
+                                        : "🚢 Shipping Hub",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
                                                 CupertinoSlidingSegmentedControl<
                                                     int>(
-                                              children: sharedHubStatusChoices,
-                                              thumbColor: colorThemeOption == 0
-                                                  ? const Color(0xFF353535)
-                                                  : const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if (val != sharedHubStatus) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  sharedHubStatus = val;
-                                                });
-                                              },
-                                              groupValue: sharedHubStatus,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                                notEasterEggMode ? "Parking 1" : "🅿 Parking 1",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
+                                                  children: hubStatus,
+                                                  thumbColor: colorThemeOption ==
+                                                      0
+                                                      ? const Color(0xFF353535)
+                                                      : const Color(0xFF121212),
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  onValueChanged: (int val) {
+                                                    setState(() {
+                                                      if (val !=
+                                                          shippingHubStatus) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      shippingHubStatus = val;
+                                                    });
+                                                  },
+                                                  groupValue: shippingHubStatus,
+                                                )))))
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Shared Hub"
+                                        : "🔗 Shared Hub",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
                                                 CupertinoSlidingSegmentedControl<
                                                     int>(
-                                              children: parking,
-                                              thumbColor: colorThemeOption == 0
-                                                  ? const Color(0xFF353535)
-                                                  : const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if (val != robot1Park) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  robot1Park = val;
-                                                });
-                                              },
-                                              groupValue: robot1Park,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  value
-                      ? Container(
+                                                  children: sharedHubStatusChoices,
+                                                  thumbColor: colorThemeOption ==
+                                                      0
+                                                      ? const Color(0xFF353535)
+                                                      : const Color(0xFF121212),
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  onValueChanged: (int val) {
+                                                    setState(() {
+                                                      if (val !=
+                                                          sharedHubStatus) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      sharedHubStatus = val;
+                                                    });
+                                                  },
+                                                  groupValue: sharedHubStatus,
+                                                )))))
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Parking 1"
+                                        : "🅿 Parking 1",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
+                                                CupertinoSlidingSegmentedControl<
+                                                    int>(
+                                                  children: parking,
+                                                  thumbColor: colorThemeOption ==
+                                                      0
+                                                      ? const Color(0xFF353535)
+                                                      : const Color(0xFF121212),
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  onValueChanged: (int val) {
+                                                    setState(() {
+                                                      if (val != robot1Park) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      robot1Park = val;
+                                                    });
+                                                  },
+                                                  groupValue: robot1Park,
+                                                )))))
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      value
+                          ? Container(
                           height: 60,
                           color: listItemColor,
                           child: Padding(
@@ -1916,17 +2021,17 @@ class _roundsPageState extends State<roundsPage> {
                                             child: SizedBox(
                                                 width: 150,
                                                 child:
-                                                    CupertinoSlidingSegmentedControl<
-                                                        int>(
+                                                CupertinoSlidingSegmentedControl<
+                                                    int>(
                                                   children: parking,
                                                   thumbColor:
-                                                      colorThemeOption == 0
-                                                          ? const Color(
-                                                              0xFF353535)
-                                                          : const Color(
-                                                              0xFF121212),
+                                                  colorThemeOption == 0
+                                                      ? const Color(
+                                                      0xFF353535)
+                                                      : const Color(
+                                                      0xFF121212),
                                                   backgroundColor:
-                                                      Colors.black45,
+                                                  Colors.black45,
                                                   onValueChanged: (int val) {
                                                     setState(() {
                                                       if (val != robot2Park) {
@@ -1941,126 +2046,138 @@ class _roundsPageState extends State<roundsPage> {
                               ],
                             ),
                           ))
-                      : SizedBox(height: 0),
-                  value
-                      ? Divider(height: 1, color: itemDividerColor)
-                      : SizedBox(height: 0),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text(notEasterEggMode ? "Capping" : "🧢 Capping",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: SizedBox(
-                                            width: 150,
-                                            child:
-                                                CupertinoSlidingSegmentedControl<
-                                                    int>(
-                                              children: cappingOptions,
-                                              thumbColor: colorThemeOption == 0
-                                                  ? const Color(0xFF353535)
-                                                  : const Color(0xFF121212),
-                                              backgroundColor: Colors.black45,
-                                              onValueChanged: (int val) {
-                                                setState(() {
-                                                  if (val != capping) {
-                                                    HapticFeedback
-                                                        .lightImpact();
-                                                  }
-                                                  capping = val;
-                                                });
-                                              },
-                                              groupValue: capping,
-                                            )))))
-                          ],
-                        ),
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text("Score Breakdown",
-                        style: TextStyle(color: subtitleColor)),
-                  ),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Autonomous",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(2),
+                          : SizedBox(height: 0),
+                      value
+                          ? Divider(height: 1, color: itemDividerColor)
+                          : SizedBox(height: 0),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode ? "Capping" : "🧢 Capping",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
                                         child: Align(
                                             alignment: Alignment.centerRight,
                                             child: SizedBox(
-                                                child: Text(
-                                                    (((carouselDuckDeliveryAuto ==
-                                                                    0)
-                                                                ? 10
-                                                                : 0) +
+                                                width: 150,
+                                                child:
+                                                CupertinoSlidingSegmentedControl<
+                                                    int>(
+                                                  children: cappingOptions,
+                                                  thumbColor: colorThemeOption ==
+                                                      0
+                                                      ? const Color(0xFF353535)
+                                                      : const Color(0xFF121212),
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  onValueChanged: (int val) {
+                                                    setState(() {
+                                                      if (val != capping) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      capping = val;
+                                                    });
+                                                  },
+                                                  groupValue: capping,
+                                                )))))
+                              ],
+                            ),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text("Score Breakdown",
+                            style: TextStyle(color: subtitleColor)),
+                      ),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text("Autonomous",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Padding(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: SizedBox(
+                                                    child: Text(
+                                                        (((carouselDuckDeliveryAuto ==
+                                                            0)
+                                                            ? 10
+                                                            : 0) +
                                                             (freightInStorageUnitAuto *
                                                                 2) +
-                                                        ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
+                                                            ((freightInShippingHubL1Auto +
+                                                                freightInShippingHubL2Auto +
+                                                                freightInShippingHubL3Auto) *
+                                                                6) +
                                                             (freightLevelAutoBonusR1 ==
-                                                                    0
+                                                                0
                                                                 ? 20
                                                                 : freightLevelAutoBonusR1 ==
-                                                                        1
-                                                                    ? 10
-                                                                    : 0) +
+                                                                1
+                                                                ? 10
+                                                                : 0) +
                                                             (value
                                                                 ? (freightLevelAutoBonusR2 ==
-                                                                        0
-                                                                    ? 20
-                                                                    : freightLevelAutoBonusR2 ==
-                                                                            1
-                                                                        ? 10
-                                                                        : 0)
+                                                                0
+                                                                ? 20
+                                                                : freightLevelAutoBonusR2 ==
+                                                                1
+                                                                ? 10
+                                                                : 0)
                                                                 : 0) +
                                                             navigatingScoreAuto +
                                                             (value
                                                                 ? navigatingScoreAutoR2
                                                                 : 0))
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color:
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color:
                                                             listItemTextColor,
-                                                        fontSize: 25)))))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Driver Controlled",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: SizedBox(
-                                                child: Text(
-                                                    ((freightInStorageUnitTeleOp * 1) +
+                                                            fontSize: 25)))))))
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text("Driver Controlled",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Padding(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: SizedBox(
+                                                    child: Text(
+                                                        ((freightInStorageUnitTeleOp *
+                                                            1) +
                                                             (freightInShippingHubLevel1 *
                                                                 2) +
                                                             (freightInShippingHubLevel2 *
@@ -2069,117 +2186,126 @@ class _roundsPageState extends State<roundsPage> {
                                                                 6) +
                                                             (freightInSharedShippingHub *
                                                                 4))
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color:
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color:
                                                             listItemTextColor,
-                                                        fontSize: 25)))))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("End Game",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: SizedBox(
-                                                child: Text(
-                                                    ((duckOrTeamElementDelivery *
-                                                                6) +
+                                                            fontSize: 25)))))))
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text("End Game",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Padding(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: SizedBox(
+                                                    child: Text(
+                                                        ((duckOrTeamElementDelivery *
+                                                            6) +
                                                             (shippingHubStatus ==
-                                                                    0
+                                                                0
                                                                 ? 10
                                                                 : 0) +
-                                                            (sharedHubStatus == 1
+                                                            (sharedHubStatus ==
+                                                                1
                                                                 ? 0
                                                                 : 20) +
                                                             (robot1Park == 0
                                                                 ? 6
                                                                 : robot1Park ==
-                                                                        1
-                                                                    ? 3
-                                                                    : 0) +
+                                                                1
+                                                                ? 3
+                                                                : 0) +
                                                             (dualScoring.value
                                                                 ? (robot2Park ==
-                                                                        0
-                                                                    ? 6
-                                                                    : robot2Park ==
-                                                                            1
-                                                                        ? 3
-                                                                        : 0)
+                                                                0
+                                                                ? 6
+                                                                : robot2Park ==
+                                                                1
+                                                                ? 3
+                                                                : 0)
                                                                 : 0) +
                                                             (capping == 0
                                                                 ? 30
                                                                 : capping == 1
-                                                                    ? 15
-                                                                    : 0))
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color:
+                                                                ? 15
+                                                                : 0))
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color:
                                                             listItemTextColor,
-                                                        fontSize: 25)))))))
-                          ],
-                        ),
-                      )),
-                  Divider(height: 1, color: itemDividerColor),
-                  Container(
-                      height: 60,
-                      color: listItemColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          children: <Widget>[
-                            Text("Total",
-                                style: TextStyle(
-                                    color: listItemTextColor, fontSize: 25)),
-                            Expanded(
-                                child: Container(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: SizedBox(
-                                                child: Text(
-                                                    ((((carouselDuckDeliveryAuto ==
-                                                                        0)
-                                                                    ? 10
-                                                                    : 0) +
-                                                                (freightInStorageUnitAuto *
-                                                                    2) +
-                                                        ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
-                                                                (freightLevelAutoBonusR1 ==
-                                                                        0
-                                                                    ? 20
-                                                                    : freightLevelAutoBonusR1 ==
-                                                                            1
-                                                                        ? 10
-                                                                        : 0) +
-                                                                (value
-                                                                    ? (freightLevelAutoBonusR2 ==
-                                                                            0
-                                                                        ? 20
-                                                                        : freightLevelAutoBonusR2 ==
-                                                                                1
-                                                                            ? 10
-                                                                            : 0)
-                                                                    : 0) +
-                                                                navigatingScoreAuto +
-                                                                (value
-                                                                    ? navigatingScoreAutoR2
-                                                                    : 0)) +
-                                                            ((freightInStorageUnitTeleOp * 1) +
+                                                            fontSize: 25)))))))
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text("Total",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Padding(
+                                            padding: const EdgeInsets.all(2),
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: SizedBox(
+                                                    child: Text(
+                                                        ((((carouselDuckDeliveryAuto ==
+                                                            0)
+                                                            ? 10
+                                                            : 0) +
+                                                            (freightInStorageUnitAuto *
+                                                                2) +
+                                                            ((freightInShippingHubL1Auto +
+                                                                freightInShippingHubL2Auto +
+                                                                freightInShippingHubL3Auto) *
+                                                                6) +
+                                                            (freightLevelAutoBonusR1 ==
+                                                                0
+                                                                ? 20
+                                                                : freightLevelAutoBonusR1 ==
+                                                                1
+                                                                ? 10
+                                                                : 0) +
+                                                            (value
+                                                                ? (freightLevelAutoBonusR2 ==
+                                                                0
+                                                                ? 20
+                                                                : freightLevelAutoBonusR2 ==
+                                                                1
+                                                                ? 10
+                                                                : 0)
+                                                                : 0) +
+                                                            navigatingScoreAuto +
+                                                            (value
+                                                                ? navigatingScoreAutoR2
+                                                                : 0)) +
+                                                            ((freightInStorageUnitTeleOp *
+                                                                1) +
                                                                 (freightInShippingHubLevel1 *
                                                                     2) +
                                                                 (freightInShippingHubLevel2 *
@@ -2189,229 +2315,302 @@ class _roundsPageState extends State<roundsPage> {
                                                                 (freightInSharedShippingHub *
                                                                     4)) +
                                                             ((duckOrTeamElementDelivery *
-                                                                    6) +
+                                                                6) +
                                                                 (shippingHubStatus ==
-                                                                        0
+                                                                    0
                                                                     ? 10
                                                                     : 0) +
                                                                 (sharedHubStatus ==
-                                                                        1
+                                                                    1
                                                                     ? 0
                                                                     : 20) +
                                                                 (robot1Park == 0
                                                                     ? 6
                                                                     : robot1Park ==
-                                                                            1
-                                                                        ? 3
-                                                                        : 0) +
+                                                                    1
+                                                                    ? 3
+                                                                    : 0) +
                                                                 (dualScoring
-                                                                        .value
+                                                                    .value
                                                                     ? (robot2Park ==
-                                                                            0
-                                                                        ? 6
-                                                                        : robot2Park ==
-                                                                                1
-                                                                            ? 3
-                                                                            : 0)
+                                                                    0
+                                                                    ? 6
+                                                                    : robot2Park ==
+                                                                    1
+                                                                    ? 3
+                                                                    : 0)
                                                                     : 0) +
                                                                 (capping == 0
                                                                     ? 30
                                                                     : capping ==
-                                                                            1
-                                                                        ? 15
-                                                                        : 0)))
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        color:
+                                                                    1
+                                                                    ? 15
+                                                                    : 0)))
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            color:
                                                             listItemTextColor,
-                                                        fontSize: 25)))))))
+                                                            fontSize: 25)))))))
+                              ],
+                            ),
+                          )),
+                      GestureDetector(
+                        child: Column(
+                          children: [
+                            Container(height: 15, color: Colors.transparent),
+                            Container(
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width,
+                              height: 20,
+                              color: Colors.transparent,
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.ios_share, color: Colors.white,
+                                        size: 20),
+                                    Text(" Share Match",
+                                        textAlign: TextAlign.center,
+                                        style:
+                                        TextStyle(
+                                            color: Colors.white, fontSize: 20))
+                                  ]
+                              ),
+                            ),
+                            Container(height: 15, color: Colors.transparent)
                           ],
                         ),
-                      )),
-                  GestureDetector(
-                      child: Column(
-                        children: [
-                          Container(height: 15, color: Colors.transparent),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 20,
-                            color: Colors.transparent,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.ios_share, color: Colors.white, size: 20),
-                                  Text(" Share Match",
-                                      textAlign: TextAlign.center,
-                                      style:
-                                      TextStyle(color: Colors.white, fontSize: 20))
-                                ]
-                            ),
-                          ),
-                          Container(height: 15, color: Colors.transparent)
-                        ],
-                      ),
-                    onTap: () {
-                      // do some easter egg here --maybe some picture background like snowflakes for winter idk
-                      // or maybe a field image opens
-                      Share.share("Check out the breakdown of my ${((((carouselDuckDeliveryAuto ==
-                          0)
-                          ? 10
-                          : 0) +
-                          (freightInStorageUnitAuto *
-                              2) +
-                          ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
-                          (freightLevelAutoBonusR1 ==
-                              0
-                              ? 20
-                              : freightLevelAutoBonusR1 ==
-                              1
-                              ? 10
-                              : 0) +
-                          (value
-                              ? (freightLevelAutoBonusR2 ==
-                              0
-                              ? 20
-                              : freightLevelAutoBonusR2 ==
-                              1
-                              ? 10
-                              : 0)
-                              : 0) +
-                          navigatingScoreAuto +
-                          (value
-                              ? navigatingScoreAutoR2
-                              : 0)) +
-                          ((freightInStorageUnitTeleOp * 1) +
-                              (freightInShippingHubLevel1 *
-                                  2) +
-                              (freightInShippingHubLevel2 *
-                                  4) +
-                              (freightInShippingHubLevel3 *
-                                  6) +
-                              (freightInSharedShippingHub *
-                                  4)) +
-                          ((duckOrTeamElementDelivery *
-                              6) +
-                              (shippingHubStatus ==
-                                  0
+                        onTap: () {
+                          // do some easter egg here --maybe some picture background like snowflakes for winter idk
+                          // or maybe a field image opens
+                          Share.share(
+                              "Check out the breakdown of my ${((((carouselDuckDeliveryAuto ==
+                                  0)
                                   ? 10
                                   : 0) +
-                              (sharedHubStatus ==
-                                  1
-                                  ? 0
-                                  : 20) +
-                              (robot1Park == 0
-                                  ? 6
-                                  : robot1Park ==
-                                  1
-                                  ? 3
-                                  : 0) +
-                              (dualScoring
-                                  .value
-                                  ? (robot2Park ==
-                                  0
-                                  ? 6
-                                  : robot2Park ==
-                                  1
-                                  ? 3
-                                  : 0)
-                                  : 0) +
-                              (capping == 0
-                                  ? 30
-                                  : capping ==
-                                  1
-                                  ? 15
-                                  : 0)))} point match!: \n\nAutonomous Score: " + (((carouselDuckDeliveryAuto ==
-                          0)
-                          ? 10
-                          : 0) +
-                          (freightInStorageUnitAuto *
-                              2) +
-                          ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
-                          (freightLevelAutoBonusR1 ==
-                              0
-                              ? 20
-                              : freightLevelAutoBonusR1 ==
-                              1
-                              ? 10
-                              : 0) +
-                          (value
-                              ? (freightLevelAutoBonusR2 ==
-                              0
-                              ? 20
-                              : freightLevelAutoBonusR2 ==
-                              1
-                              ? 10
-                              : 0)
-                              : 0) +
-                          navigatingScoreAuto +
-                          (value
-                              ? navigatingScoreAutoR2
-                              : 0))
-                          .toString() + "\n" +
-                          "Duck Delivery: " + (carouselDuckDeliveryAuto == 0 ? "Yes" : "No") + "\n" +
-                          "Freight in Storage: " + (freightInStorageUnitAuto).toString() + "\n" +
-                          "Freight in Shipping Hub L1: " + (freightInShippingHubL1Auto).toString() + "\n" +
-                          "Freight in Shipping Hub L2: " + (freightInShippingHubL2Auto).toString() + "\n" +
-                          "Freight in Shipping Hub L3: " + (freightInShippingHubL3Auto).toString() + "\n" +
-                          "Freight Bonus: " + (freightLevelAutoBonusR1 == 0 ? "Team Shipping Element" : freightLevelAutoBonusR1 == 1 ? "Duck" : "None") + "\n" +
-                          (value ? "Freight Bonus 2: " + (freightLevelAutoBonusR2 == 0 ? "Team Shipping Element" : freightLevelAutoBonusR2 == 1 ? "Duck" : "None") + "\n" : "") +
-                          "Parking: " + (navigatingScoreAuto == 0 ? "None" : navigatingScoreAuto == 3 ? "Partial; Storage" : navigatingScoreAuto == 6 ? "Full; Storage" : navigatingScoreAuto == 5 ? "Partial; Warehouse" : "Full; Warehouse") + "\n" +
-                          (value ? "Parking 2: " + (navigatingScoreAutoR2 == 0 ? "None" : navigatingScoreAutoR2 == 3 ? "Partial; Storage" : navigatingScoreAutoR2 == 6 ? "Full; Storage" : navigatingScoreAutoR2 == 5 ? "Partial; Warehouse" : "Full; Warehouse") + "\n": "") +
-                          "\n" +
-                          "TeleOp Score: " + ((freightInStorageUnitTeleOp * 1) +
-                          (freightInShippingHubLevel1 *
-                              2) +
-                          (freightInShippingHubLevel2 *
-                              4) +
-                          (freightInShippingHubLevel3 *
-                              6) +
-                          (freightInSharedShippingHub *
-                              4))
-                          .toString() + "\n" +
-                          "Freight in Storage: " + (freightInStorageUnitTeleOp).toString() + "\n" +
-                          "Freight in Shipping Hub L1: " + (freightInShippingHubLevel1).toString() + "\n" +
-                          "Freight in Shipping Hub L2: " + (freightInShippingHubLevel2).toString() + "\n" +
-                          "Freight in Shipping Hub L3: " + (freightInShippingHubLevel3).toString() + "\n" +
-                          "Freight in Shared Hub: " + (freightInSharedShippingHub).toString() + "\n\n" +
-                          "End Game Score: " + ((duckOrTeamElementDelivery *
-                          6) +
-                          (shippingHubStatus ==
-                              0
-                              ? 10
-                              : 0) +
-                          (sharedHubStatus == 1
-                              ? 0
-                              : 20) +
-                          (robot1Park == 0
-                              ? 6
-                              : robot1Park ==
-                              1
-                              ? 3
-                              : 0) +
-                          (dualScoring.value
-                              ? (robot2Park ==
-                              0
-                              ? 6
-                              : robot2Park ==
-                              1
-                              ? 3
-                              : 0)
-                              : 0) +
-                          (capping == 0
-                              ? 30
-                              : capping == 1
-                              ? 15
-                              : 0))
-                          .toString() + "\n" +
-                          "Ducks Delivered: " + (duckOrTeamElementDelivery).toString() + "\n" +
-                          "Shipping Hub: " + (shippingHubStatus == 0 ? "Balanced" : "Leaning") + "\n" +
-                          "Shared Hub: " + (sharedHubStatus == 0 ? "Leaning" : "Balanced") + "\n" +
-                          "Parking: " + (robot1Park == 0 ? "Full" : robot1Park == 1 ? "Partial" : "None") + "\n" +
-                          (value ? "Parking 2: " + (robot2Park == 0 ? "Full" : robot2Park == 1 ? "Partial" : "None") + "\n": "") +
-                          "Number of Caps: " + (capping == 0 ? "Two" : capping == 1 ? "One" : "Zero")
-                      );
-                    },
-                  ),
+                                  (freightInStorageUnitAuto *
+                                      2) +
+                                  ((freightInShippingHubL1Auto +
+                                      freightInShippingHubL2Auto +
+                                      freightInShippingHubL3Auto) * 6) +
+                                  (freightLevelAutoBonusR1 ==
+                                      0
+                                      ? 20
+                                      : freightLevelAutoBonusR1 ==
+                                      1
+                                      ? 10
+                                      : 0) +
+                                  (value
+                                      ? (freightLevelAutoBonusR2 ==
+                                      0
+                                      ? 20
+                                      : freightLevelAutoBonusR2 ==
+                                      1
+                                      ? 10
+                                      : 0)
+                                      : 0) +
+                                  navigatingScoreAuto +
+                                  (value
+                                      ? navigatingScoreAutoR2
+                                      : 0)) +
+                                  ((freightInStorageUnitTeleOp * 1) +
+                                      (freightInShippingHubLevel1 *
+                                          2) +
+                                      (freightInShippingHubLevel2 *
+                                          4) +
+                                      (freightInShippingHubLevel3 *
+                                          6) +
+                                      (freightInSharedShippingHub *
+                                          4)) +
+                                  ((duckOrTeamElementDelivery *
+                                      6) +
+                                      (shippingHubStatus ==
+                                          0
+                                          ? 10
+                                          : 0) +
+                                      (sharedHubStatus ==
+                                          1
+                                          ? 0
+                                          : 20) +
+                                      (robot1Park == 0
+                                          ? 6
+                                          : robot1Park ==
+                                          1
+                                          ? 3
+                                          : 0) +
+                                      (dualScoring
+                                          .value
+                                          ? (robot2Park ==
+                                          0
+                                          ? 6
+                                          : robot2Park ==
+                                          1
+                                          ? 3
+                                          : 0)
+                                          : 0) +
+                                      (capping == 0
+                                          ? 30
+                                          : capping ==
+                                          1
+                                          ? 15
+                                          : 0)))} point match!: \n\nAutonomous Score: " +
+                                  (((carouselDuckDeliveryAuto ==
+                                      0)
+                                      ? 10
+                                      : 0) +
+                                      (freightInStorageUnitAuto *
+                                          2) +
+                                      ((freightInShippingHubL1Auto +
+                                          freightInShippingHubL2Auto +
+                                          freightInShippingHubL3Auto) * 6) +
+                                      (freightLevelAutoBonusR1 ==
+                                          0
+                                          ? 20
+                                          : freightLevelAutoBonusR1 ==
+                                          1
+                                          ? 10
+                                          : 0) +
+                                      (value
+                                          ? (freightLevelAutoBonusR2 ==
+                                          0
+                                          ? 20
+                                          : freightLevelAutoBonusR2 ==
+                                          1
+                                          ? 10
+                                          : 0)
+                                          : 0) +
+                                      navigatingScoreAuto +
+                                      (value
+                                          ? navigatingScoreAutoR2
+                                          : 0))
+                                      .toString() + "\n" +
+                                  "Duck Delivery: " +
+                                  (carouselDuckDeliveryAuto == 0
+                                      ? "Yes"
+                                      : "No") + "\n" +
+                                  "Freight in Storage: " +
+                                  (freightInStorageUnitAuto).toString() + "\n" +
+                                  "Freight in Shipping Hub L1: " +
+                                  (freightInShippingHubL1Auto).toString() +
+                                  "\n" +
+                                  "Freight in Shipping Hub L2: " +
+                                  (freightInShippingHubL2Auto).toString() +
+                                  "\n" +
+                                  "Freight in Shipping Hub L3: " +
+                                  (freightInShippingHubL3Auto).toString() +
+                                  "\n" +
+                                  "Freight Bonus: " +
+                                  (freightLevelAutoBonusR1 == 0
+                                      ? "Team Shipping Element"
+                                      : freightLevelAutoBonusR1 == 1
+                                      ? "Duck"
+                                      : "None") + "\n" +
+                                  (value ? "Freight Bonus 2: " +
+                                      (freightLevelAutoBonusR2 == 0
+                                          ? "Team Shipping Element"
+                                          : freightLevelAutoBonusR2 == 1
+                                          ? "Duck"
+                                          : "None") + "\n" : "") +
+                                  "Parking: " + (navigatingScoreAuto == 0
+                                  ? "None"
+                                  : navigatingScoreAuto == 3
+                                  ? "Partial; Storage"
+                                  : navigatingScoreAuto == 6
+                                  ? "Full; Storage"
+                                  : navigatingScoreAuto == 5
+                                  ? "Partial; Warehouse"
+                                  : "Full; Warehouse") + "\n" +
+                                  (value ? "Parking 2: " +
+                                      (navigatingScoreAutoR2 == 0
+                                          ? "None"
+                                          : navigatingScoreAutoR2 == 3
+                                          ? "Partial; Storage"
+                                          : navigatingScoreAutoR2 == 6
+                                          ? "Full; Storage"
+                                          : navigatingScoreAutoR2 == 5
+                                          ? "Partial; Warehouse"
+                                          : "Full; Warehouse") + "\n" : "") +
+                                  "\n" +
+                                  "TeleOp Score: " +
+                                  ((freightInStorageUnitTeleOp * 1) +
+                                      (freightInShippingHubLevel1 *
+                                          2) +
+                                      (freightInShippingHubLevel2 *
+                                          4) +
+                                      (freightInShippingHubLevel3 *
+                                          6) +
+                                      (freightInSharedShippingHub *
+                                          4))
+                                      .toString() + "\n" +
+                                  "Freight in Storage: " +
+                                  (freightInStorageUnitTeleOp).toString() +
+                                  "\n" +
+                                  "Freight in Shipping Hub L1: " +
+                                  (freightInShippingHubLevel1).toString() +
+                                  "\n" +
+                                  "Freight in Shipping Hub L2: " +
+                                  (freightInShippingHubLevel2).toString() +
+                                  "\n" +
+                                  "Freight in Shipping Hub L3: " +
+                                  (freightInShippingHubLevel3).toString() +
+                                  "\n" +
+                                  "Freight in Shared Hub: " +
+                                  (freightInSharedShippingHub).toString() +
+                                  "\n\n" +
+                                  "End Game Score: " +
+                                  ((duckOrTeamElementDelivery *
+                                      6) +
+                                      (shippingHubStatus ==
+                                          0
+                                          ? 10
+                                          : 0) +
+                                      (sharedHubStatus == 1
+                                          ? 0
+                                          : 20) +
+                                      (robot1Park == 0
+                                          ? 6
+                                          : robot1Park ==
+                                          1
+                                          ? 3
+                                          : 0) +
+                                      (dualScoring.value
+                                          ? (robot2Park ==
+                                          0
+                                          ? 6
+                                          : robot2Park ==
+                                          1
+                                          ? 3
+                                          : 0)
+                                          : 0) +
+                                      (capping == 0
+                                          ? 30
+                                          : capping == 1
+                                          ? 15
+                                          : 0))
+                                      .toString() + "\n" +
+                                  "Ducks Delivered: " +
+                                  (duckOrTeamElementDelivery).toString() +
+                                  "\n" +
+                                  "Shipping Hub: " + (shippingHubStatus == 0
+                                  ? "Balanced"
+                                  : "Leaning") + "\n" +
+                                  "Shared Hub: " + (sharedHubStatus == 0
+                                  ? "Leaning"
+                                  : "Balanced") + "\n" +
+                                  "Parking: " +
+                                  (robot1Park == 0 ? "Full" : robot1Park == 1
+                                      ? "Partial"
+                                      : "None") + "\n" +
+                                  (value ? "Parking 2: " +
+                                      (robot2Park == 0 ? "Full" : robot2Park ==
+                                          1 ? "Partial" : "None") + "\n" : "") +
+                                  "Number of Caps: " + (capping == 0
+                                  ? "Two"
+                                  : capping == 1 ? "One" : "Zero")
+                          );
+                        },
+                      ),
 
                     ]))
               ],
