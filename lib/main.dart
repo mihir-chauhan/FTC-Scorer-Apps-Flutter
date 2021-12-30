@@ -83,7 +83,9 @@ class _roundsPageState extends State<roundsPage> {
 
   int carouselDuckDeliveryAuto = 1;
   int freightInStorageUnitAuto = 0;
-  int freightInShippingHubAuto = 0;
+  int freightInShippingHubL1Auto = 0;
+  int freightInShippingHubL2Auto = 0;
+  int freightInShippingHubL3Auto = 0;
   int freightLevelAutoBonusR1 = 2;
   int freightLevelAutoBonusR2 = 2;
   int navigatingValueAutoR1 = 1;
@@ -273,7 +275,9 @@ class _roundsPageState extends State<roundsPage> {
                         HapticFeedback.lightImpact();
                         carouselDuckDeliveryAuto = 1;
                         freightInStorageUnitAuto = 0;
-                        freightInShippingHubAuto = 0;
+                        freightInShippingHubL1Auto = 0;
+                        freightInShippingHubL2Auto = 0;
+                        freightInShippingHubL3Auto = 0;
                         freightLevelAutoBonusR1 = 2;
                         freightLevelAutoBonusR2 = 2;
                         navigatingValueAutoR1 = 1;
@@ -314,7 +318,7 @@ class _roundsPageState extends State<roundsPage> {
                         "Autonomous Points - " +
                             ((((carouselDuckDeliveryAuto == 0) ? 10 : 0) +
                                         (freightInStorageUnitAuto * 2) +
-                                        (freightInShippingHubAuto * 6) +
+                                        ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
                                         (freightLevelAutoBonusR1 == 0
                                             ? 20
                                             : freightLevelAutoBonusR1 == 1
@@ -418,6 +422,7 @@ class _roundsPageState extends State<roundsPage> {
                                                       0) {
                                                     HapticFeedback
                                                         .lightImpact();
+                                                    freightInStorageUnitTeleOp -= 1;
                                                   }
                                                   (freightInStorageUnitAuto > 0)
                                                       ? freightInStorageUnitAuto -=
@@ -444,6 +449,7 @@ class _roundsPageState extends State<roundsPage> {
                                               if (freightInStorageUnitAuto <
                                                   50) {
                                                 HapticFeedback.lightImpact();
+                                                freightInStorageUnitTeleOp += 1;
                                               }
                                               (freightInStorageUnitAuto < 50)
                                                   ? freightInStorageUnitAuto +=
@@ -466,15 +472,15 @@ class _roundsPageState extends State<roundsPage> {
                           children: <Widget>[
                             Text(
                                 notEasterEggMode
-                                    ? "Freight in Hub      "
-                                    : "📦 in Hub               ",
+                                    ? "Freight in Hub L1 "
+                                    : "📦 in Hub Level 1 ",
                                 style: TextStyle(
                                     color: listItemTextColor, fontSize: 25)),
                             Expanded(
                                 child: Container(
                                     child: Align(
                                         alignment: Alignment.centerRight,
-                                        child: Text("$freightInShippingHubAuto",
+                                        child: Text("$freightInShippingHubL1Auto",
                                             style: TextStyle(
                                                 color: listItemTextColor,
                                                 fontSize: 25))))),
@@ -493,16 +499,17 @@ class _roundsPageState extends State<roundsPage> {
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
-                                                  if (freightInShippingHubAuto >
+                                                  if (freightInShippingHubL1Auto >
                                                       0) {
                                                     HapticFeedback
                                                         .lightImpact();
+                                                    freightInShippingHubLevel1 -= 1;
                                                   }
-                                                  (freightInShippingHubAuto > 0)
-                                                      ? freightInShippingHubAuto -=
+                                                  (freightInShippingHubL1Auto > 0)
+                                                      ? freightInShippingHubL1Auto -=
                                                           1
-                                                      : freightInShippingHubAuto =
-                                                          freightInShippingHubAuto;
+                                                      : freightInShippingHubL1Auto =
+                                                      freightInShippingHubL1Auto;
                                                 });
                                               },
                                             ))))),
@@ -520,21 +527,184 @@ class _roundsPageState extends State<roundsPage> {
                                                   fontSize: 30)),
                                           onPressed: () {
                                             setState(() {
-                                              if (freightInShippingHubAuto <
+                                              if (freightInShippingHubL1Auto <
                                                   50) {
                                                 HapticFeedback.lightImpact();
+                                                freightInShippingHubLevel1 += 1;
                                               }
-                                              (freightInShippingHubAuto < 50)
-                                                  ? freightInShippingHubAuto +=
+                                              (freightInShippingHubL1Auto < 50)
+                                                  ? freightInShippingHubL1Auto +=
                                                       1
-                                                  : freightInShippingHubAuto =
-                                                      freightInShippingHubAuto;
+                                                  : freightInShippingHubL1Auto =
+                                                  freightInShippingHubL1Auto;
                                             });
                                           },
                                         )))),
                           ],
                         ),
                       )),
+                  Divider(height: 1, color: itemDividerColor),
+                  Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight in Hub L2 "
+                                        : "📦 in Hub Level 2 ",
+                                    style: TextStyle(
+                                        color: listItemTextColor, fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text("$freightInShippingHubL2Auto",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment.centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Text("-",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 30)),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (freightInShippingHubL2Auto >
+                                                          0) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                        freightInShippingHubLevel2 -= 1;
+                                                      }
+                                                      (freightInShippingHubL2Auto > 0)
+                                                          ? freightInShippingHubL2Auto -=
+                                                      1
+                                                          : freightInShippingHubL2Auto =
+                                                          freightInShippingHubL2Auto;
+                                                    });
+                                                  },
+                                                ))))),
+                                Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: CupertinoButton(
+                                              color: Colors.black,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("+",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 30)),
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (freightInShippingHubL2Auto <
+                                                      50) {
+                                                    HapticFeedback.lightImpact();
+                                                    freightInShippingHubLevel2 += 1;
+                                                  }
+                                                  (freightInShippingHubL2Auto < 50)
+                                                      ? freightInShippingHubL2Auto +=
+                                                  1
+                                                      : freightInShippingHubL2Auto =
+                                                      freightInShippingHubL2Auto;
+                                                });
+                                              },
+                                            )))),
+                              ],
+                            ),
+                          )),
+                  Divider(height: 1, color: itemDividerColor),
+                  Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight in Hub L3 "
+                                        : "📦 in Hub Level 3 ",
+                                    style: TextStyle(
+                                        color: listItemTextColor, fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text("$freightInShippingHubL3Auto",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                Expanded(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment.centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Text("-",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 30)),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      if (freightInShippingHubL3Auto >
+                                                          0) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                        freightInShippingHubLevel3 -= 1;
+                                                      }
+                                                      (freightInShippingHubL3Auto > 0)
+                                                          ? freightInShippingHubL3Auto -=
+                                                      1
+                                                          : freightInShippingHubL3Auto =
+                                                          freightInShippingHubL3Auto;
+                                                    });
+                                                  },
+                                                ))))),
+                                Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: CupertinoButton(
+                                              color: Colors.black,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("+",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 30)),
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (freightInShippingHubL3Auto <
+                                                      50) {
+                                                    HapticFeedback.lightImpact();
+                                                    freightInShippingHubLevel3 += 1;
+                                                  }
+                                                  (freightInShippingHubL3Auto < 50)
+                                                      ? freightInShippingHubL3Auto +=
+                                                  1
+                                                      : freightInShippingHubL3Auto =
+                                                      freightInShippingHubL3Auto;
+                                                });
+                                              },
+                                            )))),
+                              ],
+                            ),
+                          )),
                   Divider(height: 1, color: itemDividerColor),
                   Container(
                       height: 60,
@@ -1097,12 +1267,12 @@ class _roundsPageState extends State<roundsPage> {
                                               onPressed: () {
                                                 setState(() {
                                                   if (freightInStorageUnitTeleOp >
-                                                      0) {
+                                                      freightInStorageUnitAuto) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
                                                   (freightInStorageUnitTeleOp >
-                                                          0)
+                                                      freightInStorageUnitAuto)
                                                       ? freightInStorageUnitTeleOp -=
                                                           1
                                                       : freightInStorageUnitTeleOp =
@@ -1178,12 +1348,12 @@ class _roundsPageState extends State<roundsPage> {
                                               onPressed: () {
                                                 setState(() {
                                                   if (freightInShippingHubLevel1 >
-                                                      0) {
+                                                      freightInShippingHubL1Auto) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
                                                   (freightInShippingHubLevel1 >
-                                                          0)
+                                                      freightInShippingHubL1Auto)
                                                       ? freightInShippingHubLevel1 -=
                                                           1
                                                       : freightInShippingHubLevel1 =
@@ -1259,12 +1429,12 @@ class _roundsPageState extends State<roundsPage> {
                                               onPressed: () {
                                                 setState(() {
                                                   if (freightInShippingHubLevel2 >
-                                                      0) {
+                                                      freightInShippingHubL2Auto) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
                                                   (freightInShippingHubLevel2 >
-                                                          0)
+                                                      freightInShippingHubL2Auto)
                                                       ? freightInShippingHubLevel2 -=
                                                           1
                                                       : freightInShippingHubLevel2 =
@@ -1340,12 +1510,12 @@ class _roundsPageState extends State<roundsPage> {
                                               onPressed: () {
                                                 setState(() {
                                                   if (freightInShippingHubLevel3 >
-                                                      0) {
+                                                      freightInShippingHubL3Auto) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
                                                   (freightInShippingHubLevel3 >
-                                                          0)
+                                                      freightInShippingHubL3Auto)
                                                       ? freightInShippingHubLevel3 -=
                                                           1
                                                       : freightInShippingHubLevel3 =
@@ -1814,8 +1984,7 @@ class _roundsPageState extends State<roundsPage> {
                                                                 : 0) +
                                                             (freightInStorageUnitAuto *
                                                                 2) +
-                                                            (freightInShippingHubAuto *
-                                                                6) +
+                                                        ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
                                                             (freightLevelAutoBonusR1 ==
                                                                     0
                                                                 ? 20
@@ -1961,8 +2130,7 @@ class _roundsPageState extends State<roundsPage> {
                                                                     : 0) +
                                                                 (freightInStorageUnitAuto *
                                                                     2) +
-                                                                (freightInShippingHubAuto *
-                                                                    6) +
+                                                        ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
                                                                 (freightLevelAutoBonusR1 ==
                                                                         0
                                                                     ? 20
@@ -2044,6 +2212,8 @@ class _roundsPageState extends State<roundsPage> {
                         ),
                         onLongPress: () {
                           // do some easter egg here --maybe some picture background like snowflakes for winter idk
+                          // maybe a share button here
+                          // or maybe a field image opens
                         },
                     ),
                   ),
