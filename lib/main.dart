@@ -11,6 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
+        builder: (context, child) {
+          return MediaQuery(
+              child: child,
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0));
+        },
         debugShowCheckedModeBanner: false,
         theme: CupertinoThemeData(
           textTheme: CupertinoTextThemeData(
@@ -79,7 +84,8 @@ class _roundsPageState extends State<roundsPage> {
   int carouselDuckDeliveryAuto = 1;
   int freightInStorageUnitAuto = 0;
   int freightInShippingHubAuto = 0;
-  int freightLevelAutoBonus = 2;
+  int freightLevelAutoBonusR1 = 2;
+  int freightLevelAutoBonusR2 = 2;
   int navigatingValueAutoR1 = 1;
   int navigatingStorageUnitValueAutoR1 = 2;
   int navigatingWarehouseValueAutoR1 = 2;
@@ -107,23 +113,23 @@ class _roundsPageState extends State<roundsPage> {
   @override
   void initState() {
     super.initState();
-    initializePreference().whenComplete((){
+    initializePreference().whenComplete(() {
       setState(() {});
     });
   }
 
-  Future<void> initializePreference() async{
+  Future<void> initializePreference() async {
     this.preferences = await SharedPreferences.getInstance();
     this.preferences.reload();
     if (this.preferences.containsKey("colorTheme")) {
       colorThemeOption = this.preferences?.getInt("colorTheme");
       colorThemeOption -= 1;
-      if(colorThemeOption == -1) {
+      if (colorThemeOption == -1) {
         colorThemeOption = 5;
       }
     } else {
       colorThemeOption = 2;
-      this.preferences?.setInt("colorTheme", colorThemeOption+1);
+      this.preferences?.setInt("colorTheme", colorThemeOption + 1);
     }
     setThemeBasedOnThemeOption();
   }
@@ -175,13 +181,13 @@ class _roundsPageState extends State<roundsPage> {
       listItemTextColor = Color(0xFF121212);
       colorThemeOption = 5;
     } else {
-      backgroundColor = Color(0xFF121212);
+      backgroundColor = Color(0xFF000000);
       itemDividerColor = Color(0xFF000000);
-      listItemColor = Color(0xFF8c8c8c);
+      listItemColor = Color(0xFF606060);
       titleColor = Colors.white;
       iconColor = Colors.white;
       subtitleColor = Colors.white;
-      listItemTextColor = Color(0xFF121212);
+      listItemTextColor = Color(0xFF000000);
       colorThemeOption = 0;
     }
   }
@@ -212,11 +218,13 @@ class _roundsPageState extends State<roundsPage> {
                       HapticFeedback.heavyImpact();
                       setState(() {
                         setThemeBasedOnThemeOption();
-                        this.preferences?.setInt("colorTheme", colorThemeOption);
+                        this
+                            .preferences
+                            ?.setInt("colorTheme", colorThemeOption);
 
                         showToast(
                           colorThemeOption == 1
-                              ? "Team Innov8rz Theme"
+                              ? "Innov8rz Theme"
                               : colorThemeOption == 2
                                   ? "Freight Frenzy Theme"
                                   : colorThemeOption == 3
@@ -225,7 +233,7 @@ class _roundsPageState extends State<roundsPage> {
                                           ? "Blue Alliance Theme"
                                           : colorThemeOption == 5
                                               ? "Red Alliance Theme"
-                                              : "Monochrome Theme",
+                                              : "Dark Theme",
                           context: context,
                           animation: StyledToastAnimation.slideFromBottom,
                           reverseAnimation: StyledToastAnimation.fade,
@@ -266,7 +274,8 @@ class _roundsPageState extends State<roundsPage> {
                         carouselDuckDeliveryAuto = 1;
                         freightInStorageUnitAuto = 0;
                         freightInShippingHubAuto = 0;
-                        freightLevelAutoBonus = 2;
+                        freightLevelAutoBonusR1 = 2;
+                        freightLevelAutoBonusR2 = 2;
                         navigatingValueAutoR1 = 1;
                         navigatingStorageUnitValueAutoR1 = 2;
                         navigatingWarehouseValueAutoR1 = 2;
@@ -301,26 +310,27 @@ class _roundsPageState extends State<roundsPage> {
                     delegate: SliverChildListDelegate([
                   Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Text("Autonomous Points - " + ((((carouselDuckDeliveryAuto ==
-                        0)
-                        ? 10
-                        : 0) +
-                        (freightInStorageUnitAuto *
-                            2) +
-                        (freightInShippingHubAuto *
-                            6) +
-                        (freightLevelAutoBonus ==
-                            0
-                            ? 20
-                            : freightLevelAutoBonus ==
-                            1
-                            ? 10
-                            : 0) +
-                        navigatingScoreAuto +
-                        (value
-                            ? navigatingScoreAutoR2
-                            : 0))
-                        .toString()).toString(),
+                    child: Text(
+                        "Autonomous Points - " +
+                            ((((carouselDuckDeliveryAuto == 0) ? 10 : 0) +
+                                        (freightInStorageUnitAuto * 2) +
+                                        (freightInShippingHubAuto * 6) +
+                                        (freightLevelAutoBonusR1 == 0
+                                            ? 20
+                                            : freightLevelAutoBonusR1 == 1
+                                                ? 10
+                                                : 0) +
+                                        (value
+                                            ? (freightLevelAutoBonusR2 == 0
+                                                ? 20
+                                                : freightLevelAutoBonusR2 == 1
+                                                    ? 10
+                                                    : 0)
+                                            : 0) +
+                                        navigatingScoreAuto +
+                                        (value ? navigatingScoreAutoR2 : 0))
+                                    .toString())
+                                .toString(),
                         style: TextStyle(color: subtitleColor)),
                   ),
                   Container(
@@ -552,19 +562,71 @@ class _roundsPageState extends State<roundsPage> {
                                               onValueChanged: (int val) {
                                                 setState(() {
                                                   if (val !=
-                                                      freightLevelAutoBonus) {
+                                                      freightLevelAutoBonusR1) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
-                                                  freightLevelAutoBonus = val;
+                                                  freightLevelAutoBonusR1 = val;
                                                 });
                                               },
-                                              groupValue: freightLevelAutoBonus,
+                                              groupValue:
+                                                  freightLevelAutoBonusR1,
                                             )))))
                           ],
                         ),
                       )),
                   Divider(height: 1, color: itemDividerColor),
+                  value
+                      ? Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Freight Bonus 2"
+                                        : "📦 Bonus 2",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
+                                                    CupertinoSlidingSegmentedControl<
+                                                        int>(
+                                                  children:
+                                                      freightLevelBonusAuto,
+                                                  thumbColor:
+                                                      const Color(0xFF121212),
+                                                  backgroundColor:
+                                                      Colors.black45,
+                                                  onValueChanged: (int val) {
+                                                    setState(() {
+                                                      if (val !=
+                                                          freightLevelAutoBonusR2) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      freightLevelAutoBonusR2 =
+                                                          val;
+                                                    });
+                                                  },
+                                                  groupValue:
+                                                      freightLevelAutoBonusR2,
+                                                )))))
+                              ],
+                            ),
+                          ))
+                      : SizedBox(height: 0),
+                  value
+                      ? Divider(height: 1, color: itemDividerColor)
+                      : SizedBox(height: 0),
                   Container(
                       height: 60,
                       color: listItemColor,
@@ -669,18 +731,19 @@ class _roundsPageState extends State<roundsPage> {
 
                                                           navigatingScoreAuto =
                                                               (navigatingStorageUnitValueAutoR1 ==
-                                                                      0
-                                                                  ? 6
-                                                                  : navigatingStorageUnitValueAutoR1 ==
-                                                                          1
-                                                                      ? 3
-                                                                      : 0) + (navigatingWarehouseValueAutoR1 ==
-                                                                  0
-                                                                  ? 10
-                                                                  : navigatingWarehouseValueAutoR1 ==
-                                                                  1
-                                                                  ? 5
-                                                                  : 0);
+                                                                          0
+                                                                      ? 6
+                                                                      : navigatingStorageUnitValueAutoR1 ==
+                                                                              1
+                                                                          ? 3
+                                                                          : 0) +
+                                                                  (navigatingWarehouseValueAutoR1 ==
+                                                                          0
+                                                                      ? 10
+                                                                      : navigatingWarehouseValueAutoR1 ==
+                                                                              1
+                                                                          ? 5
+                                                                          : 0);
                                                         });
                                                       },
                                                       groupValue:
@@ -739,18 +802,19 @@ class _roundsPageState extends State<roundsPage> {
 
                                                           navigatingScoreAuto =
                                                               (navigatingStorageUnitValueAutoR1 ==
-                                                                  0
-                                                                  ? 6
-                                                                  : navigatingStorageUnitValueAutoR1 ==
-                                                                  1
-                                                                  ? 3
-                                                                  : 0) + (navigatingWarehouseValueAutoR1 ==
-                                                                  0
-                                                                  ? 10
-                                                                  : navigatingWarehouseValueAutoR1 ==
-                                                                  1
-                                                                  ? 5
-                                                                  : 0);
+                                                                          0
+                                                                      ? 6
+                                                                      : navigatingStorageUnitValueAutoR1 ==
+                                                                              1
+                                                                          ? 3
+                                                                          : 0) +
+                                                                  (navigatingWarehouseValueAutoR1 ==
+                                                                          0
+                                                                      ? 10
+                                                                      : navigatingWarehouseValueAutoR1 ==
+                                                                              1
+                                                                          ? 5
+                                                                          : 0);
                                                         });
                                                       },
                                                       groupValue:
@@ -762,7 +826,9 @@ class _roundsPageState extends State<roundsPage> {
                             ),
                           ))
                       : SizedBox(height: 0),
-                  value ? Divider(height: 1, color: itemDividerColor) : SizedBox(height: 0),
+                  value
+                      ? Divider(height: 1, color: itemDividerColor)
+                      : SizedBox(height: 0),
                   value
                       ? Container(
                           height: 60,
@@ -872,18 +938,19 @@ class _roundsPageState extends State<roundsPage> {
 
                                                           navigatingScoreAutoR2 =
                                                               (navigatingStorageUnitValueAutoR2 ==
-                                                                  0
-                                                                  ? 6
-                                                                  : navigatingStorageUnitValueAutoR2 ==
-                                                                  1
-                                                                  ? 3
-                                                                  : 0) + (navigatingWarehouseValueAutoR2 ==
-                                                                  0
-                                                                  ? 10
-                                                                  : navigatingWarehouseValueAutoR2 ==
-                                                                  1
-                                                                  ? 5
-                                                                  : 0);
+                                                                          0
+                                                                      ? 6
+                                                                      : navigatingStorageUnitValueAutoR2 ==
+                                                                              1
+                                                                          ? 3
+                                                                          : 0) +
+                                                                  (navigatingWarehouseValueAutoR2 ==
+                                                                          0
+                                                                      ? 10
+                                                                      : navigatingWarehouseValueAutoR2 ==
+                                                                              1
+                                                                          ? 5
+                                                                          : 0);
                                                         });
                                                       },
                                                       groupValue:
@@ -942,18 +1009,19 @@ class _roundsPageState extends State<roundsPage> {
 
                                                           navigatingScoreAutoR2 =
                                                               (navigatingStorageUnitValueAutoR2 ==
-                                                                  0
-                                                                  ? 6
-                                                                  : navigatingStorageUnitValueAutoR2 ==
-                                                                  1
-                                                                  ? 3
-                                                                  : 0) + (navigatingWarehouseValueAutoR2 ==
-                                                                  0
-                                                                  ? 10
-                                                                  : navigatingWarehouseValueAutoR2 ==
-                                                                  1
-                                                                  ? 5
-                                                                  : 0);
+                                                                          0
+                                                                      ? 6
+                                                                      : navigatingStorageUnitValueAutoR2 ==
+                                                                              1
+                                                                          ? 3
+                                                                          : 0) +
+                                                                  (navigatingWarehouseValueAutoR2 ==
+                                                                          0
+                                                                      ? 10
+                                                                      : navigatingWarehouseValueAutoR2 ==
+                                                                              1
+                                                                          ? 5
+                                                                          : 0);
                                                         });
                                                       },
                                                       groupValue:
@@ -965,19 +1033,16 @@ class _roundsPageState extends State<roundsPage> {
                             ),
                           ))
                       : SizedBox(height: 0),
-
                   Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Text("Driver Controlled Points - " + ((freightInStorageUnitTeleOp * 1) +
-                        (freightInShippingHubLevel1 *
-                            2) +
-                        (freightInShippingHubLevel2 *
-                            4) +
-                        (freightInShippingHubLevel3 *
-                            6) +
-                        (freightInSharedShippingHub *
-                            4))
-                        .toString(),
+                    child: Text(
+                        "Driver Controlled Points - " +
+                            ((freightInStorageUnitTeleOp * 1) +
+                                    (freightInShippingHubLevel1 * 2) +
+                                    (freightInShippingHubLevel2 * 4) +
+                                    (freightInShippingHubLevel3 * 6) +
+                                    (freightInSharedShippingHub * 4))
+                                .toString(),
                         style: TextStyle(color: subtitleColor)),
                   ),
                   Container(
@@ -1386,37 +1451,29 @@ class _roundsPageState extends State<roundsPage> {
                       )),
                   Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Text("End Game Points - " + ((duckOrTeamElementDelivery *
-                        6) +
-                        (shippingHubStatus ==
-                            0
-                            ? 10
-                            : 0) +
-                        (sharedHubStatus ==
-                            1
-                            ? 0
-                            : 20) +
-                        (robot1Park == 0
-                            ? 6
-                            : robot1Park ==
-                            1
-                            ? 3
-                            : 0) +
-                        (dualScoring.value
-                            ? (robot2Park ==
-                            0
-                            ? 6
-                            : robot2Park ==
-                            1
-                            ? 3
-                            : 0)
-                            : 0) +
-                        (capping == 0
-                            ? 30
-                            : capping == 1
-                            ? 15
-                            : 0))
-                        .toString(),
+                    child: Text(
+                        "End Game Points - " +
+                            ((duckOrTeamElementDelivery * 6) +
+                                    (shippingHubStatus == 0 ? 10 : 0) +
+                                    (sharedHubStatus == 1 ? 0 : 20) +
+                                    (robot1Park == 0
+                                        ? 6
+                                        : robot1Park == 1
+                                            ? 3
+                                            : 0) +
+                                    (dualScoring.value
+                                        ? (robot2Park == 0
+                                            ? 6
+                                            : robot2Park == 1
+                                                ? 3
+                                                : 0)
+                                        : 0) +
+                                    (capping == 0
+                                        ? 30
+                                        : capping == 1
+                                            ? 15
+                                            : 0))
+                                .toString(),
                         style: TextStyle(color: subtitleColor)),
                   ),
                   Container(
@@ -1737,13 +1794,22 @@ class _roundsPageState extends State<roundsPage> {
                                                                 2) +
                                                             (freightInShippingHubAuto *
                                                                 6) +
-                                                            (freightLevelAutoBonus ==
+                                                            (freightLevelAutoBonusR1 ==
                                                                     0
                                                                 ? 20
-                                                                : freightLevelAutoBonus ==
+                                                                : freightLevelAutoBonusR1 ==
                                                                         1
                                                                     ? 10
                                                                     : 0) +
+                                                            (value
+                                                                ? (freightLevelAutoBonusR2 ==
+                                                                        0
+                                                                    ? 20
+                                                                    : freightLevelAutoBonusR2 ==
+                                                                            1
+                                                                        ? 10
+                                                                        : 0)
+                                                                : 0) +
                                                             navigatingScoreAuto +
                                                             (value
                                                                 ? navigatingScoreAutoR2
@@ -1876,13 +1942,22 @@ class _roundsPageState extends State<roundsPage> {
                                                                     2) +
                                                                 (freightInShippingHubAuto *
                                                                     6) +
-                                                                (freightLevelAutoBonus ==
+                                                                (freightLevelAutoBonusR1 ==
                                                                         0
                                                                     ? 20
-                                                                    : freightLevelAutoBonus ==
+                                                                    : freightLevelAutoBonusR1 ==
                                                                             1
                                                                         ? 10
                                                                         : 0) +
+                                                                (value
+                                                                    ? (freightLevelAutoBonusR2 ==
+                                                                            0
+                                                                        ? 20
+                                                                        : freightLevelAutoBonusR2 ==
+                                                                                1
+                                                                            ? 10
+                                                                            : 0)
+                                                                    : 0) +
                                                                 navigatingScoreAuto +
                                                                 (value
                                                                     ? navigatingScoreAutoR2
