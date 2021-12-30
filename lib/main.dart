@@ -356,8 +356,9 @@ class _roundsPageState extends State<roundsPage> {
                                                 CupertinoSlidingSegmentedControl<
                                                     int>(
                                               children: duckDelivery,
-                                              thumbColor: colorThemeOption == 0 ? const Color(0xFF242424) :
-                                                  const Color(0xFF121212),
+                                              thumbColor: colorThemeOption == 0
+                                                  ? const Color(0xFF242424)
+                                                  : const Color(0xFF121212),
                                               backgroundColor: Colors.black45,
                                               onValueChanged: (int val) {
                                                 setState(() {
@@ -406,10 +407,10 @@ class _roundsPageState extends State<roundsPage> {
                                             alignment: Alignment.centerRight,
                                             child: CupertinoButton(
                                               color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("-",
-                                              style: TextStyle(
-                                                  color: Colors.white,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("-",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
@@ -485,10 +486,10 @@ class _roundsPageState extends State<roundsPage> {
                                             alignment: Alignment.centerRight,
                                             child: CupertinoButton(
                                               color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("-",
-                                              style: TextStyle(
-                                                  color: Colors.white,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("-",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
@@ -557,8 +558,8 @@ class _roundsPageState extends State<roundsPage> {
                                                     int>(
                                               children: freightLevelBonusAuto,
                                               thumbColor: colorThemeOption == 0
-                                                          ? const Color(0xFF353535)
-                                                          : const Color(0xFF121212),
+                                                  ? const Color(0xFF353535)
+                                                  : const Color(0xFF121212),
                                               backgroundColor: Colors.black45,
                                               onValueChanged: (int val) {
                                                 setState(() {
@@ -603,9 +604,12 @@ class _roundsPageState extends State<roundsPage> {
                                                         int>(
                                                   children:
                                                       freightLevelBonusAuto,
-                                                  thumbColor: colorThemeOption == 0
-                                                          ? const Color(0xFF353535)
-                                                          : const Color(0xFF121212),
+                                                  thumbColor:
+                                                      colorThemeOption == 0
+                                                          ? const Color(
+                                                              0xFF353535)
+                                                          : const Color(
+                                                              0xFF121212),
                                                   backgroundColor:
                                                       Colors.black45,
                                                   onValueChanged: (int val) {
@@ -655,9 +659,12 @@ class _roundsPageState extends State<roundsPage> {
                                                     CupertinoSlidingSegmentedControl<
                                                         int>(
                                                   children: navigating,
-                                                  thumbColor: colorThemeOption == 0
-                                                          ? const Color(0xFF353535)
-                                                          : const Color(0xFF121212),
+                                                  thumbColor:
+                                                      colorThemeOption == 0
+                                                          ? const Color(
+                                                              0xFF353535)
+                                                          : const Color(
+                                                              0xFF121212),
                                                   backgroundColor:
                                                       Colors.black45,
                                                   onValueChanged: (int val) {
@@ -860,9 +867,12 @@ class _roundsPageState extends State<roundsPage> {
                                                         CupertinoSlidingSegmentedControl<
                                                             int>(
                                                       children: navigating,
-                                                      thumbColor: colorThemeOption == 0
-                                                          ? const Color(0xFF353535)
-                                                          : const Color(0xFF121212),
+                                                      thumbColor:
+                                                          colorThemeOption == 0
+                                                              ? const Color(
+                                                                  0xFF353535)
+                                                              : const Color(
+                                                                  0xFF121212),
                                                       backgroundColor:
                                                           Colors.black45,
                                                       onValueChanged:
@@ -1079,10 +1089,10 @@ class _roundsPageState extends State<roundsPage> {
                                             alignment: Alignment.centerRight,
                                             child: CupertinoButton(
                                               color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("-",
-                                              style: TextStyle(
-                                                  color: Colors.white,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("-",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
@@ -1160,10 +1170,10 @@ class _roundsPageState extends State<roundsPage> {
                                             alignment: Alignment.centerRight,
                                             child: CupertinoButton(
                                               color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("-",
-                                              style: TextStyle(
-                                                  color: Colors.white,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("-",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
@@ -1241,10 +1251,10 @@ class _roundsPageState extends State<roundsPage> {
                                             alignment: Alignment.centerRight,
                                             child: CupertinoButton(
                                               color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("-",
-                                              style: TextStyle(
-                                                  color: Colors.white,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("-",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
@@ -1322,10 +1332,10 @@ class _roundsPageState extends State<roundsPage> {
                                             alignment: Alignment.centerRight,
                                             child: CupertinoButton(
                                               color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("-",
-                                              style: TextStyle(
-                                                  color: Colors.white,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("-",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
@@ -1403,10 +1413,10 @@ class _roundsPageState extends State<roundsPage> {
                                             alignment: Alignment.centerRight,
                                             child: CupertinoButton(
                                               color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("-",
-                                              style: TextStyle(
-                                                  color: Colors.white,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("-",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
@@ -1510,10 +1520,10 @@ class _roundsPageState extends State<roundsPage> {
                                             alignment: Alignment.centerRight,
                                             child: CupertinoButton(
                                               color: Colors.black,
-                                          padding: EdgeInsets.zero,
-                                          child: Text("-",
-                                              style: TextStyle(
-                                                  color: Colors.white,
+                                              padding: EdgeInsets.zero,
+                                              child: Text("-",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
                                                       fontSize: 30)),
                                               onPressed: () {
                                                 setState(() {
@@ -1585,8 +1595,8 @@ class _roundsPageState extends State<roundsPage> {
                                                     int>(
                                               children: hubStatus,
                                               thumbColor: colorThemeOption == 0
-                                                          ? const Color(0xFF353535)
-                                                          : const Color(0xFF121212),
+                                                  ? const Color(0xFF353535)
+                                                  : const Color(0xFF121212),
                                               backgroundColor: Colors.black45,
                                               onValueChanged: (int val) {
                                                 setState(() {
@@ -1628,8 +1638,8 @@ class _roundsPageState extends State<roundsPage> {
                                                     int>(
                                               children: sharedHubStatusChoices,
                                               thumbColor: colorThemeOption == 0
-                                                          ? const Color(0xFF353535)
-                                                          : const Color(0xFF121212),
+                                                  ? const Color(0xFF353535)
+                                                  : const Color(0xFF121212),
                                               backgroundColor: Colors.black45,
                                               onValueChanged: (int val) {
                                                 setState(() {
@@ -1668,8 +1678,8 @@ class _roundsPageState extends State<roundsPage> {
                                                     int>(
                                               children: parking,
                                               thumbColor: colorThemeOption == 0
-                                                          ? const Color(0xFF353535)
-                                                          : const Color(0xFF121212),
+                                                  ? const Color(0xFF353535)
+                                                  : const Color(0xFF121212),
                                               backgroundColor: Colors.black45,
                                               onValueChanged: (int val) {
                                                 setState(() {
@@ -1711,9 +1721,12 @@ class _roundsPageState extends State<roundsPage> {
                                                     CupertinoSlidingSegmentedControl<
                                                         int>(
                                                   children: parking,
-                                                  thumbColor: colorThemeOption == 0
-                                                          ? const Color(0xFF353535)
-                                                          : const Color(0xFF121212),
+                                                  thumbColor:
+                                                      colorThemeOption == 0
+                                                          ? const Color(
+                                                              0xFF353535)
+                                                          : const Color(
+                                                              0xFF121212),
                                                   backgroundColor:
                                                       Colors.black45,
                                                   onValueChanged: (int val) {
@@ -1755,8 +1768,8 @@ class _roundsPageState extends State<roundsPage> {
                                                     int>(
                                               children: cappingOptions,
                                               thumbColor: colorThemeOption == 0
-                                                          ? const Color(0xFF353535)
-                                                          : const Color(0xFF121212),
+                                                  ? const Color(0xFF353535)
+                                                  : const Color(0xFF121212),
                                               backgroundColor: Colors.black45,
                                               onValueChanged: (int val) {
                                                 setState(() {
@@ -1825,7 +1838,8 @@ class _roundsPageState extends State<roundsPage> {
                                                                 : 0))
                                                         .toString(),
                                                     style: TextStyle(
-                                                        color: listItemTextColor,
+                                                        color:
+                                                            listItemTextColor,
                                                         fontSize: 25)))))))
                           ],
                         ),
@@ -1860,7 +1874,8 @@ class _roundsPageState extends State<roundsPage> {
                                                                 4))
                                                         .toString(),
                                                     style: TextStyle(
-                                                        color: listItemTextColor,
+                                                        color:
+                                                            listItemTextColor,
                                                         fontSize: 25)))))))
                           ],
                         ),
@@ -1890,8 +1905,7 @@ class _roundsPageState extends State<roundsPage> {
                                                                     0
                                                                 ? 10
                                                                 : 0) +
-                                                            (sharedHubStatus ==
-                                                                    1
+                                                            (sharedHubStatus == 1
                                                                 ? 0
                                                                 : 20) +
                                                             (robot1Park == 0
@@ -1916,7 +1930,8 @@ class _roundsPageState extends State<roundsPage> {
                                                                     : 0))
                                                         .toString(),
                                                     style: TextStyle(
-                                                        color: listItemTextColor,
+                                                        color:
+                                                            listItemTextColor,
                                                         fontSize: 25)))))))
                           ],
                         ),
@@ -2017,7 +2032,23 @@ class _roundsPageState extends State<roundsPage> {
                           ],
                         ),
                       )),
-                ]))
+                  Divider(height: 10, color: Colors.transparent),
+                  Container(
+                    color: Colors.transparent,
+                    child: GestureDetector(
+                        child: Container(
+                            child: Text("Developed by Mihir Chauhan",
+                                textAlign: TextAlign.center,
+                                style:
+                                TextStyle(color: listItemTextColor, fontSize: 12))
+                        ),
+                        onLongPress: () {
+                          // do some easter egg here --maybe some picture background like snowflakes for winter idk
+                        },
+                    ),
+                  ),
+                  Divider(height: 10, color: Colors.transparent),
+                    ]))
               ],
             ),
           );
