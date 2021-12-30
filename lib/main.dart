@@ -426,7 +426,9 @@ class _roundsPageState extends State<roundsPage> {
                                                       0) {
                                                     HapticFeedback
                                                         .lightImpact();
-                                                    freightInStorageUnitTeleOp -= 1;
+                                                    if(freightInStorageUnitTeleOp > 0) {
+                                                      freightInStorageUnitTeleOp -= 1;
+                                                    }
                                                   }
                                                   (freightInStorageUnitAuto > 0)
                                                       ? freightInStorageUnitAuto -=
@@ -507,7 +509,9 @@ class _roundsPageState extends State<roundsPage> {
                                                       0) {
                                                     HapticFeedback
                                                         .lightImpact();
-                                                    freightInShippingHubLevel1 -= 1;
+                                                    if(freightInShippingHubLevel1 > 0) {
+                                                      freightInShippingHubLevel1 -= 1;
+                                                    }
                                                   }
                                                   (freightInShippingHubL1Auto > 0)
                                                       ? freightInShippingHubL1Auto -=
@@ -588,7 +592,9 @@ class _roundsPageState extends State<roundsPage> {
                                                           0) {
                                                         HapticFeedback
                                                             .lightImpact();
-                                                        freightInShippingHubLevel2 -= 1;
+                                                        if(freightInShippingHubLevel2 > 0) {
+                                                          freightInShippingHubLevel2 -= 1;
+                                                        }
                                                       }
                                                       (freightInShippingHubL2Auto > 0)
                                                           ? freightInShippingHubL2Auto -=
@@ -669,7 +675,9 @@ class _roundsPageState extends State<roundsPage> {
                                                           0) {
                                                         HapticFeedback
                                                             .lightImpact();
-                                                        freightInShippingHubLevel3 -= 1;
+                                                        if(freightInShippingHubLevel3 > 0) {
+                                                          freightInShippingHubLevel3 -= 1;
+                                                        }
                                                       }
                                                       (freightInShippingHubL3Auto > 0)
                                                           ? freightInShippingHubL3Auto -=
@@ -1287,12 +1295,12 @@ class _roundsPageState extends State<roundsPage> {
                                               onPressed: () {
                                                 setState(() {
                                                   if (freightInStorageUnitTeleOp >
-                                                      freightInStorageUnitAuto) {
+                                                      0) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
                                                   (freightInStorageUnitTeleOp >
-                                                      freightInStorageUnitAuto)
+                                                      0)
                                                       ? freightInStorageUnitTeleOp -=
                                                           1
                                                       : freightInStorageUnitTeleOp =
@@ -1368,12 +1376,12 @@ class _roundsPageState extends State<roundsPage> {
                                               onPressed: () {
                                                 setState(() {
                                                   if (freightInShippingHubLevel1 >
-                                                      freightInShippingHubL1Auto) {
+                                                      0) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
                                                   (freightInShippingHubLevel1 >
-                                                      freightInShippingHubL1Auto)
+                                                      0)
                                                       ? freightInShippingHubLevel1 -=
                                                           1
                                                       : freightInShippingHubLevel1 =
@@ -1449,12 +1457,12 @@ class _roundsPageState extends State<roundsPage> {
                                               onPressed: () {
                                                 setState(() {
                                                   if (freightInShippingHubLevel2 >
-                                                      freightInShippingHubL2Auto) {
+                                                      0) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
                                                   (freightInShippingHubLevel2 >
-                                                      freightInShippingHubL2Auto)
+                                                      0)
                                                       ? freightInShippingHubLevel2 -=
                                                           1
                                                       : freightInShippingHubLevel2 =
@@ -1530,12 +1538,12 @@ class _roundsPageState extends State<roundsPage> {
                                               onPressed: () {
                                                 setState(() {
                                                   if (freightInShippingHubLevel3 >
-                                                      freightInShippingHubL3Auto) {
+                                                      0) {
                                                     HapticFeedback
                                                         .lightImpact();
                                                   }
                                                   (freightInShippingHubLevel3 >
-                                                      freightInShippingHubL3Auto)
+                                                      0)
                                                       ? freightInShippingHubLevel3 -=
                                                           1
                                                       : freightInShippingHubLevel3 =
@@ -2220,126 +2228,59 @@ class _roundsPageState extends State<roundsPage> {
                           ],
                         ),
                       )),
-                  Divider(height: 10, color: Colors.transparent),
-                  Container(
-                    color: Colors.transparent,
-                    child: GestureDetector(
-                        child: Container(
-                            child: Text("Share your match",
-                                textAlign: TextAlign.center,
-                                style:
-                                TextStyle(color: Colors.white, fontSize: 18))
-                        ),
-                        onTap: () {
-                          // do some easter egg here --maybe some picture background like snowflakes for winter idk
-                          // maybe a share button here
-                          // or maybe a field image opens
-                          Share.share("Check out the breakdown of my ${((((carouselDuckDeliveryAuto ==
-                              0)
+                  GestureDetector(
+                      child: Column(
+                        children: [
+                          Container(height: 15, color: Colors.transparent),
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 20,
+                            color: Colors.transparent,
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.ios_share, color: Colors.white, size: 20),
+                                  Text(" Share Match",
+                                      textAlign: TextAlign.center,
+                                      style:
+                                      TextStyle(color: Colors.white, fontSize: 20))
+                                ]
+                            ),
+                          ),
+                          Container(height: 15, color: Colors.transparent)
+                        ],
+                      ),
+                    onTap: () {
+                      // do some easter egg here --maybe some picture background like snowflakes for winter idk
+                      // or maybe a field image opens
+                      Share.share("Check out the breakdown of my ${((((carouselDuckDeliveryAuto ==
+                          0)
+                          ? 10
+                          : 0) +
+                          (freightInStorageUnitAuto *
+                              2) +
+                          ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
+                          (freightLevelAutoBonusR1 ==
+                              0
+                              ? 20
+                              : freightLevelAutoBonusR1 ==
+                              1
                               ? 10
                               : 0) +
-                              (freightInStorageUnitAuto *
-                                  2) +
-                              ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
-                              (freightLevelAutoBonusR1 ==
-                                  0
-                                  ? 20
-                                  : freightLevelAutoBonusR1 ==
-                                  1
-                                  ? 10
-                                  : 0) +
-                              (value
-                                  ? (freightLevelAutoBonusR2 ==
-                                  0
-                                  ? 20
-                                  : freightLevelAutoBonusR2 ==
-                                  1
-                                  ? 10
-                                  : 0)
-                                  : 0) +
-                              navigatingScoreAuto +
-                              (value
-                                  ? navigatingScoreAutoR2
-                                  : 0)) +
-                              ((freightInStorageUnitTeleOp * 1) +
-                                  (freightInShippingHubLevel1 *
-                                      2) +
-                                  (freightInShippingHubLevel2 *
-                                      4) +
-                                  (freightInShippingHubLevel3 *
-                                      6) +
-                                  (freightInSharedShippingHub *
-                                      4)) +
-                              ((duckOrTeamElementDelivery *
-                                  6) +
-                                  (shippingHubStatus ==
-                                      0
-                                      ? 10
-                                      : 0) +
-                                  (sharedHubStatus ==
-                                      1
-                                      ? 0
-                                      : 20) +
-                                  (robot1Park == 0
-                                      ? 6
-                                      : robot1Park ==
-                                      1
-                                      ? 3
-                                      : 0) +
-                                  (dualScoring
-                                      .value
-                                      ? (robot2Park ==
-                                      0
-                                      ? 6
-                                      : robot2Park ==
-                                      1
-                                      ? 3
-                                      : 0)
-                                      : 0) +
-                                  (capping == 0
-                                      ? 30
-                                      : capping ==
-                                      1
-                                      ? 15
-                                      : 0)))} point match!: \n\nAutonomous Score: " + (((carouselDuckDeliveryAuto ==
-                              0)
+                          (value
+                              ? (freightLevelAutoBonusR2 ==
+                              0
+                              ? 20
+                              : freightLevelAutoBonusR2 ==
+                              1
                               ? 10
+                              : 0)
                               : 0) +
-                              (freightInStorageUnitAuto *
-                                  2) +
-                              ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
-                              (freightLevelAutoBonusR1 ==
-                                  0
-                                  ? 20
-                                  : freightLevelAutoBonusR1 ==
-                                  1
-                                  ? 10
-                                  : 0) +
-                              (value
-                                  ? (freightLevelAutoBonusR2 ==
-                                  0
-                                  ? 20
-                                  : freightLevelAutoBonusR2 ==
-                                  1
-                                  ? 10
-                                  : 0)
-                                  : 0) +
-                              navigatingScoreAuto +
-                              (value
-                                  ? navigatingScoreAutoR2
-                                  : 0))
-                              .toString() + "\n" +
-                              "Duck Delivery: " + (carouselDuckDeliveryAuto == 0 ? "Yes" : "No") + "\n" +
-                              "Freight in Storage: " + (freightInStorageUnitAuto).toString() + "\n" +
-                              "Freight in Shipping Hub L1: " + (freightInShippingHubL1Auto).toString() + "\n" +
-                              "Freight in Shipping Hub L2: " + (freightInShippingHubL2Auto).toString() + "\n" +
-                              "Freight in Shipping Hub L3: " + (freightInShippingHubL3Auto).toString() + "\n" +
-                              "Freight Bonus: " + (freightLevelAutoBonusR1 == 0 ? "Team Shipping Element" : freightLevelAutoBonusR1 == 1 ? "Duck" : "None") + "\n" +
-                              (value ? "Freight Bonus 2: " + (freightLevelAutoBonusR2 == 0 ? "Team Shipping Element" : freightLevelAutoBonusR2 == 1 ? "Duck" : "None") + "\n" : "") +
-                              "Parking: " + (navigatingScoreAuto == 0 ? "None" : navigatingScoreAuto == 3 ? "Partial; Storage" : navigatingScoreAuto == 6 ? "Full; Storage" : navigatingScoreAuto == 5 ? "Partial; Warehouse" : "Full; Warehouse") + "\n" +
-                              (value ? "Parking 2: " + (navigatingScoreAutoR2 == 0 ? "None" : navigatingScoreAutoR2 == 3 ? "Partial; Storage" : navigatingScoreAutoR2 == 6 ? "Full; Storage" : navigatingScoreAutoR2 == 5 ? "Partial; Warehouse" : "Full; Warehouse") + "\n": "") +
-                              "\n" +
-                              "TeleOp Score: " + ((freightInStorageUnitTeleOp * 1) +
+                          navigatingScoreAuto +
+                          (value
+                              ? navigatingScoreAutoR2
+                              : 0)) +
+                          ((freightInStorageUnitTeleOp * 1) +
                               (freightInShippingHubLevel1 *
                                   2) +
                               (freightInShippingHubLevel2 *
@@ -2347,20 +2288,15 @@ class _roundsPageState extends State<roundsPage> {
                               (freightInShippingHubLevel3 *
                                   6) +
                               (freightInSharedShippingHub *
-                                  4))
-                              .toString() + "\n" +
-                              "Freight in Storage: " + (freightInStorageUnitTeleOp).toString() + "\n" +
-                              "Freight in Shipping Hub L1: " + (freightInShippingHubLevel1).toString() + "\n" +
-                              "Freight in Shipping Hub L2: " + (freightInShippingHubLevel2).toString() + "\n" +
-                              "Freight in Shipping Hub L3: " + (freightInShippingHubLevel3).toString() + "\n" +
-                              "Freight in Shared Hub: " + (freightInSharedShippingHub).toString() + "\n\n" +
-                              "End Game Score: " + ((duckOrTeamElementDelivery *
+                                  4)) +
+                          ((duckOrTeamElementDelivery *
                               6) +
                               (shippingHubStatus ==
                                   0
                                   ? 10
                                   : 0) +
-                              (sharedHubStatus == 1
+                              (sharedHubStatus ==
+                                  1
                                   ? 0
                                   : 20) +
                               (robot1Park == 0
@@ -2369,7 +2305,8 @@ class _roundsPageState extends State<roundsPage> {
                                   1
                                   ? 3
                                   : 0) +
-                              (dualScoring.value
+                              (dualScoring
+                                  .value
                                   ? (robot2Park ==
                                   0
                                   ? 6
@@ -2380,21 +2317,102 @@ class _roundsPageState extends State<roundsPage> {
                                   : 0) +
                               (capping == 0
                                   ? 30
-                                  : capping == 1
+                                  : capping ==
+                                  1
                                   ? 15
-                                  : 0))
-                              .toString() + "\n" +
-                              "Ducks Delivered: " + (duckOrTeamElementDelivery).toString() + "\n" +
-                              "Shipping Hub: " + (shippingHubStatus == 0 ? "Balanced" : "Leaning") + "\n" +
-                              "Shared Hub: " + (sharedHubStatus == 0 ? "Leaning" : "Balanced") + "\n" +
-                              "Parking: " + (robot1Park == 0 ? "Full" : robot1Park == 1 ? "Partial" : "None") + "\n" +
-                              (value ? "Parking 2: " + (robot2Park == 0 ? "Full" : robot2Park == 1 ? "Partial" : "None") + "\n": "") +
-                              "Number of Caps: " + (capping == 0 ? "Two" : capping == 1 ? "One" : "Zero")
-                          );
-                        },
-                    ),
+                                  : 0)))} point match!: \n\nAutonomous Score: " + (((carouselDuckDeliveryAuto ==
+                          0)
+                          ? 10
+                          : 0) +
+                          (freightInStorageUnitAuto *
+                              2) +
+                          ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
+                          (freightLevelAutoBonusR1 ==
+                              0
+                              ? 20
+                              : freightLevelAutoBonusR1 ==
+                              1
+                              ? 10
+                              : 0) +
+                          (value
+                              ? (freightLevelAutoBonusR2 ==
+                              0
+                              ? 20
+                              : freightLevelAutoBonusR2 ==
+                              1
+                              ? 10
+                              : 0)
+                              : 0) +
+                          navigatingScoreAuto +
+                          (value
+                              ? navigatingScoreAutoR2
+                              : 0))
+                          .toString() + "\n" +
+                          "Duck Delivery: " + (carouselDuckDeliveryAuto == 0 ? "Yes" : "No") + "\n" +
+                          "Freight in Storage: " + (freightInStorageUnitAuto).toString() + "\n" +
+                          "Freight in Shipping Hub L1: " + (freightInShippingHubL1Auto).toString() + "\n" +
+                          "Freight in Shipping Hub L2: " + (freightInShippingHubL2Auto).toString() + "\n" +
+                          "Freight in Shipping Hub L3: " + (freightInShippingHubL3Auto).toString() + "\n" +
+                          "Freight Bonus: " + (freightLevelAutoBonusR1 == 0 ? "Team Shipping Element" : freightLevelAutoBonusR1 == 1 ? "Duck" : "None") + "\n" +
+                          (value ? "Freight Bonus 2: " + (freightLevelAutoBonusR2 == 0 ? "Team Shipping Element" : freightLevelAutoBonusR2 == 1 ? "Duck" : "None") + "\n" : "") +
+                          "Parking: " + (navigatingScoreAuto == 0 ? "None" : navigatingScoreAuto == 3 ? "Partial; Storage" : navigatingScoreAuto == 6 ? "Full; Storage" : navigatingScoreAuto == 5 ? "Partial; Warehouse" : "Full; Warehouse") + "\n" +
+                          (value ? "Parking 2: " + (navigatingScoreAutoR2 == 0 ? "None" : navigatingScoreAutoR2 == 3 ? "Partial; Storage" : navigatingScoreAutoR2 == 6 ? "Full; Storage" : navigatingScoreAutoR2 == 5 ? "Partial; Warehouse" : "Full; Warehouse") + "\n": "") +
+                          "\n" +
+                          "TeleOp Score: " + ((freightInStorageUnitTeleOp * 1) +
+                          (freightInShippingHubLevel1 *
+                              2) +
+                          (freightInShippingHubLevel2 *
+                              4) +
+                          (freightInShippingHubLevel3 *
+                              6) +
+                          (freightInSharedShippingHub *
+                              4))
+                          .toString() + "\n" +
+                          "Freight in Storage: " + (freightInStorageUnitTeleOp).toString() + "\n" +
+                          "Freight in Shipping Hub L1: " + (freightInShippingHubLevel1).toString() + "\n" +
+                          "Freight in Shipping Hub L2: " + (freightInShippingHubLevel2).toString() + "\n" +
+                          "Freight in Shipping Hub L3: " + (freightInShippingHubLevel3).toString() + "\n" +
+                          "Freight in Shared Hub: " + (freightInSharedShippingHub).toString() + "\n\n" +
+                          "End Game Score: " + ((duckOrTeamElementDelivery *
+                          6) +
+                          (shippingHubStatus ==
+                              0
+                              ? 10
+                              : 0) +
+                          (sharedHubStatus == 1
+                              ? 0
+                              : 20) +
+                          (robot1Park == 0
+                              ? 6
+                              : robot1Park ==
+                              1
+                              ? 3
+                              : 0) +
+                          (dualScoring.value
+                              ? (robot2Park ==
+                              0
+                              ? 6
+                              : robot2Park ==
+                              1
+                              ? 3
+                              : 0)
+                              : 0) +
+                          (capping == 0
+                              ? 30
+                              : capping == 1
+                              ? 15
+                              : 0))
+                          .toString() + "\n" +
+                          "Ducks Delivered: " + (duckOrTeamElementDelivery).toString() + "\n" +
+                          "Shipping Hub: " + (shippingHubStatus == 0 ? "Balanced" : "Leaning") + "\n" +
+                          "Shared Hub: " + (sharedHubStatus == 0 ? "Leaning" : "Balanced") + "\n" +
+                          "Parking: " + (robot1Park == 0 ? "Full" : robot1Park == 1 ? "Partial" : "None") + "\n" +
+                          (value ? "Parking 2: " + (robot2Park == 0 ? "Full" : robot2Park == 1 ? "Partial" : "None") + "\n": "") +
+                          "Number of Caps: " + (capping == 0 ? "Two" : capping == 1 ? "One" : "Zero")
+                      );
+                    },
                   ),
-                  Divider(height: 10, color: Colors.transparent),
+
                     ]))
               ],
             ),
