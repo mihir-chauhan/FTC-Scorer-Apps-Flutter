@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:share/share.dart';
 
 void main() => runApp(MyApp());
 
@@ -360,9 +361,12 @@ class _roundsPageState extends State<roundsPage> {
                                                 CupertinoSlidingSegmentedControl<
                                                     int>(
                                               children: duckDelivery,
-                                              thumbColor: colorThemeOption == 0
-                                                  ? const Color(0xFF242424)
-                                                  : const Color(0xFF121212),
+                                                  thumbColor:
+                                                  colorThemeOption == 0
+                                                      ? const Color(
+                                                      0xFF353535)
+                                                      : const Color(
+                                                      0xFF121212),
                                               backgroundColor: Colors.black45,
                                               onValueChanged: (int val) {
                                                 setState(() {
@@ -889,8 +893,12 @@ class _roundsPageState extends State<roundsPage> {
                                                         CupertinoSlidingSegmentedControl<
                                                             int>(
                                                       children: parking,
-                                                      thumbColor: const Color(
-                                                          0xFF121212),
+                                                          thumbColor:
+                                                          colorThemeOption == 0
+                                                              ? const Color(
+                                                              0xFF353535)
+                                                              : const Color(
+                                                              0xFF121212),
                                                       backgroundColor:
                                                           Colors.black45,
                                                       onValueChanged:
@@ -960,8 +968,12 @@ class _roundsPageState extends State<roundsPage> {
                                                         CupertinoSlidingSegmentedControl<
                                                             int>(
                                                       children: parking,
-                                                      thumbColor: const Color(
-                                                          0xFF121212),
+                                                          thumbColor:
+                                                          colorThemeOption == 0
+                                                              ? const Color(
+                                                              0xFF353535)
+                                                              : const Color(
+                                                              0xFF121212),
                                                       backgroundColor:
                                                           Colors.black45,
                                                       onValueChanged:
@@ -1100,8 +1112,12 @@ class _roundsPageState extends State<roundsPage> {
                                                         CupertinoSlidingSegmentedControl<
                                                             int>(
                                                       children: parking,
-                                                      thumbColor: const Color(
-                                                          0xFF121212),
+                                                          thumbColor:
+                                                          colorThemeOption == 0
+                                                              ? const Color(
+                                                              0xFF353535)
+                                                              : const Color(
+                                                              0xFF121212),
                                                       backgroundColor:
                                                           Colors.black45,
                                                       onValueChanged:
@@ -1171,8 +1187,12 @@ class _roundsPageState extends State<roundsPage> {
                                                         CupertinoSlidingSegmentedControl<
                                                             int>(
                                                       children: parking,
-                                                      thumbColor: const Color(
-                                                          0xFF121212),
+                                                          thumbColor:
+                                                          colorThemeOption == 0
+                                                              ? const Color(
+                                                              0xFF353535)
+                                                              : const Color(
+                                                              0xFF121212),
                                                       backgroundColor:
                                                           Colors.black45,
                                                       onValueChanged:
@@ -2205,15 +2225,172 @@ class _roundsPageState extends State<roundsPage> {
                     color: Colors.transparent,
                     child: GestureDetector(
                         child: Container(
-                            child: Text("Developed by Mihir Chauhan",
+                            child: Text("Share your match",
                                 textAlign: TextAlign.center,
                                 style:
-                                TextStyle(color: listItemTextColor, fontSize: 12))
+                                TextStyle(color: Colors.white, fontSize: 18))
                         ),
-                        onLongPress: () {
+                        onTap: () {
                           // do some easter egg here --maybe some picture background like snowflakes for winter idk
                           // maybe a share button here
                           // or maybe a field image opens
+                          Share.share("Check out the breakdown of my ${((((carouselDuckDeliveryAuto ==
+                              0)
+                              ? 10
+                              : 0) +
+                              (freightInStorageUnitAuto *
+                                  2) +
+                              ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
+                              (freightLevelAutoBonusR1 ==
+                                  0
+                                  ? 20
+                                  : freightLevelAutoBonusR1 ==
+                                  1
+                                  ? 10
+                                  : 0) +
+                              (value
+                                  ? (freightLevelAutoBonusR2 ==
+                                  0
+                                  ? 20
+                                  : freightLevelAutoBonusR2 ==
+                                  1
+                                  ? 10
+                                  : 0)
+                                  : 0) +
+                              navigatingScoreAuto +
+                              (value
+                                  ? navigatingScoreAutoR2
+                                  : 0)) +
+                              ((freightInStorageUnitTeleOp * 1) +
+                                  (freightInShippingHubLevel1 *
+                                      2) +
+                                  (freightInShippingHubLevel2 *
+                                      4) +
+                                  (freightInShippingHubLevel3 *
+                                      6) +
+                                  (freightInSharedShippingHub *
+                                      4)) +
+                              ((duckOrTeamElementDelivery *
+                                  6) +
+                                  (shippingHubStatus ==
+                                      0
+                                      ? 10
+                                      : 0) +
+                                  (sharedHubStatus ==
+                                      1
+                                      ? 0
+                                      : 20) +
+                                  (robot1Park == 0
+                                      ? 6
+                                      : robot1Park ==
+                                      1
+                                      ? 3
+                                      : 0) +
+                                  (dualScoring
+                                      .value
+                                      ? (robot2Park ==
+                                      0
+                                      ? 6
+                                      : robot2Park ==
+                                      1
+                                      ? 3
+                                      : 0)
+                                      : 0) +
+                                  (capping == 0
+                                      ? 30
+                                      : capping ==
+                                      1
+                                      ? 15
+                                      : 0)))} point match!: \n\nAutonomous Score: " + (((carouselDuckDeliveryAuto ==
+                              0)
+                              ? 10
+                              : 0) +
+                              (freightInStorageUnitAuto *
+                                  2) +
+                              ((freightInShippingHubL1Auto + freightInShippingHubL2Auto + freightInShippingHubL3Auto) * 6) +
+                              (freightLevelAutoBonusR1 ==
+                                  0
+                                  ? 20
+                                  : freightLevelAutoBonusR1 ==
+                                  1
+                                  ? 10
+                                  : 0) +
+                              (value
+                                  ? (freightLevelAutoBonusR2 ==
+                                  0
+                                  ? 20
+                                  : freightLevelAutoBonusR2 ==
+                                  1
+                                  ? 10
+                                  : 0)
+                                  : 0) +
+                              navigatingScoreAuto +
+                              (value
+                                  ? navigatingScoreAutoR2
+                                  : 0))
+                              .toString() + "\n" +
+                              "Duck Delivery: " + (carouselDuckDeliveryAuto == 0 ? "Yes" : "No") + "\n" +
+                              "Freight in Storage: " + (freightInStorageUnitAuto).toString() + "\n" +
+                              "Freight in Shipping Hub L1: " + (freightInShippingHubL1Auto).toString() + "\n" +
+                              "Freight in Shipping Hub L2: " + (freightInShippingHubL2Auto).toString() + "\n" +
+                              "Freight in Shipping Hub L3: " + (freightInShippingHubL3Auto).toString() + "\n" +
+                              "Freight Bonus: " + (freightLevelAutoBonusR1 == 0 ? "Team Shipping Element" : freightLevelAutoBonusR1 == 1 ? "Duck" : "None") + "\n" +
+                              (value ? "Freight Bonus 2: " + (freightLevelAutoBonusR2 == 0 ? "Team Shipping Element" : freightLevelAutoBonusR2 == 1 ? "Duck" : "None") + "\n" : "") +
+                              "Parking: " + (navigatingScoreAuto == 0 ? "None" : navigatingScoreAuto == 3 ? "Partial; Storage" : navigatingScoreAuto == 6 ? "Full; Storage" : navigatingScoreAuto == 5 ? "Partial; Warehouse" : "Full; Warehouse") + "\n" +
+                              (value ? "Parking 2: " + (navigatingScoreAutoR2 == 0 ? "None" : navigatingScoreAutoR2 == 3 ? "Partial; Storage" : navigatingScoreAutoR2 == 6 ? "Full; Storage" : navigatingScoreAutoR2 == 5 ? "Partial; Warehouse" : "Full; Warehouse") + "\n": "") +
+                              "\n" +
+                              "TeleOp Score: " + ((freightInStorageUnitTeleOp * 1) +
+                              (freightInShippingHubLevel1 *
+                                  2) +
+                              (freightInShippingHubLevel2 *
+                                  4) +
+                              (freightInShippingHubLevel3 *
+                                  6) +
+                              (freightInSharedShippingHub *
+                                  4))
+                              .toString() + "\n" +
+                              "Freight in Storage: " + (freightInStorageUnitTeleOp).toString() + "\n" +
+                              "Freight in Shipping Hub L1: " + (freightInShippingHubLevel1).toString() + "\n" +
+                              "Freight in Shipping Hub L2: " + (freightInShippingHubLevel2).toString() + "\n" +
+                              "Freight in Shipping Hub L3: " + (freightInShippingHubLevel3).toString() + "\n" +
+                              "Freight in Shared Hub: " + (freightInSharedShippingHub).toString() + "\n\n" +
+                              "End Game Score: " + ((duckOrTeamElementDelivery *
+                              6) +
+                              (shippingHubStatus ==
+                                  0
+                                  ? 10
+                                  : 0) +
+                              (sharedHubStatus == 1
+                                  ? 0
+                                  : 20) +
+                              (robot1Park == 0
+                                  ? 6
+                                  : robot1Park ==
+                                  1
+                                  ? 3
+                                  : 0) +
+                              (dualScoring.value
+                                  ? (robot2Park ==
+                                  0
+                                  ? 6
+                                  : robot2Park ==
+                                  1
+                                  ? 3
+                                  : 0)
+                                  : 0) +
+                              (capping == 0
+                                  ? 30
+                                  : capping == 1
+                                  ? 15
+                                  : 0))
+                              .toString() + "\n" +
+                              "Ducks Delivered: " + (duckOrTeamElementDelivery).toString() + "\n" +
+                              "Shipping Hub: " + (shippingHubStatus == 0 ? "Balanced" : "Leaning") + "\n" +
+                              "Shared Hub: " + (sharedHubStatus == 0 ? "Leaning" : "Balanced") + "\n" +
+                              "Parking: " + (robot1Park == 0 ? "Full" : robot1Park == 1 ? "Partial" : "None") + "\n" +
+                              (value ? "Parking 2: " + (robot2Park == 0 ? "Full" : robot2Park == 1 ? "Partial" : "None") + "\n": "") +
+                              "Number of Caps: " + (capping == 0 ? "Two" : capping == 1 ? "One" : "Zero")
+                          );
                         },
                     ),
                   ),
