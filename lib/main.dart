@@ -88,6 +88,8 @@ class _roundsPageState extends State<roundsPage> {
   int conesInLowJunctionAuto = 0;
   int conesInMedJunctionAuto = 0;
   int conesInHighJunctionAuto = 0;
+  int autoParkingIndex = 0;
+  int autoParkingIndex2 = 0;
 
   var dualScoring = ValueNotifier<bool>(false);
 
@@ -126,9 +128,9 @@ class _roundsPageState extends State<roundsPage> {
       listItemTextColor = Color(0xFF121212);
       colorThemeOption = 1;
     } else if (colorThemeOption == 1) {
-      backgroundColor = Color(0xFFFFB600);
+      backgroundColor = Color(0xFF000000);
       itemDividerColor = Color(0xFF121212);
-      listItemColor = Color(0xFFD67923);
+      listItemColor = Color(0xFF68C3E2);
       titleColor = Colors.white;
       iconColor = Colors.white;
       subtitleColor = Colors.white;
@@ -259,6 +261,10 @@ class _roundsPageState extends State<roundsPage> {
                         conesInTerminalAuto = 0;
                         conesInGroundJunctionAuto = 0;
                         conesInLowJunctionAuto = 0;
+                        conesInMedJunctionAuto = 0;
+                        conesInHighJunctionAuto = 0;
+                        autoParkingIndex = 0;
+                        autoParkingIndex2 = 0;
                       });
                     },
                     child: Icon(
@@ -274,7 +280,7 @@ class _roundsPageState extends State<roundsPage> {
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
                             "Autonomous Points - " +
-                                (conesInTerminalAuto * 1).toString(),
+                                (conesInTerminalAuto*1 + conesInGroundJunctionAuto*2 + conesInLowJunctionAuto*3 + conesInMedJunctionAuto*4 + conesInHighJunctionAuto*5 + (autoParkingIndex == 0 ? 0 : autoParkingIndex == 1 ? 2 : autoParkingIndex == 2 ? 10 : 20) + (autoParkingIndex2 == 0 ? 0 : autoParkingIndex2 == 1 ? 2 : autoParkingIndex2 == 2 ? 10 : 20)).toString(),
                             style: TextStyle(color: subtitleColor)),
                       ),
                       Container(
@@ -312,10 +318,7 @@ class _roundsPageState extends State<roundsPage> {
                                                 child: CupertinoButton(
                                                   color: Colors.black,
                                                   padding: EdgeInsets.zero,
-                                                  child: Text("-",
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 30)),
+                                                  child: Icon(CupertinoIcons.minus),
                                                   onPressed: () {
                                                     setState(() {
                                                       HapticFeedback.lightImpact();
@@ -335,10 +338,7 @@ class _roundsPageState extends State<roundsPage> {
                                               child: CupertinoButton(
                                                 color: Colors.black,
                                                 padding: EdgeInsets.zero,
-                                                child: Text("+",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 30)),
+                                                child: Icon(CupertinoIcons.plus),
                                                 onPressed: () {
                                                   setState(() {
                                                     HapticFeedback.lightImpact();
@@ -388,10 +388,7 @@ class _roundsPageState extends State<roundsPage> {
                                                 child: CupertinoButton(
                                                   color: Colors.black,
                                                   padding: EdgeInsets.zero,
-                                                  child: Text("-",
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 30)),
+                                                  child: Icon(CupertinoIcons.minus),
                                                   onPressed: () {
                                                     setState(() {
                                                       HapticFeedback.lightImpact();
@@ -411,10 +408,7 @@ class _roundsPageState extends State<roundsPage> {
                                               child: CupertinoButton(
                                                 color: Colors.black,
                                                 padding: EdgeInsets.zero,
-                                                child: Text("+",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 30)),
+                                                child: Icon(CupertinoIcons.plus),
                                                 onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
@@ -464,10 +458,7 @@ class _roundsPageState extends State<roundsPage> {
                                                 child: CupertinoButton(
                                                   color: Colors.black,
                                                   padding: EdgeInsets.zero,
-                                                  child: Text("-",
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 30)),
+                                                  child: Icon(CupertinoIcons.minus),
                                                   onPressed: () {
                                                     setState(() {
                                                       HapticFeedback.lightImpact();
@@ -487,10 +478,7 @@ class _roundsPageState extends State<roundsPage> {
                                               child: CupertinoButton(
                                                 color: Colors.black,
                                                 padding: EdgeInsets.zero,
-                                                child: Text("+",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 30)),
+                                                child: Icon(CupertinoIcons.plus),
                                                 onPressed: () {
                                                   setState(() {
                                                     HapticFeedback.lightImpact();
@@ -505,6 +493,308 @@ class _roundsPageState extends State<roundsPage> {
                             ),
                           )
                       ),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Cones on Med"
+                                        : "Cones on Med",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Spacer(),
+                                Container(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$conesInMedJunctionAuto",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                SizedBox(width: 10),
+                                Container(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Icon(CupertinoIcons.minus),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      HapticFeedback.lightImpact();
+                                                      (conesInMedJunctionAuto >
+                                                          0)
+                                                          ? conesInMedJunctionAuto -= 1
+                                                          : conesInMedJunctionAuto = conesInMedJunctionAuto;
+                                                    });
+                                                  },
+                                                ))))),
+                                Container(
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: CupertinoButton(
+                                                color: Colors.black,
+                                                padding: EdgeInsets.zero,
+                                                child: Icon(CupertinoIcons.plus),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    HapticFeedback.lightImpact();
+                                                    (conesInMedJunctionAuto < 12)
+                                                        ? conesInMedJunctionAuto += 1
+                                                        : conesInMedJunctionAuto = conesInMedJunctionAuto;
+                                                  });
+                                                },
+                                              )))),
+                                ),
+                              ],
+                            ),
+                          )
+                      ),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Cones on High"
+                                        : "Cones on High",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Spacer(),
+                                Container(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$conesInHighJunctionAuto",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                SizedBox(width: 10),
+                                Container(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Icon(CupertinoIcons.minus),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      HapticFeedback.lightImpact();
+                                                      (conesInHighJunctionAuto >
+                                                          0)
+                                                          ? conesInHighJunctionAuto -= 1
+                                                          : conesInHighJunctionAuto = conesInHighJunctionAuto;
+                                                    });
+                                                  },
+                                                ))))),
+                                Container(
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: CupertinoButton(
+                                                color: Colors.black,
+                                                padding: EdgeInsets.zero,
+                                                child: Icon(CupertinoIcons.plus),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    HapticFeedback.lightImpact();
+                                                    (conesInHighJunctionAuto < 12)
+                                                        ? conesInHighJunctionAuto += 1
+                                                        : conesInHighJunctionAuto = conesInHighJunctionAuto;
+                                                  });
+                                                },
+                                              )))),
+                                ),
+                              ],
+                            ),
+                          )
+                      ),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Parking"
+                                        : "Parking",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Spacer()
+                              ],
+                            ),
+                          )
+                      ),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Icon(CupertinoIcons.chevron_left),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      HapticFeedback.lightImpact();
+                                                      (autoParkingIndex >
+                                                          0)
+                                                          ? autoParkingIndex -= 1
+                                                          : autoParkingIndex = autoParkingIndex;
+                                                    });
+                                                  },
+                                                ))))),
+                                Spacer(),
+                                Text(
+                                    autoParkingIndex == 0 ? "Not Parked" : autoParkingIndex == 1 ? "Terminal" : autoParkingIndex == 2 ? "Signal Zone" :  "Sleeve Zone",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Spacer(),
+                                Container(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Icon(CupertinoIcons.chevron_right),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      HapticFeedback.lightImpact();
+                                                      (autoParkingIndex < 3)
+                                                          ? autoParkingIndex += 1
+                                                          : autoParkingIndex = autoParkingIndex;
+                                                    });
+                                                  },
+                                                ))))),
+                              ],
+                            ),
+                          )
+                      ),
+                      if(value == true)...[
+                        Divider(height: 1, color: itemDividerColor),
+                        Container(
+                            height: 60,
+                            color: listItemColor,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: <Widget>[
+                                  Text(
+                                      notEasterEggMode
+                                          ? "Parking 2"
+                                          : "Parking 2",
+                                      style: TextStyle(
+                                          color: listItemTextColor,
+                                          fontSize: 25)),
+                                  Spacer()
+                                ],
+                              ),
+                            )
+                        ),
+                        Container(
+                            height: 60,
+                            color: listItemColor,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                              child: Row(
+                                children: <Widget>[
+                                  Container(
+                                      child: Padding(
+                                          padding: const EdgeInsets.all(2),
+                                          child: Container(
+                                              child: Align(
+                                                  alignment: Alignment
+                                                      .centerRight,
+                                                  child: CupertinoButton(
+                                                    color: Colors.black,
+                                                    padding: EdgeInsets.zero,
+                                                    child: Icon(CupertinoIcons.chevron_left),
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        HapticFeedback.lightImpact();
+                                                        (autoParkingIndex2 >
+                                                            0)
+                                                            ? autoParkingIndex2 -= 1
+                                                            : autoParkingIndex2 = autoParkingIndex2;
+                                                      });
+                                                    },
+                                                  ))))),
+                                  Spacer(),
+                                  Text(
+                                      autoParkingIndex2 == 0 ? "Not Parked" : autoParkingIndex2 == 1 ? "Terminal" : autoParkingIndex2 == 2 ? "Signal Zone" :  "Sleeve Zone",
+                                      style: TextStyle(
+                                          color: listItemTextColor,
+                                          fontSize: 25)),
+                                  Spacer(),
+                                  Container(
+                                      child: Padding(
+                                          padding: const EdgeInsets.all(2),
+                                          child: Container(
+                                              child: Align(
+                                                  alignment: Alignment
+                                                      .centerRight,
+                                                  child: CupertinoButton(
+                                                    color: Colors.black,
+                                                    padding: EdgeInsets.zero,
+                                                    child: Icon(CupertinoIcons.chevron_right),
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        HapticFeedback.lightImpact();
+                                                        (autoParkingIndex2 < 3)
+                                                            ? autoParkingIndex2 += 1
+                                                            : autoParkingIndex2 = autoParkingIndex2;
+                                                      });
+                                                    },
+                                                  ))))),
+                                ],
+                              ),
+                            )
+                        ),
+                      ],
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
