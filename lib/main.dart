@@ -90,6 +90,11 @@ class _roundsPageState extends State<roundsPage> {
   int conesInHighJunctionAuto = 0;
   int autoParkingIndex = 0;
   int autoParkingIndex2 = 0;
+  int conesInTerminalTeleOp = 0;
+  int conesInGroundJunctionTeleOp = 0;
+  int conesInLowJunctionTeleOp = 0;
+  int conesInMedJunctionTeleOp = 0;
+  int conesInHighJunctionTeleOp = 0;
 
   var dualScoring = ValueNotifier<bool>(false);
 
@@ -265,6 +270,12 @@ class _roundsPageState extends State<roundsPage> {
                         conesInHighJunctionAuto = 0;
                         autoParkingIndex = 0;
                         autoParkingIndex2 = 0;
+
+                        conesInTerminalTeleOp = 0;
+                        conesInGroundJunctionTeleOp = 0;
+                        conesInLowJunctionTeleOp = 0;
+                        conesInMedJunctionTeleOp = 0;
+                        conesInHighJunctionTeleOp = 0;
                       });
                     },
                     child: Icon(
@@ -799,8 +810,360 @@ class _roundsPageState extends State<roundsPage> {
                         padding: const EdgeInsets.all(15.0),
                         child: Text(
                             "Driver Controlled Points - " +
-                                (0).toString(),
+                                (conesInTerminalTeleOp*1 + conesInGroundJunctionTeleOp*2 + conesInLowJunctionTeleOp*3 + conesInMedJunctionTeleOp*4 + conesInHighJunctionTeleOp*5 + (autoParkingIndex == 0 ? 0 : autoParkingIndex == 1 ? 2 : autoParkingIndex == 2 ? 10 : 20) + (autoParkingIndex2 == 0 ? 0 : autoParkingIndex2 == 1 ? 2 : autoParkingIndex2 == 2 ? 10 : 20)).toString(),
                             style: TextStyle(color: subtitleColor)),
+                      ),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Cones in Terminal"
+                                        : "Cones in Terminal",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Spacer(),
+                                Container(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$conesInTerminalTeleOp",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                SizedBox(width: 10),
+                                Container(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Icon(CupertinoIcons.minus),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      HapticFeedback.lightImpact();
+                                                      (conesInTerminalTeleOp >
+                                                          0)
+                                                          ? conesInTerminalTeleOp -= 1
+                                                          : conesInTerminalTeleOp = conesInTerminalTeleOp;
+                                                    });
+                                                  },
+                                                ))))),
+                                Container(
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: CupertinoButton(
+                                                color: Colors.black,
+                                                padding: EdgeInsets.zero,
+                                                child: Icon(CupertinoIcons.plus),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    HapticFeedback.lightImpact();
+                                                    (conesInTerminalTeleOp < 12)
+                                                        ? conesInTerminalTeleOp += 1
+                                                        : conesInTerminalTeleOp = conesInTerminalTeleOp;
+                                                  });
+                                                },
+                                              )))),
+                                ),
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Cones on Ground"
+                                        : "Cones on Ground",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Spacer(),
+                                Container(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$conesInGroundJunctionTeleOp",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                SizedBox(width: 10),
+                                Container(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Icon(CupertinoIcons.minus),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      HapticFeedback.lightImpact();
+                                                      (conesInGroundJunctionTeleOp >
+                                                          0)
+                                                          ? conesInGroundJunctionTeleOp -= 1
+                                                          : conesInGroundJunctionTeleOp = conesInGroundJunctionTeleOp;
+                                                    });
+                                                  },
+                                                ))))),
+                                Container(
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: CupertinoButton(
+                                                color: Colors.black,
+                                                padding: EdgeInsets.zero,
+                                                child: Icon(CupertinoIcons.plus),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    HapticFeedback.lightImpact();
+                                                    (conesInGroundJunctionTeleOp < 12)
+                                                        ? conesInGroundJunctionTeleOp += 1
+                                                        : conesInGroundJunctionTeleOp = conesInGroundJunctionTeleOp;
+                                                  });
+                                                },
+                                              )))),
+                                ),
+                              ],
+                            ),
+                          )),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Cones on Low"
+                                        : "Cones on Low",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Spacer(),
+                                Container(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$conesInLowJunctionTeleOp",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                SizedBox(width: 10),
+                                Container(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Icon(CupertinoIcons.minus),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      HapticFeedback.lightImpact();
+                                                      (conesInLowJunctionTeleOp >
+                                                          0)
+                                                          ? conesInLowJunctionTeleOp -= 1
+                                                          : conesInLowJunctionTeleOp = conesInLowJunctionTeleOp;
+                                                    });
+                                                  },
+                                                ))))),
+                                Container(
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: CupertinoButton(
+                                                color: Colors.black,
+                                                padding: EdgeInsets.zero,
+                                                child: Icon(CupertinoIcons.plus),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    HapticFeedback.lightImpact();
+                                                    (conesInLowJunctionTeleOp < 12)
+                                                        ? conesInLowJunctionTeleOp += 1
+                                                        : conesInLowJunctionTeleOp = conesInLowJunctionTeleOp;
+                                                  });
+                                                },
+                                              )))),
+                                ),
+                              ],
+                            ),
+                          )
+                      ),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Cones on Med"
+                                        : "Cones on Med",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Spacer(),
+                                Container(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$conesInMedJunctionTeleOp",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                SizedBox(width: 10),
+                                Container(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Icon(CupertinoIcons.minus),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      HapticFeedback.lightImpact();
+                                                      (conesInMedJunctionTeleOp >
+                                                          0)
+                                                          ? conesInMedJunctionTeleOp -= 1
+                                                          : conesInMedJunctionTeleOp = conesInMedJunctionTeleOp;
+                                                    });
+                                                  },
+                                                ))))),
+                                Container(
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: CupertinoButton(
+                                                color: Colors.black,
+                                                padding: EdgeInsets.zero,
+                                                child: Icon(CupertinoIcons.plus),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    HapticFeedback.lightImpact();
+                                                    (conesInMedJunctionTeleOp < 12)
+                                                        ? conesInMedJunctionTeleOp += 1
+                                                        : conesInMedJunctionTeleOp = conesInMedJunctionTeleOp;
+                                                  });
+                                                },
+                                              )))),
+                                ),
+                              ],
+                            ),
+                          )
+                      ),
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                    notEasterEggMode
+                                        ? "Cones on High"
+                                        : "Cones on High",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Spacer(),
+                                Container(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Text(
+                                                "$conesInHighJunctionTeleOp",
+                                                style: TextStyle(
+                                                    color: listItemTextColor,
+                                                    fontSize: 25))))),
+                                SizedBox(width: 10),
+                                Container(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(2),
+                                        child: Container(
+                                            child: Align(
+                                                alignment: Alignment
+                                                    .centerRight,
+                                                child: CupertinoButton(
+                                                  color: Colors.black,
+                                                  padding: EdgeInsets.zero,
+                                                  child: Icon(CupertinoIcons.minus),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      HapticFeedback.lightImpact();
+                                                      (conesInHighJunctionTeleOp >
+                                                          0)
+                                                          ? conesInHighJunctionTeleOp -= 1
+                                                          : conesInHighJunctionTeleOp = conesInHighJunctionTeleOp;
+                                                    });
+                                                  },
+                                                ))))),
+                                Container(
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: CupertinoButton(
+                                                color: Colors.black,
+                                                padding: EdgeInsets.zero,
+                                                child: Icon(CupertinoIcons.plus),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    HapticFeedback.lightImpact();
+                                                    (conesInHighJunctionTeleOp < 12)
+                                                        ? conesInHighJunctionTeleOp += 1
+                                                        : conesInHighJunctionTeleOp = conesInHighJunctionTeleOp;
+                                                  });
+                                                },
+                                              )))),
+                                ),
+                              ],
+                            ),
+                          )
                       ),
                       Padding(
                         padding: const EdgeInsets.all(15.0),
