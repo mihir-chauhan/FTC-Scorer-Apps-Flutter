@@ -358,7 +358,7 @@ class _roundsPageState extends State<roundsPage> {
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalAuto < 12)
+                                                (conesInTerminalAuto + conesInGroundJunctionAuto + conesInLowJunctionAuto + conesInMedJunctionAuto + conesInHighJunctionAuto < 12)
                                                     ? conesInTerminalAuto += 1
                                                     : conesInTerminalAuto =
                                                         conesInTerminalAuto;
@@ -429,7 +429,7 @@ class _roundsPageState extends State<roundsPage> {
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInGroundJunctionAuto < 12)
+                                                (conesInTerminalAuto + conesInGroundJunctionAuto + conesInLowJunctionAuto + conesInMedJunctionAuto + conesInHighJunctionAuto < 12)
                                                     ? conesInGroundJunctionAuto +=
                                                         1
                                                     : conesInGroundJunctionAuto =
@@ -499,7 +499,7 @@ class _roundsPageState extends State<roundsPage> {
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInLowJunctionAuto < 12)
+                                                (conesInTerminalAuto + conesInGroundJunctionAuto + conesInLowJunctionAuto + conesInMedJunctionAuto + conesInHighJunctionAuto < 12)
                                                     ? conesInLowJunctionAuto +=
                                                         1
                                                     : conesInLowJunctionAuto =
@@ -569,7 +569,7 @@ class _roundsPageState extends State<roundsPage> {
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInMedJunctionAuto < 12)
+                                                (conesInTerminalAuto + conesInGroundJunctionAuto + conesInLowJunctionAuto + conesInMedJunctionAuto + conesInHighJunctionAuto < 12)
                                                     ? conesInMedJunctionAuto +=
                                                         1
                                                     : conesInMedJunctionAuto =
@@ -639,7 +639,7 @@ class _roundsPageState extends State<roundsPage> {
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInHighJunctionAuto < 12)
+                                                (conesInTerminalAuto + conesInGroundJunctionAuto + conesInLowJunctionAuto + conesInMedJunctionAuto + conesInHighJunctionAuto < 12)
                                                     ? conesInHighJunctionAuto +=
                                                         1
                                                     : conesInHighJunctionAuto =
@@ -888,7 +888,7 @@ class _roundsPageState extends State<roundsPage> {
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalTeleOp < 12)
+                                                (conesInTerminalTeleOp + conesInGroundJunctionTeleOp + conesInLowJunctionTeleOp + conesInMedJunctionTeleOp + conesInHighJunctionTeleOp < 30)
                                                     ? conesInTerminalTeleOp += 1
                                                     : conesInTerminalTeleOp =
                                                         conesInTerminalTeleOp;
@@ -959,8 +959,8 @@ class _roundsPageState extends State<roundsPage> {
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInGroundJunctionTeleOp <
-                                                        12)
+                                                (conesInTerminalTeleOp + conesInGroundJunctionTeleOp + conesInLowJunctionTeleOp + conesInMedJunctionTeleOp + conesInHighJunctionTeleOp <
+                                                        30)
                                                     ? conesInGroundJunctionTeleOp +=
                                                         1
                                                     : conesInGroundJunctionTeleOp =
@@ -1030,7 +1030,7 @@ class _roundsPageState extends State<roundsPage> {
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInLowJunctionTeleOp < 12)
+                                                (conesInTerminalTeleOp + conesInGroundJunctionTeleOp + conesInLowJunctionTeleOp + conesInMedJunctionTeleOp + conesInHighJunctionTeleOp < 30)
                                                     ? conesInLowJunctionTeleOp +=
                                                         1
                                                     : conesInLowJunctionTeleOp =
@@ -1100,7 +1100,7 @@ class _roundsPageState extends State<roundsPage> {
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInMedJunctionTeleOp < 12)
+                                                (conesInTerminalTeleOp + conesInGroundJunctionTeleOp + conesInLowJunctionTeleOp + conesInMedJunctionTeleOp + conesInHighJunctionTeleOp < 30)
                                                     ? conesInMedJunctionTeleOp +=
                                                         1
                                                     : conesInMedJunctionTeleOp =
@@ -1172,7 +1172,7 @@ class _roundsPageState extends State<roundsPage> {
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInHighJunctionTeleOp < 12)
+                                                (conesInTerminalTeleOp + conesInGroundJunctionTeleOp + conesInLowJunctionTeleOp + conesInMedJunctionTeleOp + conesInHighJunctionTeleOp < 30)
                                                     ? conesInHighJunctionTeleOp +=
                                                         1
                                                     : conesInHighJunctionTeleOp =
