@@ -30,8 +30,8 @@ dependencies:
   share: ^2.0.4
 
 flutter_icons:
-  image_path: "assets/FreightFrenzyScorerIconIOS.png"
-  image_path_android: "assets/FreightFrenzyScorerIconAndroid.png"
+  image_path: "assets/PowerPlayScorerIconiOS.png"
+  image_path_android: "assets/PowerPlayScorerIconAndroidCircle.png"
   ios: true
   android: true
 

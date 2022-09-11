@@ -171,12 +171,10 @@ class _roundsPageState extends State<roundsPage> {
     controller.addListener(() {
       if(controller.hasClients) {
         if(controller.position.pixels > 50 && !showScoreInHeader) {
-          print("set true");
           setState(() {
             showScoreInHeader = true;
           });
         } else if(controller.position.pixels <= 50 && showScoreInHeader) {
-          print("set false");
           setState(() {
             showScoreInHeader = false;
           });
