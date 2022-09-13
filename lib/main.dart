@@ -169,12 +169,12 @@ class _roundsPageState extends State<roundsPage> {
   @override
   Widget build(BuildContext context) {
     controller.addListener(() {
-      if(controller.hasClients) {
-        if(controller.position.pixels > 50 && !showScoreInHeader) {
+      if (controller.hasClients) {
+        if (controller.position.pixels > 50 && !showScoreInHeader) {
           setState(() {
             showScoreInHeader = true;
           });
-        } else if(controller.position.pixels <= 50 && showScoreInHeader) {
+        } else if (controller.position.pixels <= 50 && showScoreInHeader) {
           setState(() {
             showScoreInHeader = false;
           });
@@ -236,58 +236,10 @@ class _roundsPageState extends State<roundsPage> {
                         // setThemeVariables();
                       });
                     },
-                    child: Text(!showScoreInHeader ? "Score Match" :  "Score Match: ${((conesInTerminalAuto * 1 +
-                        conesInGroundJunctionAuto *
-                            2 +
-                        conesInLowJunctionAuto *
-                            3 +
-                        conesInMedJunctionAuto *
-                            4 +
-                        conesInHighJunctionAuto *
-                            5 +
-                        (autoParkingIndex ==
-                            0
-                            ? 0
-                            : autoParkingIndex ==
-                            1
-                            ? 2
-                            : autoParkingIndex ==
-                            2
-                            ? 2
-                            : autoParkingIndex ==
-                            3
-                            ? 10
-                            : 20) +
-                        (autoParkingIndex2 ==
-                            0
-                            ? 0
-                            : autoParkingIndex2 ==
-                            1
-                            ? 2
-                            : autoParkingIndex2 ==
-                            2
-                            ? 2
-                            : autoParkingIndex2 ==
-                            3
-                            ? 10
-                            : 20)) +
-                        (conesInTerminalTeleOp * 1 +
-                            conesInGroundJunctionTeleOp *
-                                2 +
-                            conesInLowJunctionTeleOp *
-                                3 +
-                            conesInMedJunctionTeleOp *
-                                4 +
-                            conesInHighJunctionTeleOp *
-                                5) +
-                        (ownedConesEndGame *
-                            3 +
-                            ownedBeaconsEndGame *
-                                10 +
-                            (1 - circuitEndgame) *
-                                20 +
-                            (2 - parkingEndgame) *
-                                2))}",
+                    child: Text(
+                        !showScoreInHeader
+                            ? "Score Match"
+                            : "Score Match: ${((conesInTerminalAuto * 1 + conesInGroundJunctionAuto * 2 + conesInLowJunctionAuto * 3 + conesInMedJunctionAuto * 4 + conesInHighJunctionAuto * 5 + (autoParkingIndex == 0 ? 0 : autoParkingIndex == 1 ? 2 : autoParkingIndex == 2 ? 2 : autoParkingIndex == 3 ? 10 : 20) + (autoParkingIndex2 == 0 ? 0 : autoParkingIndex2 == 1 ? 2 : autoParkingIndex2 == 2 ? 2 : autoParkingIndex2 == 3 ? 10 : 20)) + (conesInTerminalTeleOp * 1 + conesInGroundJunctionTeleOp * 2 + conesInLowJunctionTeleOp * 3 + conesInMedJunctionTeleOp * 4 + conesInHighJunctionTeleOp * 5) + (ownedConesEndGame * 3 + ownedBeaconsEndGame * 10 + (1 - circuitEndgame) * 20 + (2 - parkingEndgame) * 2))}",
                         style: TextStyle(color: titleColor)),
                   ),
                   leading: GestureDetector(
@@ -309,35 +261,37 @@ class _roundsPageState extends State<roundsPage> {
                     ),
                   ),
                   trailing: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        HapticFeedback.lightImpact();
-                        conesInTerminalAuto = 0;
-                        conesInGroundJunctionAuto = 0;
-                        conesInLowJunctionAuto = 0;
-                        conesInMedJunctionAuto = 0;
-                        conesInHighJunctionAuto = 0;
-                        autoParkingIndex = 0;
-                        autoParkingIndex2 = 0;
+                      onTap: () {
+                        setState(() {
+                          HapticFeedback.lightImpact();
+                          conesInTerminalAuto = 0;
+                          conesInGroundJunctionAuto = 0;
+                          conesInLowJunctionAuto = 0;
+                          conesInMedJunctionAuto = 0;
+                          conesInHighJunctionAuto = 0;
+                          autoParkingIndex = 0;
+                          autoParkingIndex2 = 0;
 
-                        conesInTerminalTeleOp = 0;
-                        conesInGroundJunctionTeleOp = 0;
-                        conesInLowJunctionTeleOp = 0;
-                        conesInMedJunctionTeleOp = 0;
-                        conesInHighJunctionTeleOp = 0;
+                          conesInTerminalTeleOp = 0;
+                          conesInGroundJunctionTeleOp = 0;
+                          conesInLowJunctionTeleOp = 0;
+                          conesInMedJunctionTeleOp = 0;
+                          conesInHighJunctionTeleOp = 0;
 
-                        circuitEndgame = 1;
-                        parkingEndgame = 2;
-                        ownedConesEndGame = 0;
-                        ownedBeaconsEndGame = 0;
-                      });
-                    },
-                    child: Icon(
-                      CupertinoIcons.refresh,
-                      color: iconColor,
-                      // size: 35,
-                    ),
-                  ),
+                          circuitEndgame = 1;
+                          parkingEndgame = 2;
+                          ownedConesEndGame = 0;
+                          ownedBeaconsEndGame = 0;
+                        });
+                      },
+                      child: Container(
+                          child: Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Icon(
+                          CupertinoIcons.refresh,
+                          color: iconColor,
+                        ),
+                      ))),
                 ),
                 SliverList(
                     delegate: SliverChildListDelegate([
@@ -403,7 +357,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -423,11 +378,17 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalAuto + conesInGroundJunctionAuto + conesInLowJunctionAuto + conesInMedJunctionAuto + conesInHighJunctionAuto < 12)
+                                                (conesInTerminalAuto +
+                                                            conesInGroundJunctionAuto +
+                                                            conesInLowJunctionAuto +
+                                                            conesInMedJunctionAuto +
+                                                            conesInHighJunctionAuto <
+                                                        12)
                                                     ? conesInTerminalAuto += 1
                                                     : conesInTerminalAuto =
                                                         conesInTerminalAuto;
@@ -472,7 +433,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -494,11 +456,17 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalAuto + conesInGroundJunctionAuto + conesInLowJunctionAuto + conesInMedJunctionAuto + conesInHighJunctionAuto < 12)
+                                                (conesInTerminalAuto +
+                                                            conesInGroundJunctionAuto +
+                                                            conesInLowJunctionAuto +
+                                                            conesInMedJunctionAuto +
+                                                            conesInHighJunctionAuto <
+                                                        12)
                                                     ? conesInGroundJunctionAuto +=
                                                         1
                                                     : conesInGroundJunctionAuto =
@@ -543,7 +511,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -564,11 +533,17 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalAuto + conesInGroundJunctionAuto + conesInLowJunctionAuto + conesInMedJunctionAuto + conesInHighJunctionAuto < 12)
+                                                (conesInTerminalAuto +
+                                                            conesInGroundJunctionAuto +
+                                                            conesInLowJunctionAuto +
+                                                            conesInMedJunctionAuto +
+                                                            conesInHighJunctionAuto <
+                                                        12)
                                                     ? conesInLowJunctionAuto +=
                                                         1
                                                     : conesInLowJunctionAuto =
@@ -613,7 +588,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -634,11 +610,17 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalAuto + conesInGroundJunctionAuto + conesInLowJunctionAuto + conesInMedJunctionAuto + conesInHighJunctionAuto < 12)
+                                                (conesInTerminalAuto +
+                                                            conesInGroundJunctionAuto +
+                                                            conesInLowJunctionAuto +
+                                                            conesInMedJunctionAuto +
+                                                            conesInHighJunctionAuto <
+                                                        12)
                                                     ? conesInMedJunctionAuto +=
                                                         1
                                                     : conesInMedJunctionAuto =
@@ -683,7 +665,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -704,11 +687,17 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalAuto + conesInGroundJunctionAuto + conesInLowJunctionAuto + conesInMedJunctionAuto + conesInHighJunctionAuto < 12)
+                                                (conesInTerminalAuto +
+                                                            conesInGroundJunctionAuto +
+                                                            conesInLowJunctionAuto +
+                                                            conesInMedJunctionAuto +
+                                                            conesInHighJunctionAuto <
+                                                        12)
                                                     ? conesInHighJunctionAuto +=
                                                         1
                                                     : conesInHighJunctionAuto =
@@ -753,7 +742,8 @@ class _roundsPageState extends State<roundsPage> {
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
                                               child: Icon(
-                                                  CupertinoIcons.chevron_left),
+                                                  CupertinoIcons.chevron_left,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -788,7 +778,8 @@ class _roundsPageState extends State<roundsPage> {
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
                                               child: Icon(
-                                                  CupertinoIcons.chevron_right),
+                                                  CupertinoIcons.chevron_right,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -836,7 +827,7 @@ class _roundsPageState extends State<roundsPage> {
                                                 color: Colors.black,
                                                 padding: EdgeInsets.zero,
                                                 child: Icon(CupertinoIcons
-                                                    .chevron_left),
+                                                    .chevron_left, color: iconColor),
                                                 onPressed: () {
                                                   setState(() {
                                                     HapticFeedback
@@ -872,7 +863,7 @@ class _roundsPageState extends State<roundsPage> {
                                                 color: Colors.black,
                                                 padding: EdgeInsets.zero,
                                                 child: Icon(CupertinoIcons
-                                                    .chevron_right),
+                                                    .chevron_right, color: iconColor),
                                                 onPressed: () {
                                                   setState(() {
                                                     HapticFeedback
@@ -932,7 +923,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -953,11 +945,17 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalTeleOp + conesInGroundJunctionTeleOp + conesInLowJunctionTeleOp + conesInMedJunctionTeleOp + conesInHighJunctionTeleOp < 30)
+                                                (conesInTerminalTeleOp +
+                                                            conesInGroundJunctionTeleOp +
+                                                            conesInLowJunctionTeleOp +
+                                                            conesInMedJunctionTeleOp +
+                                                            conesInHighJunctionTeleOp <
+                                                        30)
                                                     ? conesInTerminalTeleOp += 1
                                                     : conesInTerminalTeleOp =
                                                         conesInTerminalTeleOp;
@@ -1002,7 +1000,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -1024,11 +1023,16 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalTeleOp + conesInGroundJunctionTeleOp + conesInLowJunctionTeleOp + conesInMedJunctionTeleOp + conesInHighJunctionTeleOp <
+                                                (conesInTerminalTeleOp +
+                                                            conesInGroundJunctionTeleOp +
+                                                            conesInLowJunctionTeleOp +
+                                                            conesInMedJunctionTeleOp +
+                                                            conesInHighJunctionTeleOp <
                                                         30)
                                                     ? conesInGroundJunctionTeleOp +=
                                                         1
@@ -1074,7 +1078,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -1095,11 +1100,17 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalTeleOp + conesInGroundJunctionTeleOp + conesInLowJunctionTeleOp + conesInMedJunctionTeleOp + conesInHighJunctionTeleOp < 30)
+                                                (conesInTerminalTeleOp +
+                                                            conesInGroundJunctionTeleOp +
+                                                            conesInLowJunctionTeleOp +
+                                                            conesInMedJunctionTeleOp +
+                                                            conesInHighJunctionTeleOp <
+                                                        30)
                                                     ? conesInLowJunctionTeleOp +=
                                                         1
                                                     : conesInLowJunctionTeleOp =
@@ -1144,7 +1155,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -1165,11 +1177,17 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalTeleOp + conesInGroundJunctionTeleOp + conesInLowJunctionTeleOp + conesInMedJunctionTeleOp + conesInHighJunctionTeleOp < 30)
+                                                (conesInTerminalTeleOp +
+                                                            conesInGroundJunctionTeleOp +
+                                                            conesInLowJunctionTeleOp +
+                                                            conesInMedJunctionTeleOp +
+                                                            conesInHighJunctionTeleOp <
+                                                        30)
                                                     ? conesInMedJunctionTeleOp +=
                                                         1
                                                     : conesInMedJunctionTeleOp =
@@ -1215,7 +1233,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -1237,11 +1256,17 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
-                                                (conesInTerminalTeleOp + conesInGroundJunctionTeleOp + conesInLowJunctionTeleOp + conesInMedJunctionTeleOp + conesInHighJunctionTeleOp < 30)
+                                                (conesInTerminalTeleOp +
+                                                            conesInGroundJunctionTeleOp +
+                                                            conesInLowJunctionTeleOp +
+                                                            conesInMedJunctionTeleOp +
+                                                            conesInHighJunctionTeleOp <
+                                                        30)
                                                     ? conesInHighJunctionTeleOp +=
                                                         1
                                                     : conesInHighJunctionTeleOp =
@@ -1296,7 +1321,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -1316,7 +1342,8 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
@@ -1364,7 +1391,8 @@ class _roundsPageState extends State<roundsPage> {
                                             child: CupertinoButton(
                                               color: Colors.black,
                                               padding: EdgeInsets.zero,
-                                              child: Icon(CupertinoIcons.minus),
+                                              child: Icon(CupertinoIcons.minus,
+                                                  color: iconColor),
                                               onPressed: () {
                                                 setState(() {
                                                   HapticFeedback.lightImpact();
@@ -1384,7 +1412,8 @@ class _roundsPageState extends State<roundsPage> {
                                           child: CupertinoButton(
                                             color: Colors.black,
                                             padding: EdgeInsets.zero,
-                                            child: Icon(CupertinoIcons.plus),
+                                            child: Icon(CupertinoIcons.plus,
+                                                color: iconColor),
                                             onPressed: () {
                                               setState(() {
                                                 HapticFeedback.lightImpact();
@@ -1717,142 +1746,28 @@ class _roundsPageState extends State<roundsPage> {
                     onTap: () {
                       // do some easter egg here --maybe some picture background like snowflakes for winter idk
                       // or maybe a field image opens
-                      Share.share(
-                          "Check out the breakdown of my ${((conesInTerminalAuto * 1 +
-                              conesInGroundJunctionAuto *
-                                  2 +
-                              conesInLowJunctionAuto *
-                                  3 +
-                              conesInMedJunctionAuto *
-                                  4 +
-                              conesInHighJunctionAuto *
-                                  5 +
-                              (autoParkingIndex ==
-                                  0
-                                  ? 0
-                                  : autoParkingIndex ==
-                                  1
-                                  ? 2
-                                  : autoParkingIndex ==
-                                  2
-                                  ? 2
-                                  : autoParkingIndex ==
-                                  3
-                                  ? 10
-                                  : 20) +
-                              (autoParkingIndex2 ==
-                                  0
-                                  ? 0
-                                  : autoParkingIndex2 ==
-                                  1
-                                  ? 2
-                                  : autoParkingIndex2 ==
-                                  2
-                                  ? 2
-                                  : autoParkingIndex2 ==
-                                  3
-                                  ? 10
-                                  : 20)) +
-                              (conesInTerminalTeleOp * 1 +
-                                  conesInGroundJunctionTeleOp *
-                                      2 +
-                                  conesInLowJunctionTeleOp *
-                                      3 +
-                                  conesInMedJunctionTeleOp *
-                                      4 +
-                                  conesInHighJunctionTeleOp *
-                                      5) +
-                              (ownedConesEndGame *
-                                  3 +
-                                  ownedBeaconsEndGame *
-                                      10 +
-                                  (1 - circuitEndgame) *
-                                      20 +
-                                  (2 - parkingEndgame) *
-                                      2))} point match!:\n\nAutonomous Score: ${(conesInTerminalAuto * 1 +
-                              conesInGroundJunctionAuto *
-                                  2 +
-                              conesInLowJunctionAuto *
-                                  3 +
-                              conesInMedJunctionAuto *
-                                  4 +
-                              conesInHighJunctionAuto *
-                                  5 +
-                              (autoParkingIndex ==
-                                  0
-                                  ? 0
-                                  : autoParkingIndex ==
-                                  1
-                                  ? 2
-                                  : autoParkingIndex ==
-                                  2
-                                  ? 2
-                                  : autoParkingIndex ==
-                                  3
-                                  ? 10
-                                  : 20) +
-                              (autoParkingIndex2 ==
-                                  0
-                                  ? 0
-                                  : autoParkingIndex2 ==
-                                  1
-                                  ? 2
-                                  : autoParkingIndex2 ==
-                                  2
-                                  ? 2
-                                  : autoParkingIndex2 ==
-                                  3
-                                  ? 10
-                                  : 20))}\n" +
-                              "Cones in Terminal: ${conesInTerminalAuto}\n" +
-                              "Cones on Ground Junction: ${conesInGroundJunctionAuto}\n" +
-                              "Cones on Low Junction: ${conesInLowJunctionAuto}\n" +
-                              "Cones on Medium Junction: ${conesInMedJunctionAuto}\n" +
-                              "Cones on High Junction: ${conesInHighJunctionAuto}\n" +
-                              "Robot 1 Parking: ${autoParkingIndex == 0
-                                  ? "Not Parked"
-                                  : autoParkingIndex == 1
-                                  ? "Terminal"
-                                  : autoParkingIndex == 2
-                                  ? "Substation"
-                                  : autoParkingIndex == 3
-                                  ? "Signal Zone"
-                                  : "Sleeve Zone"}\n" +
-                              (value == true ? "Robot 1 Parking: ${autoParkingIndex2 == 0
-                                  ? "Not Parked"
-                                  : autoParkingIndex2 == 1
-                                  ? "Terminal"
-                                  : autoParkingIndex2 == 2
-                                  ? "Substation"
-                                  : autoParkingIndex2 == 3
-                                  ? "Signal Zone"
-                                  : "Sleeve Zone"}\n" : "") +
-                              "\nDriver Controlled Score: ${(conesInTerminalTeleOp * 1 +
-                                  conesInGroundJunctionTeleOp *
-                                      2 +
-                                  conesInLowJunctionTeleOp *
-                                      3 +
-                                  conesInMedJunctionTeleOp *
-                                      4 +
-                                  conesInHighJunctionTeleOp *
-                                      5)}\n" +
-                              "Cones in Terminal: ${conesInTerminalTeleOp}\n" +
-                              "Cones on Ground Junction: ${conesInGroundJunctionTeleOp}\n" +
-                              "Cones on Low Junction: ${conesInLowJunctionTeleOp}\n" +
-                              "Cones on Medium Junction: ${conesInMedJunctionTeleOp}\n" +
-                              "Cones on High Junction: ${conesInHighJunctionTeleOp}\n" +
-                              "\nEnd Game Score: ${(ownedConesEndGame * 3 +
-                                  ownedBeaconsEndGame *
-                                      10 +
-                                  (1 - circuitEndgame) *
-                                      20 +
-                                  (2 - parkingEndgame) *
-                                      2)}\n" +
-                              "Owned Junctions with Cones: ${ownedConesEndGame}\n" +
-                              "Owned Junctions with Beacon: ${ownedBeaconsEndGame}\n" +
-                              "Circuit Complete: ${circuitEndgame == 0 ? "Yes" : "No"}\n" +
-                              "Parked Robots: ${parkingEndgame == 0 ? "Two" : parkingEndgame == 1 ? "One" : "Zero"}\n" +
-                              "\n\nThis was auto-generated by FTC Scorer 2022 by Mihir Chauhan");
+                      Share.share("Check out the breakdown of my ${((conesInTerminalAuto * 1 + conesInGroundJunctionAuto * 2 + conesInLowJunctionAuto * 3 + conesInMedJunctionAuto * 4 + conesInHighJunctionAuto * 5 + (autoParkingIndex == 0 ? 0 : autoParkingIndex == 1 ? 2 : autoParkingIndex == 2 ? 2 : autoParkingIndex == 3 ? 10 : 20) + (autoParkingIndex2 == 0 ? 0 : autoParkingIndex2 == 1 ? 2 : autoParkingIndex2 == 2 ? 2 : autoParkingIndex2 == 3 ? 10 : 20)) + (conesInTerminalTeleOp * 1 + conesInGroundJunctionTeleOp * 2 + conesInLowJunctionTeleOp * 3 + conesInMedJunctionTeleOp * 4 + conesInHighJunctionTeleOp * 5) + (ownedConesEndGame * 3 + ownedBeaconsEndGame * 10 + (1 - circuitEndgame) * 20 + (2 - parkingEndgame) * 2))} point match!:\n\nAutonomous Score: ${(conesInTerminalAuto * 1 + conesInGroundJunctionAuto * 2 + conesInLowJunctionAuto * 3 + conesInMedJunctionAuto * 4 + conesInHighJunctionAuto * 5 + (autoParkingIndex == 0 ? 0 : autoParkingIndex == 1 ? 2 : autoParkingIndex == 2 ? 2 : autoParkingIndex == 3 ? 10 : 20) + (autoParkingIndex2 == 0 ? 0 : autoParkingIndex2 == 1 ? 2 : autoParkingIndex2 == 2 ? 2 : autoParkingIndex2 == 3 ? 10 : 20))}\n" +
+                          "Cones in Terminal: ${conesInTerminalAuto}\n" +
+                          "Cones on Ground Junction: ${conesInGroundJunctionAuto}\n" +
+                          "Cones on Low Junction: ${conesInLowJunctionAuto}\n" +
+                          "Cones on Medium Junction: ${conesInMedJunctionAuto}\n" +
+                          "Cones on High Junction: ${conesInHighJunctionAuto}\n" +
+                          "Robot 1 Parking: ${autoParkingIndex == 0 ? "Not Parked" : autoParkingIndex == 1 ? "Terminal" : autoParkingIndex == 2 ? "Substation" : autoParkingIndex == 3 ? "Signal Zone" : "Sleeve Zone"}\n" +
+                          (value == true
+                              ? "Robot 1 Parking: ${autoParkingIndex2 == 0 ? "Not Parked" : autoParkingIndex2 == 1 ? "Terminal" : autoParkingIndex2 == 2 ? "Substation" : autoParkingIndex2 == 3 ? "Signal Zone" : "Sleeve Zone"}\n"
+                              : "") +
+                          "\nDriver Controlled Score: ${(conesInTerminalTeleOp * 1 + conesInGroundJunctionTeleOp * 2 + conesInLowJunctionTeleOp * 3 + conesInMedJunctionTeleOp * 4 + conesInHighJunctionTeleOp * 5)}\n" +
+                          "Cones in Terminal: ${conesInTerminalTeleOp}\n" +
+                          "Cones on Ground Junction: ${conesInGroundJunctionTeleOp}\n" +
+                          "Cones on Low Junction: ${conesInLowJunctionTeleOp}\n" +
+                          "Cones on Medium Junction: ${conesInMedJunctionTeleOp}\n" +
+                          "Cones on High Junction: ${conesInHighJunctionTeleOp}\n" +
+                          "\nEnd Game Score: ${(ownedConesEndGame * 3 + ownedBeaconsEndGame * 10 + (1 - circuitEndgame) * 20 + (2 - parkingEndgame) * 2)}\n" +
+                          "Owned Junctions with Cones: ${ownedConesEndGame}\n" +
+                          "Owned Junctions with Beacon: ${ownedBeaconsEndGame}\n" +
+                          "Circuit Complete: ${circuitEndgame == 0 ? "Yes" : "No"}\n" +
+                          "Parked Robots: ${parkingEndgame == 0 ? "Two" : parkingEndgame == 1 ? "One" : "Zero"}\n" +
+                          "\n\nThis was auto-generated by FTC Scorer 2022 by Mihir Chauhan");
                     },
                   ),
                 ]))
