@@ -49,18 +49,13 @@ class _roundsPageState extends State<roundsPage> {
   static bool notEasterEggMode = true;
   static int colorThemeOption = 1;
 
-  final Map<int, Widget> parkingOptions = const <int, Widget>{
+  Map<int, Widget> parkingOptions = const <int, Widget>{
     0: Text("Two", style: TextStyle(color: Colors.white, fontSize: 15.0)),
     1: Text("One", style: TextStyle(color: Colors.white, fontSize: 15.0)),
     2: Text("Zero", style: TextStyle(color: Colors.white, fontSize: 15.0)),
   };
 
-  final Map<int, Widget> circuitOptions = const <int, Widget>{
-    0: Text("Yes", style: TextStyle(color: Colors.white, fontSize: 15.0)),
-    1: Text("No", style: TextStyle(color: Colors.white, fontSize: 15.0))
-  };
-
-  final Map<int, Widget> autoNavigationOptions = const <int, Widget>{
+  Map<int, Widget> autoNavigationOptions = const <int, Widget>{
     0: Text("Yes", style: TextStyle(color: Colors.white, fontSize: 15.0)),
     1: Text("No", style: TextStyle(color: Colors.white, fontSize: 15.0)),
   };
@@ -124,12 +119,12 @@ class _roundsPageState extends State<roundsPage> {
       listItemTextColor = Color(0xFF121212);
       colorThemeOption = 1;
     } else if (colorThemeOption == 1) {
-      backgroundColor = Color(0xFF000000);
+      backgroundColor = Color(0xFFAC8126);
       itemDividerColor = Color(0xFF121212);
       listItemColor = Color(0xFFFFB600);
-      titleColor = Colors.white;
-      iconColor = Colors.white;
-      subtitleColor = Colors.white;
+      titleColor = Color(0xFFF3E098);
+      iconColor = Color(0xFFF3E098);
+      subtitleColor = Color(0xFFF3E098);
       listItemTextColor = Color(0xFF121212);
       colorThemeOption = 2;
     } else if (colorThemeOption == 2) {
@@ -168,6 +163,32 @@ class _roundsPageState extends State<roundsPage> {
       subtitleColor = Colors.white;
       listItemTextColor = Color(0xFFFFFFFF);
       colorThemeOption = 0;
+    }
+    if (colorThemeOption == 2) {
+      const subtitleColorr = Color(0xFFF3E098);
+      parkingOptions = const <int, Widget>{
+        0: Text("Two", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        1: Text("One", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        2: Text("Zero", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+      };
+
+
+      autoNavigationOptions = const <int, Widget>{
+        0: Text("Yes", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        1: Text("No", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+      };
+    } else {
+      const subtitleColorr = Colors.white;
+      parkingOptions = const <int, Widget>{
+        0: Text("Two", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        1: Text("One", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        2: Text("Zero", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+      };
+
+      autoNavigationOptions = const <int, Widget>{
+        0: Text("Yes", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        1: Text("No", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+      };
     }
   }
 
@@ -246,7 +267,24 @@ class _roundsPageState extends State<roundsPage> {
                     child: Text(
                         !showScoreInHeader
                             ? "Score Match"
-                            : "Score Match: ${01}",
+                            : "Score Match: ${(
+                            ((autoNavigationVal == 1 ? 0 : 5) +
+                                (value == true ? (autoNavigationVal2 == 1 ? 0 : 5) : 0) +
+                                (backstagePixelsAuto * 3) +
+                                (backdropPixelsAuto * 5) +
+                                (spikeMarkIndex == 0 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
+                                (value == true ? (spikeMarkIndex2 == 0 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
+                                (yellowPixelIndex == 0 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
+                                (value == true ? (yellowPixelIndex2 == 0 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
+                            ) +
+
+                                (backdropPixelsTeleOp * 3 + backstagePixelsTeleOp * 1 + mosaicTeleOp * 10 + setBonusTeleOp * 10) +
+
+                                (((2-suspendingEndgame) * 20)
+                                    + ((2-parkingEndgame) * 5)
+                                    + (droneLaunchIndex == 0 ? 0 : droneLaunchIndex == 1 ? 30 : droneLaunchIndex == 2 ? 20 : 10)
+                                    + (value == true ? (droneLaunchIndex2 == 0 ? 0 : droneLaunchIndex2 == 1 ? 30 : droneLaunchIndex2 == 2 ? 20 : 10) : 0))
+                        )}",
                         style: TextStyle(color: titleColor)),
                   ),
                   leading: GestureDetector(
@@ -1442,7 +1480,7 @@ class _roundsPageState extends State<roundsPage> {
                                         ? "Not Launched"
                                         : droneLaunchIndex == 1
                                         ? "Zone 1"
-                                        : droneLaunchIndex == 1
+                                        : droneLaunchIndex == 2
                                         ? "Zone 2"
                                         : "Zone 3",
                                     style: TextStyle(
@@ -1535,7 +1573,7 @@ class _roundsPageState extends State<roundsPage> {
                                           ? "Not Launched"
                                           : droneLaunchIndex2 == 1
                                           ? "Zone 1"
-                                          : droneLaunchIndex2 == 1
+                                          : droneLaunchIndex2 == 2
                                           ? "Zone 2"
                                           : "Zone 3",
                                       style: TextStyle(
@@ -1662,7 +1700,10 @@ class _roundsPageState extends State<roundsPage> {
                                                     .centerRight,
                                                 child: SizedBox(
                                                     child: Text(
-                                                        (0)
+                                                        ((((2-suspendingEndgame) * 20)
+                                                            + ((2-parkingEndgame) * 5)
+                                                            + (droneLaunchIndex == 0 ? 0 : droneLaunchIndex == 1 ? 30 : droneLaunchIndex == 2 ? 20 : 10)
+                                                            + (value == true ? (droneLaunchIndex2 == 0 ? 0 : droneLaunchIndex2 == 1 ? 30 : droneLaunchIndex2 == 2 ? 20 : 10) : 0)))
                                                             .toString(),
                                                         style: TextStyle(
                                                             color:
@@ -1691,7 +1732,24 @@ class _roundsPageState extends State<roundsPage> {
                                                 alignment: Alignment
                                                     .centerRight,
                                                 child: SizedBox(
-                                                    child: Text((01).toString(),
+                                                    child: Text((
+                                                        ((autoNavigationVal == 1 ? 0 : 5) +
+                                                            (value == true ? (autoNavigationVal2 == 1 ? 0 : 5) : 0) +
+                                                            (backstagePixelsAuto * 3) +
+                                                            (backdropPixelsAuto * 5) +
+                                                            (spikeMarkIndex == 0 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
+                                                            (value == true ? (spikeMarkIndex2 == 0 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
+                                                            (yellowPixelIndex == 0 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
+                                                            (value == true ? (yellowPixelIndex2 == 0 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
+                                                        ) +
+
+                                                        (backdropPixelsTeleOp * 3 + backstagePixelsTeleOp * 1 + mosaicTeleOp * 10 + setBonusTeleOp * 10) +
+
+                                                        (((2-suspendingEndgame) * 20)
+                                                            + ((2-parkingEndgame) * 5)
+                                                            + (droneLaunchIndex == 0 ? 0 : droneLaunchIndex == 1 ? 30 : droneLaunchIndex == 2 ? 20 : 10)
+                                                            + (value == true ? (droneLaunchIndex2 == 0 ? 0 : droneLaunchIndex2 == 1 ? 30 : droneLaunchIndex2 == 2 ? 20 : 10) : 0))
+                                                    ).toString(),
                                                         style: TextStyle(
                                                             color:
                                                             listItemTextColor,
@@ -1714,11 +1772,11 @@ class _roundsPageState extends State<roundsPage> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(Icons.ios_share,
-                                        color: Colors.white, size: 20),
+                                        color: iconColor, size: 20),
                                     Text(" Share Match",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 20))
+                                            color: subtitleColor, fontSize: 20))
                                   ]),
                             ),
                             Container(height: 35, color: Colors.transparent)
