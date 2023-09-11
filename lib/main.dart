@@ -55,19 +55,32 @@ class _roundsPageState extends State<roundsPage> {
     2: Text("Zero", style: TextStyle(color: Colors.white, fontSize: 15.0)),
   };
 
+  Map<int, Widget> autoBonusOptions = const <int, Widget>{
+    0: Text("Prop", style: TextStyle(color: Colors.white, fontSize: 15.0)),
+    1: Text("Pixel", style: TextStyle(color: Colors.white, fontSize: 15.0)),
+    2: Text("None", style: TextStyle(color: Colors.white, fontSize: 15.0)),
+  };
+
   Map<int, Widget> autoNavigationOptions = const <int, Widget>{
     0: Text("Yes", style: TextStyle(color: Colors.white, fontSize: 15.0)),
     1: Text("No", style: TextStyle(color: Colors.white, fontSize: 15.0)),
+  };
+
+  Map<int, Widget> droneZoneOptions = const <int, Widget>{
+    0: Text("3", style: TextStyle(color: Colors.white, fontSize: 15.0)),
+    1: Text("2", style: TextStyle(color: Colors.white, fontSize: 15.0)),
+    2: Text("1", style: TextStyle(color: Colors.white, fontSize: 15.0)),
+    3: Text("Ø", style: TextStyle(color: Colors.white, fontSize: 15.0)),
   };
 
   int autoNavigationVal = 1;
   int autoNavigationVal2 = 1;
   int backstagePixelsAuto = 0;
   int backdropPixelsAuto = 0;
-  int spikeMarkIndex = 0;
-  int spikeMarkIndex2 = 0;
-  int yellowPixelIndex = 0;
-  int yellowPixelIndex2 = 0;
+  int spikeMarkIndex = 2;
+  int spikeMarkIndex2 = 2;
+  int yellowPixelIndex = 2;
+  int yellowPixelIndex2 = 2;
 
   int backstagePixelsTeleOp = 0;
   int backdropPixelsTeleOp = 0;
@@ -76,8 +89,8 @@ class _roundsPageState extends State<roundsPage> {
 
   int suspendingEndgame = 2;
   int parkingEndgame = 2;
-  int droneLaunchIndex = 0;
-  int droneLaunchIndex2 = 0;
+  int droneLaunchIndex = 3;
+  int droneLaunchIndex2 = 3;
 
 
   var dualScoring = ValueNotifier<bool>(false);
@@ -172,13 +185,31 @@ class _roundsPageState extends State<roundsPage> {
         2: Text("Zero", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
       };
 
+      autoBonusOptions = const <int, Widget>{
+        0: Text("Prop", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        1: Text("Pixel", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        2: Text("None", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+      };
 
       autoNavigationOptions = const <int, Widget>{
         0: Text("Yes", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
         1: Text("No", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
       };
+
+      droneZoneOptions = const <int, Widget>{
+        0: Text("3", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        1: Text("2", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        2: Text("1", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        3: Text("Ø", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+      };
     } else {
       const subtitleColorr = Colors.white;
+      autoBonusOptions = const <int, Widget>{
+        0: Text("Prop", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        1: Text("Pixel", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        2: Text("None", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+      };
+
       parkingOptions = const <int, Widget>{
         0: Text("Two", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
         1: Text("One", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
@@ -188,6 +219,13 @@ class _roundsPageState extends State<roundsPage> {
       autoNavigationOptions = const <int, Widget>{
         0: Text("Yes", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
         1: Text("No", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+      };
+
+      droneZoneOptions = const <int, Widget>{
+        0: Text("3", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        1: Text("2", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        2: Text("1", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
+        3: Text("Ø", style: TextStyle(color: subtitleColorr, fontSize: 15.0)),
       };
     }
   }
@@ -272,18 +310,18 @@ class _roundsPageState extends State<roundsPage> {
                                 (value == true ? (autoNavigationVal2 == 1 ? 0 : 5) : 0) +
                                 (backstagePixelsAuto * 3) +
                                 (backdropPixelsAuto * 5) +
-                                (spikeMarkIndex == 0 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
-                                (value == true ? (spikeMarkIndex2 == 0 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
-                                (yellowPixelIndex == 0 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
-                                (value == true ? (yellowPixelIndex2 == 0 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
+                                (spikeMarkIndex == 2 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
+                                (value == true ? (spikeMarkIndex2 == 2 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
+                                (yellowPixelIndex == 2 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
+                                (value == true ? (yellowPixelIndex2 == 2 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
                             ) +
 
                                 (backdropPixelsTeleOp * 3 + backstagePixelsTeleOp * 1 + mosaicTeleOp * 10 + setBonusTeleOp * 10) +
 
                                 (((2-suspendingEndgame) * 20)
                                     + ((2-parkingEndgame) * 5)
-                                    + (droneLaunchIndex == 0 ? 0 : droneLaunchIndex == 1 ? 30 : droneLaunchIndex == 2 ? 20 : 10)
-                                    + (value == true ? (droneLaunchIndex2 == 0 ? 0 : droneLaunchIndex2 == 1 ? 30 : droneLaunchIndex2 == 2 ? 20 : 10) : 0))
+                                    + (droneLaunchIndex == 3 ? 0 : droneLaunchIndex == 2 ? 30 : droneLaunchIndex == 1 ? 20 : 10)
+                                    + (value == true ? (droneLaunchIndex2 == 3 ? 0 : droneLaunchIndex2 == 2 ? 30 : droneLaunchIndex2 == 1 ? 20 : 10) : 0))
                         )}",
                         style: TextStyle(color: titleColor)),
                   ),
@@ -313,10 +351,10 @@ class _roundsPageState extends State<roundsPage> {
                           autoNavigationVal2 = 1;
                           backstagePixelsAuto = 0;
                           backdropPixelsAuto = 0;
-                          spikeMarkIndex = 0;
-                          spikeMarkIndex2 = 0;
-                          yellowPixelIndex = 0;
-                          yellowPixelIndex2 = 0;
+                          spikeMarkIndex = 2;
+                          spikeMarkIndex2 = 2;
+                          yellowPixelIndex = 2;
+                          yellowPixelIndex2 = 2;
 
                           backstagePixelsTeleOp = 0;
                           backdropPixelsTeleOp = 0;
@@ -325,8 +363,8 @@ class _roundsPageState extends State<roundsPage> {
 
                           suspendingEndgame = 2;
                           parkingEndgame = 2;
-                          droneLaunchIndex = 0;
-                          droneLaunchIndex2 = 0;
+                          droneLaunchIndex = 3;
+                          droneLaunchIndex2 = 3;
                         });
                       },
                       child: Container(
@@ -347,105 +385,13 @@ class _roundsPageState extends State<roundsPage> {
                                 (value == true ? (autoNavigationVal2 == 1 ? 0 : 5) : 0) +
                                 (backstagePixelsAuto * 3) +
                                 (backdropPixelsAuto * 5) +
-                                (spikeMarkIndex == 0 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
-                                (value == true ? (spikeMarkIndex2 == 0 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
-                                (yellowPixelIndex == 0 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
-                                (value == true ? (yellowPixelIndex2 == 0 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
+                                (spikeMarkIndex == 2 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
+                                (value == true ? (spikeMarkIndex2 == 2 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
+                                (yellowPixelIndex == 2 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
+                                (value == true ? (yellowPixelIndex2 == 2 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
                             ).toString(),
                             style: TextStyle(color: subtitleColor)),
                       ),
-                      Container(
-                          height: 60,
-                          color: listItemColor,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
-                              children: <Widget>[
-                                Text(notEasterEggMode
-                                    ? "Navigating"
-                                    : "Navigating",
-                                    style: TextStyle(
-                                        color: listItemTextColor,
-                                        fontSize: 25)),
-                                Expanded(
-                                    child: Container(
-                                        child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: SizedBox(
-                                                width: 150,
-                                                child:
-                                                CupertinoSlidingSegmentedControl<
-                                                    int>(
-                                                  children: autoNavigationOptions,
-                                                  thumbColor: colorThemeOption ==
-                                                      0
-                                                      ? const Color(0xFF353535)
-                                                      : const Color(0xFF121212),
-                                                  backgroundColor: Colors
-                                                      .black45,
-                                                  onValueChanged: (int? val) {
-                                                    setState(() {
-                                                      if (val !=
-                                                          autoNavigationVal) {
-                                                        HapticFeedback
-                                                            .lightImpact();
-                                                      }
-                                                      autoNavigationVal = val!;
-                                                    });
-                                                  },
-                                                  groupValue: autoNavigationVal,
-                                                )))))
-                              ],
-                            ),
-                          )),
-                      if (value == true) ...[
-                        Divider(height: 1, color: itemDividerColor),
-                        Container(
-                            height: 60,
-                            color: listItemColor,
-                            child: Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Row(
-                                children: <Widget>[
-                                  Text(notEasterEggMode
-                                      ? "Navigating 2"
-                                      : "Navigating 2",
-                                      style: TextStyle(
-                                          color: listItemTextColor,
-                                          fontSize: 25)),
-                                  Expanded(
-                                      child: Container(
-                                          child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: SizedBox(
-                                                  width: 150,
-                                                  child:
-                                                  CupertinoSlidingSegmentedControl<
-                                                      int>(
-                                                    children: autoNavigationOptions,
-                                                    thumbColor: colorThemeOption ==
-                                                        0
-                                                        ? const Color(0xFF353535)
-                                                        : const Color(0xFF121212),
-                                                    backgroundColor: Colors
-                                                        .black45,
-                                                    onValueChanged: (int? val) {
-                                                      setState(() {
-                                                        if (val !=
-                                                            autoNavigationVal2) {
-                                                          HapticFeedback
-                                                              .lightImpact();
-                                                        }
-                                                        autoNavigationVal2 = val!;
-                                                      });
-                                                    },
-                                                    groupValue: autoNavigationVal2,
-                                                  )))))
-                                ],
-                              ),
-                            )),
-                      ],
-                      Divider(height: 1, color: itemDividerColor),
                       Container(
                           height: 60,
                           color: listItemColor,
@@ -617,79 +563,34 @@ class _roundsPageState extends State<roundsPage> {
                                     style: TextStyle(
                                         color: listItemTextColor,
                                         fontSize: 25)),
-                                Spacer()
-                              ],
-                            ),
-                          )),
-                      Container(
-                          height: 60,
-                          color: listItemColor,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Container(
-                                            child: Align(
-                                                alignment: Alignment
-                                                    .centerRight,
-                                                child: CupertinoButton(
-                                                  color: Colors.black,
-                                                  padding: EdgeInsets.zero,
-                                                  child: Icon(
-                                                      CupertinoIcons
-                                                          .chevron_left,
-                                                      color: iconColor),
-                                                  onPressed: () {
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
+                                                CupertinoSlidingSegmentedControl<
+                                                    int>(
+                                                  children: autoBonusOptions,
+                                                  thumbColor: colorThemeOption ==
+                                                      0
+                                                      ? const Color(0xFF353535)
+                                                      : const Color(0xFF121212),
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  onValueChanged: (int? val) {
                                                     setState(() {
-                                                      HapticFeedback
-                                                          .lightImpact();
-                                                      (spikeMarkIndex > 0)
-                                                          ? spikeMarkIndex -= 1
-                                                          : spikeMarkIndex =
-                                                          spikeMarkIndex;
+                                                      if (val !=
+                                                          spikeMarkIndex) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      spikeMarkIndex = val!;
                                                     });
                                                   },
-                                                ))))),
-                                Spacer(),
-                                Text(
-                                    spikeMarkIndex == 0
-                                        ? "Not Placed"
-                                        : spikeMarkIndex == 1
-                                        ? "White Pixel"
-                                        : "Team Prop",
-                                    style: TextStyle(
-                                        color: listItemTextColor,
-                                        fontSize: 25)),
-                                Spacer(),
-                                Container(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Container(
-                                            child: Align(
-                                                alignment: Alignment
-                                                    .centerRight,
-                                                child: CupertinoButton(
-                                                  color: Colors.black,
-                                                  padding: EdgeInsets.zero,
-                                                  child: Icon(
-                                                      CupertinoIcons
-                                                          .chevron_right,
-                                                      color: iconColor),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      HapticFeedback
-                                                          .lightImpact();
-                                                      (spikeMarkIndex < 2)
-                                                          ? spikeMarkIndex += 1
-                                                          : spikeMarkIndex =
-                                                          spikeMarkIndex;
-                                                    });
-                                                  },
-                                                ))))),
+                                                  groupValue: spikeMarkIndex,
+                                                )))))
                               ],
                             ),
                           )),
@@ -708,81 +609,34 @@ class _roundsPageState extends State<roundsPage> {
                                       style: TextStyle(
                                           color: listItemTextColor,
                                           fontSize: 25)),
-                                  Spacer()
-                                ],
-                              ),
-                            )),
-                        Container(
-                            height: 60,
-                            color: listItemColor,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(2),
-                                          child: Container(
-                                              child: Align(
-                                                  alignment: Alignment
-                                                      .centerRight,
-                                                  child: CupertinoButton(
-                                                    color: Colors.black,
-                                                    padding: EdgeInsets.zero,
-                                                    child: Icon(
-                                                        CupertinoIcons
-                                                            .chevron_left,
-                                                        color: iconColor),
-                                                    onPressed: () {
+                                  Expanded(
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: SizedBox(
+                                                  width: 150,
+                                                  child:
+                                                  CupertinoSlidingSegmentedControl<
+                                                      int>(
+                                                    children: autoBonusOptions,
+                                                    thumbColor: colorThemeOption ==
+                                                        0
+                                                        ? const Color(0xFF353535)
+                                                        : const Color(0xFF121212),
+                                                    backgroundColor: Colors
+                                                        .black45,
+                                                    onValueChanged: (int? val) {
                                                       setState(() {
-                                                        HapticFeedback
-                                                            .lightImpact();
-                                                        (spikeMarkIndex2 > 0)
-                                                            ?
-                                                        spikeMarkIndex2 -= 1
-                                                            : spikeMarkIndex2 =
-                                                            spikeMarkIndex2;
+                                                        if (val !=
+                                                            spikeMarkIndex2) {
+                                                          HapticFeedback
+                                                              .lightImpact();
+                                                        }
+                                                        spikeMarkIndex2 = val!;
                                                       });
                                                     },
-                                                  ))))),
-                                  Spacer(),
-                                  Text(
-                                      spikeMarkIndex2 == 0
-                                          ? "Not Placed"
-                                          : spikeMarkIndex2 == 1
-                                          ? "White Pixel"
-                                          : "Team Prop",
-                                      style: TextStyle(
-                                          color: listItemTextColor,
-                                          fontSize: 25)),
-                                  Spacer(),
-                                  Container(
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(2),
-                                          child: Container(
-                                              child: Align(
-                                                  alignment: Alignment
-                                                      .centerRight,
-                                                  child: CupertinoButton(
-                                                    color: Colors.black,
-                                                    padding: EdgeInsets.zero,
-                                                    child: Icon(
-                                                        CupertinoIcons
-                                                            .chevron_right,
-                                                        color: iconColor),
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        HapticFeedback
-                                                            .lightImpact();
-                                                        (spikeMarkIndex2 < 4)
-                                                            ?
-                                                        spikeMarkIndex2 += 1
-                                                            : spikeMarkIndex2 =
-                                                            spikeMarkIndex2;
-                                                      });
-                                                    },
-                                                  ))))),
+                                                    groupValue: spikeMarkIndex2,
+                                                  )))))
                                 ],
                               ),
                             )),
@@ -801,81 +655,34 @@ class _roundsPageState extends State<roundsPage> {
                                     style: TextStyle(
                                         color: listItemTextColor,
                                         fontSize: 25)),
-                                Spacer()
-                              ],
-                            ),
-                          )),
-                      Container(
-                          height: 60,
-                          color: listItemColor,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Container(
-                                            child: Align(
-                                                alignment: Alignment
-                                                    .centerRight,
-                                                child: CupertinoButton(
-                                                  color: Colors.black,
-                                                  padding: EdgeInsets.zero,
-                                                  child: Icon(
-                                                      CupertinoIcons
-                                                          .chevron_left,
-                                                      color: iconColor),
-                                                  onPressed: () {
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
+                                                CupertinoSlidingSegmentedControl<
+                                                    int>(
+                                                  children: autoBonusOptions,
+                                                  thumbColor: colorThemeOption ==
+                                                      0
+                                                      ? const Color(0xFF353535)
+                                                      : const Color(0xFF121212),
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  onValueChanged: (int? val) {
                                                     setState(() {
-                                                      HapticFeedback
-                                                          .lightImpact();
-                                                      (yellowPixelIndex > 0)
-                                                          ?
-                                                      yellowPixelIndex -= 1
-                                                          : yellowPixelIndex =
-                                                          yellowPixelIndex;
+                                                      if (val !=
+                                                          yellowPixelIndex) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      yellowPixelIndex = val!;
                                                     });
                                                   },
-                                                ))))),
-                                Spacer(),
-                                Text(
-                                    yellowPixelIndex == 0
-                                        ? "Not Placed"
-                                        : yellowPixelIndex == 1
-                                        ? "White Pixel"
-                                        : "Team Prop",
-                                    style: TextStyle(
-                                        color: listItemTextColor,
-                                        fontSize: 25)),
-                                Spacer(),
-                                Container(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Container(
-                                            child: Align(
-                                                alignment: Alignment
-                                                    .centerRight,
-                                                child: CupertinoButton(
-                                                  color: Colors.black,
-                                                  padding: EdgeInsets.zero,
-                                                  child: Icon(
-                                                      CupertinoIcons
-                                                          .chevron_right,
-                                                      color: iconColor),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      HapticFeedback
-                                                          .lightImpact();
-                                                      (yellowPixelIndex < 2)
-                                                          ?
-                                                      yellowPixelIndex += 1
-                                                          : yellowPixelIndex =
-                                                          yellowPixelIndex;
-                                                    });
-                                                  },
-                                                ))))),
+                                                  groupValue: yellowPixelIndex,
+                                                )))))
                               ],
                             ),
                           )),
@@ -894,88 +701,130 @@ class _roundsPageState extends State<roundsPage> {
                                       style: TextStyle(
                                           color: listItemTextColor,
                                           fontSize: 25)),
-                                  Spacer()
-                                ],
-                              ),
-                            )),
-                        Container(
-                            height: 60,
-                            color: listItemColor,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(2),
-                                          child: Container(
-                                              child: Align(
-                                                  alignment: Alignment
-                                                      .centerRight,
-                                                  child: CupertinoButton(
-                                                    color: Colors.black,
-                                                    padding: EdgeInsets.zero,
-                                                    child: Icon(
-                                                        CupertinoIcons
-                                                            .chevron_left,
-                                                        color: iconColor),
-                                                    onPressed: () {
+                                  Expanded(
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: SizedBox(
+                                                  width: 150,
+                                                  child:
+                                                  CupertinoSlidingSegmentedControl<
+                                                      int>(
+                                                    children: autoBonusOptions,
+                                                    thumbColor: colorThemeOption ==
+                                                        0
+                                                        ? const Color(0xFF353535)
+                                                        : const Color(0xFF121212),
+                                                    backgroundColor: Colors
+                                                        .black45,
+                                                    onValueChanged: (int? val) {
                                                       setState(() {
-                                                        HapticFeedback
-                                                            .lightImpact();
-                                                        (yellowPixelIndex2 > 0)
-                                                            ?
-                                                        yellowPixelIndex2 -= 1
-                                                            : yellowPixelIndex2 =
-                                                            yellowPixelIndex2;
+                                                        if (val !=
+                                                            yellowPixelIndex2) {
+                                                          HapticFeedback
+                                                              .lightImpact();
+                                                        }
+                                                        yellowPixelIndex2 = val!;
                                                       });
                                                     },
-                                                  ))))),
-                                  Spacer(),
-                                  Text(
-                                      yellowPixelIndex2 == 0
-                                          ? "Not Placed"
-                                          : yellowPixelIndex2 == 1
-                                          ? "White Pixel"
-                                          : "Team Prop",
-                                      style: TextStyle(
-                                          color: listItemTextColor,
-                                          fontSize: 25)),
-                                  Spacer(),
-                                  Container(
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(2),
-                                          child: Container(
-                                              child: Align(
-                                                  alignment: Alignment
-                                                      .centerRight,
-                                                  child: CupertinoButton(
-                                                    color: Colors.black,
-                                                    padding: EdgeInsets.zero,
-                                                    child: Icon(
-                                                        CupertinoIcons
-                                                            .chevron_right,
-                                                        color: iconColor),
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        HapticFeedback
-                                                            .lightImpact();
-                                                        (yellowPixelIndex2 < 4)
-                                                            ?
-                                                        yellowPixelIndex2 += 1
-                                                            : yellowPixelIndex2 =
-                                                            yellowPixelIndex2;
-                                                      });
-                                                    },
-                                                  ))))),
+                                                    groupValue: yellowPixelIndex2,
+                                                  )))))
                                 ],
                               ),
                             )),
                       ],
-
-
-
+                      Divider(height: 1, color: itemDividerColor),
+                      Container(
+                          height: 60,
+                          color: listItemColor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Row(
+                              children: <Widget>[
+                                Text(notEasterEggMode
+                                    ? "Navigating"
+                                    : "Navigating",
+                                    style: TextStyle(
+                                        color: listItemTextColor,
+                                        fontSize: 25)),
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
+                                                CupertinoSlidingSegmentedControl<
+                                                    int>(
+                                                  children: autoNavigationOptions,
+                                                  thumbColor: colorThemeOption ==
+                                                      0
+                                                      ? const Color(0xFF353535)
+                                                      : const Color(0xFF121212),
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  onValueChanged: (int? val) {
+                                                    setState(() {
+                                                      if (val !=
+                                                          autoNavigationVal) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      autoNavigationVal = val!;
+                                                    });
+                                                  },
+                                                  groupValue: autoNavigationVal,
+                                                )))))
+                              ],
+                            ),
+                          )),
+                      if (value == true) ...[
+                        Divider(height: 1, color: itemDividerColor),
+                        Container(
+                            height: 60,
+                            color: listItemColor,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                children: <Widget>[
+                                  Text(notEasterEggMode
+                                      ? "Navigating 2"
+                                      : "Navigating 2",
+                                      style: TextStyle(
+                                          color: listItemTextColor,
+                                          fontSize: 25)),
+                                  Expanded(
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: SizedBox(
+                                                  width: 150,
+                                                  child:
+                                                  CupertinoSlidingSegmentedControl<
+                                                      int>(
+                                                    children: autoNavigationOptions,
+                                                    thumbColor: colorThemeOption ==
+                                                        0
+                                                        ? const Color(0xFF353535)
+                                                        : const Color(0xFF121212),
+                                                    backgroundColor: Colors
+                                                        .black45,
+                                                    onValueChanged: (int? val) {
+                                                      setState(() {
+                                                        if (val !=
+                                                            autoNavigationVal2) {
+                                                          HapticFeedback
+                                                              .lightImpact();
+                                                        }
+                                                        autoNavigationVal2 = val!;
+                                                      });
+                                                    },
+                                                    groupValue: autoNavigationVal2,
+                                                  )))))
+                                ],
+                              ),
+                            )),
+                      ],
 
                       Padding(
                         padding: const EdgeInsets.all(15.0),
@@ -1318,8 +1167,8 @@ class _roundsPageState extends State<roundsPage> {
                             "End Game Points - " +
                                 (((2-suspendingEndgame) * 20)
                                     + ((2-parkingEndgame) * 5)
-                                    + (droneLaunchIndex == 0 ? 0 : droneLaunchIndex == 1 ? 30 : droneLaunchIndex == 2 ? 20 : 10)
-                                    + (value == true ? (droneLaunchIndex2 == 0 ? 0 : droneLaunchIndex2 == 1 ? 30 : droneLaunchIndex2 == 2 ? 20 : 10) : 0))
+                                    + (droneLaunchIndex == 3 ? 0 : droneLaunchIndex == 2 ? 30 : droneLaunchIndex == 1 ? 20 : 10)
+                                    + (value == true ? (droneLaunchIndex2 == 3 ? 0 : droneLaunchIndex2 == 2 ? 30 : droneLaunchIndex2 == 1 ? 20 : 10) : 0))
                                     .toString(),
                             style: TextStyle(color: subtitleColor)),
                       ),
@@ -1431,87 +1280,38 @@ class _roundsPageState extends State<roundsPage> {
                             padding: const EdgeInsets.all(10),
                             child: Row(
                               children: <Widget>[
-                                Text(notEasterEggMode
-                                    ? "Drone Launch"
-                                    : "Drone Launch",
+                                Text(notEasterEggMode ? "Drone Zone" : "Drone Zone",
                                     style: TextStyle(
                                         color: listItemTextColor,
                                         fontSize: 25)),
-                                Spacer()
-                              ],
-                            ),
-                          )),
-                      Container(
-                          height: 60,
-                          color: listItemColor,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            child: Row(
-                              children: <Widget>[
-                                Container(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Container(
-                                            child: Align(
-                                                alignment: Alignment
-                                                    .centerRight,
-                                                child: CupertinoButton(
-                                                  color: Colors.black,
-                                                  padding: EdgeInsets.zero,
-                                                  child: Icon(
-                                                      CupertinoIcons
-                                                          .chevron_left,
-                                                      color: iconColor),
-                                                  onPressed: () {
+                                Expanded(
+                                    child: Container(
+                                        child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: SizedBox(
+                                                width: 150,
+                                                child:
+                                                CupertinoSlidingSegmentedControl<
+                                                    int>(
+                                                  children: droneZoneOptions,
+                                                  thumbColor: colorThemeOption ==
+                                                      0
+                                                      ? const Color(0xFF353535)
+                                                      : const Color(0xFF121212),
+                                                  backgroundColor: Colors
+                                                      .black45,
+                                                  onValueChanged: (int? val) {
                                                     setState(() {
-                                                      HapticFeedback
-                                                          .lightImpact();
-                                                      (droneLaunchIndex > 0)
-                                                          ? droneLaunchIndex -= 1
-                                                          : droneLaunchIndex =
-                                                          droneLaunchIndex;
+                                                      if (val !=
+                                                          droneLaunchIndex) {
+                                                        HapticFeedback
+                                                            .lightImpact();
+                                                      }
+                                                      droneLaunchIndex = val!;
                                                     });
                                                   },
-                                                ))))),
-                                Spacer(),
-                                Text(
-                                    droneLaunchIndex == 0
-                                        ? "Not Launched"
-                                        : droneLaunchIndex == 1
-                                        ? "Zone 1"
-                                        : droneLaunchIndex == 2
-                                        ? "Zone 2"
-                                        : "Zone 3",
-                                    style: TextStyle(
-                                        color: listItemTextColor,
-                                        fontSize: 25)),
-                                Spacer(),
-                                Container(
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(2),
-                                        child: Container(
-                                            child: Align(
-                                                alignment: Alignment
-                                                    .centerRight,
-                                                child: CupertinoButton(
-                                                  color: Colors.black,
-                                                  padding: EdgeInsets.zero,
-                                                  child: Icon(
-                                                      CupertinoIcons
-                                                          .chevron_right,
-                                                      color: iconColor),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      HapticFeedback
-                                                          .lightImpact();
-                                                      (droneLaunchIndex < 3)
-                                                          ? droneLaunchIndex += 1
-                                                          : droneLaunchIndex =
-                                                          droneLaunchIndex;
-                                                    });
-                                                  },
-                                                ))))),
+                                                  groupValue: droneLaunchIndex,
+                                                )))))
                               ],
                             ),
                           )),
@@ -1524,87 +1324,38 @@ class _roundsPageState extends State<roundsPage> {
                               padding: const EdgeInsets.all(10),
                               child: Row(
                                 children: <Widget>[
-                                  Text(notEasterEggMode
-                                      ? "Drone Launch 2"
-                                      : "Drone Launch 2",
+                                  Text(notEasterEggMode ? "Drone Zone 2" : "Drone Zone 2",
                                       style: TextStyle(
                                           color: listItemTextColor,
                                           fontSize: 25)),
-                                  Spacer()
-                                ],
-                              ),
-                            )),
-                        Container(
-                            height: 60,
-                            color: listItemColor,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10, horizontal: 20),
-                              child: Row(
-                                children: <Widget>[
-                                  Container(
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(2),
-                                          child: Container(
-                                              child: Align(
-                                                  alignment: Alignment
-                                                      .centerRight,
-                                                  child: CupertinoButton(
-                                                    color: Colors.black,
-                                                    padding: EdgeInsets.zero,
-                                                    child: Icon(
-                                                        CupertinoIcons
-                                                            .chevron_left,
-                                                        color: iconColor),
-                                                    onPressed: () {
+                                  Expanded(
+                                      child: Container(
+                                          child: Align(
+                                              alignment: Alignment.centerRight,
+                                              child: SizedBox(
+                                                  width: 150,
+                                                  child:
+                                                  CupertinoSlidingSegmentedControl<
+                                                      int>(
+                                                    children: droneZoneOptions,
+                                                    thumbColor: colorThemeOption ==
+                                                        0
+                                                        ? const Color(0xFF353535)
+                                                        : const Color(0xFF121212),
+                                                    backgroundColor: Colors
+                                                        .black45,
+                                                    onValueChanged: (int? val) {
                                                       setState(() {
-                                                        HapticFeedback
-                                                            .lightImpact();
-                                                        (droneLaunchIndex2 > 0)
-                                                            ? droneLaunchIndex2 -= 1
-                                                            : droneLaunchIndex2 =
-                                                            droneLaunchIndex2;
+                                                        if (val !=
+                                                            droneLaunchIndex2) {
+                                                          HapticFeedback
+                                                              .lightImpact();
+                                                        }
+                                                        droneLaunchIndex2 = val!;
                                                       });
                                                     },
-                                                  ))))),
-                                  Spacer(),
-                                  Text(
-                                      droneLaunchIndex2 == 0
-                                          ? "Not Launched"
-                                          : droneLaunchIndex2 == 1
-                                          ? "Zone 1"
-                                          : droneLaunchIndex2 == 2
-                                          ? "Zone 2"
-                                          : "Zone 3",
-                                      style: TextStyle(
-                                          color: listItemTextColor,
-                                          fontSize: 25)),
-                                  Spacer(),
-                                  Container(
-                                      child: Padding(
-                                          padding: const EdgeInsets.all(2),
-                                          child: Container(
-                                              child: Align(
-                                                  alignment: Alignment
-                                                      .centerRight,
-                                                  child: CupertinoButton(
-                                                    color: Colors.black,
-                                                    padding: EdgeInsets.zero,
-                                                    child: Icon(
-                                                        CupertinoIcons
-                                                            .chevron_right,
-                                                        color: iconColor),
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        HapticFeedback
-                                                            .lightImpact();
-                                                        (droneLaunchIndex2 < 3)
-                                                            ? droneLaunchIndex2 += 1
-                                                            : droneLaunchIndex2 =
-                                                            droneLaunchIndex2;
-                                                      });
-                                                    },
-                                                  ))))),
+                                                    groupValue: droneLaunchIndex2,
+                                                  )))))
                                 ],
                               ),
                             )),
@@ -1637,10 +1388,10 @@ class _roundsPageState extends State<roundsPage> {
                                                         (value == true ? (autoNavigationVal2 == 1 ? 0 : 5) : 0) +
                                                         (backstagePixelsAuto * 3) +
                                                         (backdropPixelsAuto * 5) +
-                                                        (spikeMarkIndex == 0 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
-                                                        (value == true ? (spikeMarkIndex2 == 0 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
-                                                        (yellowPixelIndex == 0 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
-                                                        (value == true ? (yellowPixelIndex2 == 0 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
+                                                        (spikeMarkIndex == 2 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
+                                                        (value == true ? (spikeMarkIndex2 == 2 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
+                                                        (yellowPixelIndex == 2 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
+                                                        (value == true ? (yellowPixelIndex2 == 2 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
                                                     ).toString(),
                                                         style: TextStyle(
                                                             color:
@@ -1700,10 +1451,10 @@ class _roundsPageState extends State<roundsPage> {
                                                     .centerRight,
                                                 child: SizedBox(
                                                     child: Text(
-                                                        ((((2-suspendingEndgame) * 20)
+                                                        (((2-suspendingEndgame) * 20)
                                                             + ((2-parkingEndgame) * 5)
-                                                            + (droneLaunchIndex == 0 ? 0 : droneLaunchIndex == 1 ? 30 : droneLaunchIndex == 2 ? 20 : 10)
-                                                            + (value == true ? (droneLaunchIndex2 == 0 ? 0 : droneLaunchIndex2 == 1 ? 30 : droneLaunchIndex2 == 2 ? 20 : 10) : 0)))
+                                                            + (droneLaunchIndex == 3 ? 0 : droneLaunchIndex == 2 ? 30 : droneLaunchIndex == 1 ? 20 : 10)
+                                                            + (value == true ? (droneLaunchIndex2 == 3 ? 0 : droneLaunchIndex2 == 2 ? 30 : droneLaunchIndex2 == 1 ? 20 : 10) : 0))
                                                             .toString(),
                                                         style: TextStyle(
                                                             color:
@@ -1737,18 +1488,18 @@ class _roundsPageState extends State<roundsPage> {
                                                             (value == true ? (autoNavigationVal2 == 1 ? 0 : 5) : 0) +
                                                             (backstagePixelsAuto * 3) +
                                                             (backdropPixelsAuto * 5) +
-                                                            (spikeMarkIndex == 0 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
-                                                            (value == true ? (spikeMarkIndex2 == 0 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
-                                                            (yellowPixelIndex == 0 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
-                                                            (value == true ? (yellowPixelIndex2 == 0 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
+                                                            (spikeMarkIndex == 2 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
+                                                            (value == true ? (spikeMarkIndex2 == 2 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
+                                                            (yellowPixelIndex == 2 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
+                                                            (value == true ? (yellowPixelIndex2 == 2 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
                                                         ) +
 
                                                         (backdropPixelsTeleOp * 3 + backstagePixelsTeleOp * 1 + mosaicTeleOp * 10 + setBonusTeleOp * 10) +
 
-                                                        (((2-suspendingEndgame) * 20)
-                                                            + ((2-parkingEndgame) * 5)
-                                                            + (droneLaunchIndex == 0 ? 0 : droneLaunchIndex == 1 ? 30 : droneLaunchIndex == 2 ? 20 : 10)
-                                                            + (value == true ? (droneLaunchIndex2 == 0 ? 0 : droneLaunchIndex2 == 1 ? 30 : droneLaunchIndex2 == 2 ? 20 : 10) : 0))
+                                                            (((2-suspendingEndgame) * 20)
+                                                                + ((2-parkingEndgame) * 5)
+                                                                + (droneLaunchIndex == 3 ? 0 : droneLaunchIndex == 2 ? 30 : droneLaunchIndex == 1 ? 20 : 10)
+                                                                + (value == true ? (droneLaunchIndex2 == 3 ? 0 : droneLaunchIndex2 == 2 ? 30 : droneLaunchIndex2 == 1 ? 20 : 10) : 0))
                                                     ).toString(),
                                                         style: TextStyle(
                                                             color:
@@ -1785,27 +1536,59 @@ class _roundsPageState extends State<roundsPage> {
                         onTap: () {
                           // do some easter egg here --maybe some picture background like snowflakes for winter idk
                           // or maybe a field image opens
-                          Share.share("Check out the breakdown of my ${0}\n" +
-                              "Cones in Terminal: ${0}\n" +
-                              "Cones on Ground Junction: ${0}\n" +
-                              "Cones on Low Junction: ${0}\n" +
-                              "Cones on Medium Junction: ${0}\n" +
-                              "Cones on High Junction: ${0}\n" +
-                              "Robot 1 Parking: ${0}\n" +
+                          Share.share("Check out the breakdown of my ${(
+                              ((autoNavigationVal == 1 ? 0 : 5) +
+                                  (value == true ? (autoNavigationVal2 == 1 ? 0 : 5) : 0) +
+                                  (backstagePixelsAuto * 3) +
+                                  (backdropPixelsAuto * 5) +
+                                  (spikeMarkIndex == 2 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
+                                  (value == true ? (spikeMarkIndex2 == 2 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
+                                  (yellowPixelIndex == 2 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
+                                  (value == true ? (yellowPixelIndex2 == 2 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
+                              )+
+
+                                  (backdropPixelsTeleOp * 3 + backstagePixelsTeleOp * 1 + mosaicTeleOp * 10 + setBonusTeleOp * 10) +
+
+                                  (((2-suspendingEndgame) * 20)
+                                      + ((2-parkingEndgame) * 5)
+                                      + (droneLaunchIndex == 3 ? 0 : droneLaunchIndex == 2 ? 30 : droneLaunchIndex == 1 ? 20 : 10)
+                                      + (value == true ? (droneLaunchIndex2 == 3 ? 0 : droneLaunchIndex2 == 2 ? 30 : droneLaunchIndex2 == 1 ? 20 : 10) : 0))
+                          )}\n" +
+                              "\nAutonomous Score: ${((autoNavigationVal == 1 ? 0 : 5) +
+                                  (value == true ? (autoNavigationVal2 == 1 ? 0 : 5) : 0) +
+                                  (backstagePixelsAuto * 3) +
+                                  (backdropPixelsAuto * 5) +
+                                  (spikeMarkIndex == 2 ? 0 : spikeMarkIndex == 1 ? 10 : 20) +
+                                  (value == true ? (spikeMarkIndex2 == 2 ? 0 : spikeMarkIndex2 == 1 ? 10 : 20) : 0) +
+                                  (yellowPixelIndex == 2 ? 0 : yellowPixelIndex == 1 ? 10 : 20) +
+                                  (value == true ? (yellowPixelIndex2 == 2 ? 0 : yellowPixelIndex2 == 1 ? 10 : 20) : 0)
+                              )}\n" +
+                              "Pixels on Backstage: ${backstagePixelsAuto}\n" +
+                              "Pixels on Backdrop: ${backdropPixelsAuto}\n" +
+                              "Spike Mark Detection: ${(spikeMarkIndex == 2 ? "Not Placed" : spikeMarkIndex == 1 ? "White Pixel" : "Team Prop")}\n" +
                               (value == true
-                                  ? "Robot 1 Parking: ${0}\n"
+                                  ? "Spike Mark 2 Detection: ${(spikeMarkIndex2 == 2 ? "Not Placed" : spikeMarkIndex2 == 1 ? "White Pixel" : "Team Prop")}\n"
                                   : "") +
-                              "\nDriver Controlled Score: ${0}\n" +
-                              "Cones in Terminal: ${0}\n" +
-                              "Cones on Ground Junction: ${0}\n" +
-                              "Cones on Low Junction: ${0}\n" +
-                              "Cones on Medium Junction: ${0}\n" +
-                              "Cones on High Junction: ${0}\n" +
-                              "\nEnd Game Score: ${0}\n" +
-                              "Owned Junctions with Cones: ${0}\n" +
-                              "Owned Junctions with Beacon: ${0}\n" +
-                              "Circuit Complete: ${0}\n" +
-                              "Parked Robots: ${0}\n" +
+                              "${value == true ? "Robot 1 " : ""}Parking: ${autoNavigationVal == 1 ? "No" : "Yes"}\n" +
+                              (value == true
+                                  ? "Robot 2 Parking: ${autoNavigationVal2 == 1 ? "No" : "Yes"}\n"
+                                  : "") +
+                              "\nDriver Controlled Score: ${(backdropPixelsTeleOp * 3 + backstagePixelsTeleOp * 1 + mosaicTeleOp * 10 + setBonusTeleOp * 10)}\n" +
+                              "Pixels on Backstage: ${backstagePixelsTeleOp}\n" +
+                              "Pixels on Backdrop: ${backdropPixelsTeleOp}\n" +
+                              "Mosaics: ${mosaicTeleOp}\n" +
+                              "Set Bonus: ${setBonusTeleOp}\n" +
+                              "\nEnd Game Score: ${(((2-suspendingEndgame) * 20)
+                                  + ((2-parkingEndgame) * 5)
+                                  + (droneLaunchIndex == 3 ? 0 : droneLaunchIndex == 2 ? 30 : droneLaunchIndex == 1 ? 20 : 10)
+                                  + (value == true ? (droneLaunchIndex2 == 3 ? 0 : droneLaunchIndex2 == 2 ? 30 : droneLaunchIndex2 == 1 ? 20 : 10) : 0))}\n" +
+                              "Robots Suspended: ${(2-suspendingEndgame)}\n" +
+                              "Robots Parked: ${(2-parkingEndgame)}\n" +
+                              "Drone Zone: ${(droneLaunchIndex == 3 ? "Not Launched" : droneLaunchIndex == 2 ? "Zone 1" : droneLaunchIndex == 1 ? "Zone 2" : "Zone 3")}\n" +
+                              (value == true
+                                  ? "Drone Zone 2: ${(droneLaunchIndex2 == 3 ? "Not Launched" : droneLaunchIndex2 == 2 ? "Zone 1" : droneLaunchIndex2 == 1 ? "Zone 2" : "Zone 3")}\n"
+                                  : "")
+                               +
                               "\n\nThis was auto-generated by FTC Scorer 2023 by Mihir Chauhan");
                         },
                       ),
