@@ -1,4 +1,4 @@
-package com.innov8rz.ftc_scorer2022;
+package com.innov8rz.ftc_scorer2023;
 
 import io.flutter.embedding.android.FlutterActivity;
 

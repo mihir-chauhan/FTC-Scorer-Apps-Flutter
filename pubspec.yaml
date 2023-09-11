@@ -1,5 +1,5 @@
 name: ftc_scorer
-description: 2019-2020 FTC Scorer
+description: 2023-2024 FTC Scorer
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -30,8 +30,8 @@ dependencies:
   share: ^2.0.4
 
 flutter_icons:
-  image_path: "assets/PowerPlayScorerIconiOS.png"
-  image_path_android: "assets/PowerPlayScorerIconAndroidCircle.png"
+  image_path: "assets/CenterStageScorerIconIOS.png"
+  image_path_android: "assets/CenterStageScorerIconAndroid.png"
   ios: true
   android: true
 
